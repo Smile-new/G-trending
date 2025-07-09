@@ -1,0 +1,33 @@
+# Deshabilitar navegación de directorios
+Options -Indexes
+
+# ----------------------------------------------------------------------
+# Rewrite Engine
+# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks
+    RewriteEngine On
+
+    # Ajustar la base en caso de estar en un subdirectorio
+    RewriteBase /
+
+    # Redirigir "www" a sin "www"
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+    # Eliminar "index.php" de las URLs
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+
+    # Pasar encabezado de autorización
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    ErrorDocument 404 index.php
+</IfModule>
+
+# Deshabilitar firma del servidor
+ServerSignature Off
