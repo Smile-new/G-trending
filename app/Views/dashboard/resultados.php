@@ -200,7 +200,7 @@
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
                         <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle"
-                                                        alt="user avatar"></span>
+                                                         alt="user avatar"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-item user-details">
@@ -313,10 +313,25 @@
                                                     <div class="btn-group" role="group">
                                                         <a href="<?= base_url('resultado/edit/' . esc($publicacion['id'])); ?>"
                                                            class="btn btn-warning btn-sm" title="Editar"><i class="fa fa-pencil"></i></a>
+
+                                                        <?php if ($publicacion['activo']): ?>
+                                                            <a href="<?= base_url('resultado/toggleStatus/' . esc($publicacion['id'])); ?>"
+                                                               class="btn btn-danger btn-sm" title="Desactivar"
+                                                               onclick="return confirm('¿Estás seguro de que quieres desactivar este resultado?');">
+                                                                <i class="fa fa-ban"></i> Desactivar
+                                                            </a>
+                                                        <?php else: ?>
+                                                            <a href="<?= base_url('resultado/toggleStatus/' . esc($publicacion['id'])); ?>"
+                                                               class="btn btn-success btn-sm" title="Activar"
+                                                               onclick="return confirm('¿Estás seguro de que quieres activar este resultado?');">
+                                                                <i class="fa fa-check"></i> Activar
+                                                            </a>
+                                                        <?php endif; ?>
+
                                                         <a href="<?= base_url('resultado/delete/' . esc($publicacion['id'])); ?>"
                                                            class="btn btn-danger btn-sm" title="Eliminar"
                                                            onclick="return confirm('¿Estás seguro de que quieres eliminar este resultado?');"><i
-                                                                    class="fa fa-trash-o"></i></a>
+                                                                class="fa fa-trash-o"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

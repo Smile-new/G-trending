@@ -110,7 +110,7 @@
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
                         <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle"
-                                                        alt="user avatar"></span>
+                                                         alt="user avatar"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-item user-details">
@@ -209,21 +209,33 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="ruta_foto">Imagen Principal (opcional)</label>
-                                    <input type="file" class="form-control-file" id="ruta_foto" name="ruta_foto">
+                                    <label for="ruta_foto">Imagen Principal <span class="text-danger">*</span></label>
+                                    <input type="file" class="form-control-file" id="ruta_foto" name="ruta_foto" required accept="image/jpeg, image/png, image/jpg">
                                     <?php if (isset($validation) && $validation->hasError('ruta_foto')): ?>
                                         <div class="text-danger"><?= $validation->getError('ruta_foto'); ?></div>
                                     <?php endif; ?>
-                                    <small class="form-text text-muted">Archivos permitidos: JPG, JPEG, PNG. Tamaño máximo: 2MB.</small>
+                                    <small class="form-text text-muted">Archivos permitidos: JPG, JPEG, PNG.</small>
+                                    <?php if (old('ruta_foto_url')): // Simula si hay una imagen ya subida para visualización ?>
+                                        <div class="mt-2">
+                                            <p>Imagen actual:</p>
+                                            <img src="<?= base_url('uploads/images/' . old('ruta_foto_url')); ?>" alt="Imagen actual" style="max-width: 200px;">
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="ruta_pdf">Archivo PDF (opcional)</label>
-                                    <input type="file" class="form-control-file" id="ruta_pdf" name="ruta_pdf">
+                                    <label for="ruta_pdf">Archivo PDF <span class="text-danger">*</span></label>
+                                    <input type="file" class="form-control-file" id="ruta_pdf" name="ruta_pdf" required accept="application/pdf">
                                     <?php if (isset($validation) && $validation->hasError('ruta_pdf')): ?>
                                         <div class="text-danger"><?= $validation->getError('ruta_pdf'); ?></div>
                                     <?php endif; ?>
-                                    <small class="form-text text-muted">Archivos permitidos: PDF. Tamaño máximo: 5MB.</small>
+                                    <small class="form-text text-muted">Archivos permitidos: PDF. Sin límite de tamaño.</small>
+                                    <?php if (old('ruta_pdf_url')): // Simula si hay un PDF ya subido para visualización ?>
+                                        <div class="mt-2">
+                                            <p>PDF actual:</p>
+                                            <a href="<?= base_url('uploads/pdfs/' . old('ruta_pdf_url')); ?>" target="_blank">Ver PDF actual</a>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="form-group">

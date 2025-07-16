@@ -85,7 +85,7 @@ class Resultados extends BaseController
         $rules = [
             'titulo'            => 'required|min_length[3]|max_length[255]',
             'descripcion'       => 'permit_empty|max_length[65535]',
-            'fecha_publicacion' => 'required|valid_date', // <<< RE-ACTIVADO: Model no la setea automáticamente
+            'fecha_publicacion' => 'required|valid_date',
             'ruta_foto'         => 'permit_empty|uploaded[ruta_foto]|max_size[ruta_foto,2048]|is_image[ruta_foto]|mime_in[ruta_foto,image/jpg,image/jpeg,image/png]',
             'ruta_pdf'          => 'permit_empty|uploaded[ruta_pdf]|max_size[ruta_pdf,5120]|ext_in[ruta_pdf,pdf]',
             'categoria_id'      => 'required|integer|is_not_unique[categorias_encuesta.id]',
@@ -101,7 +101,7 @@ class Resultados extends BaseController
             'descripcion' => [
                 'max_length' => 'La descripción es demasiado larga.',
             ],
-            'fecha_publicacion' => [ // <<< RE-ACTIVADO
+            'fecha_publicacion' => [
                 'required'   => 'La fecha de publicación es obligatoria.',
                 'valid_date' => 'La fecha de publicación no es válida.',
             ],
@@ -158,7 +158,7 @@ class Resultados extends BaseController
         $data = [
             'titulo'            => $this->request->getPost('titulo'),
             'descripcion'       => $this->request->getPost('descripcion'),
-            'fecha_publicacion' => $this->request->getPost('fecha_publicacion'), // <<< Mantener: Ahora se obtiene del formulario
+            'fecha_publicacion' => $this->request->getPost('fecha_publicacion'),
             'ruta_foto'         => $rutaFoto,
             'ruta_pdf'          => $rutaPdf,
             'categoria_id'      => $this->request->getPost('categoria_id'),
@@ -232,7 +232,7 @@ class Resultados extends BaseController
         $rules = [
             'titulo'            => 'required|min_length[3]|max_length[255]',
             'descripcion'       => 'permit_empty|max_length[65535]',
-            'fecha_publicacion' => 'required|valid_date', // Keep this validation as user might change it
+            'fecha_publicacion' => 'required|valid_date',
             'ruta_foto'         => 'if_exist|uploaded[ruta_foto]|max_size[ruta_foto,2048]|is_image[ruta_foto]|mime_in[ruta_foto,image/jpg,image/jpeg,image/png]',
             'ruta_pdf'          => 'if_exist|uploaded[ruta_pdf]|max_size[ruta_pdf,5120]|ext_in[ruta_pdf,pdf]',
             'categoria_id'      => 'required|integer|is_not_unique[categorias_encuesta.id]',
@@ -329,13 +329,12 @@ class Resultados extends BaseController
         $data = [
             'titulo'            => $this->request->getPost('titulo'),
             'descripcion'       => $this->request->getPost('descripcion'),
-            'fecha_publicacion' => $this->request->getPost('fecha_publicacion'), // <<< Mantener: Se actualiza manualmente
+            'fecha_publicacion' => $this->request->getPost('fecha_publicacion'),
             'ruta_foto'         => $rutaFoto,
             'ruta_pdf'          => $rutaPdf,
             'categoria_id'      => $this->request->getPost('categoria_id'),
             'usuario_id'        => $this->request->getPost('usuario_id'),
             'activo'            => $this->request->getPost('activo') ? 1 : 0,
-            // 'fecha_actualizacion' - REMOVED: No such column in DB, and model isn't configured for it.
         ];
 
         if ($this->publicacionModel->update($id, $data)) {
@@ -384,6 +383,51 @@ class Resultados extends BaseController
             log_message('error', 'PublicacionModel delete error: ' . json_encode($this->publicacionModel->errors()));
         }
 
+        return redirect()->to(base_url('resultado'));
+    }
+
+    /**
+     * Cambia el estado (activo/inactivo) de una publicación.
+     *
+     * @param int|null $id ID de la publicación a cambiar.
+     * @return RedirectResponse
+     */
+    public function toggleStatus(?int $id = null): RedirectResponse
+    {
+        // 1. Verificar si se proporcionó un ID válido
+        if ($id === null) {
+            session()->setFlashdata('error', 'ID de publicación no proporcionado para cambiar el estado.');
+            return redirect()->to(base_url('resultado'));
+        }
+
+        // 2. Buscar la publicación
+        $publicacion = $this->publicacionModel->find($id);
+
+        if (!$publicacion) {
+            session()->setFlashdata('error', 'Publicación no encontrada.');
+            return redirect()->to(base_url('resultado'));
+        }
+
+        // OPTIONAL: Authorization check here if only specific roles can toggle status
+        // if (session()->get('role') != 'admin_role_id') { // Example for admin role
+        //     session()->setFlashdata('error', 'No tienes permiso para cambiar el estado de esta publicación.');
+        //     return redirect()->to(base_url('resultado'));
+        // }
+
+        // 3. Determinar el nuevo estado
+        $nuevoEstado = ($publicacion['activo'] == 1) ? 0 : 1; // Si es 1, cambia a 0; si es 0, cambia a 1.
+
+        // 4. Actualizar el estado en la base de datos
+        if ($this->publicacionModel->update($id, ['activo' => $nuevoEstado])) {
+            $mensaje = ($nuevoEstado == 1) ? 'Publicación activada correctamente.' : 'Publicación desactivada correctamente.';
+            session()->setFlashdata('success', $mensaje);
+        } else {
+            $dbErrors = $this->publicacionModel->errors();
+            log_message('error', 'PublicacionModel toggleStatus error: ' . json_encode($dbErrors));
+            session()->setFlashdata('error', 'Error al cambiar el estado de la publicación. Detalles: ' . json_encode($dbErrors));
+        }
+
+        // 5. Redirigir de vuelta a la página de resultados
         return redirect()->to(base_url('resultado'));
     }
 }

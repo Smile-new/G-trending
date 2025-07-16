@@ -42,10 +42,7 @@ $routes->get('/contact', 'Portal::contact');
 //Panel
  
     $routes->get('dashboard', 'Administrador::index'); 
-    $routes->get('edit', 'Administrador::edit');
-    $routes->get('icon', 'Administrador::icon');
-    $routes->get('render', 'Administrador::render');
-    $routes->get('user', 'Administrador::user');
+    
 
 
     //Usuario CRUD
@@ -77,6 +74,7 @@ $routes->post('resultado/store', 'Resultados::store');
 $routes->get('resultado/edit/(:num)', 'Resultados::edit/$1');
 $routes->post('resultado/update/(:num)', 'Resultados::update/$1');
 $routes->get('resultado/delete/(:num)', 'Resultados::delete/$1');
+$routes->get('resultado/toggleStatus/(:num)', 'Resultados::toggleStatus/$1');
 
 
 //Rutas Login
