@@ -167,7 +167,7 @@
                                 <div class="form-group">
                                     <label for="nombre_usuario">Nombre Completo</label>
                                     <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario"
-                                           value="<?= old('nombre_usuario', $usuario['nombre_usuario']); ?>" required>
+                                                value="<?= old('nombre_usuario', $usuario['nombre_usuario']); ?>" required>
                                     <?php if (isset($validation) && $validation->hasError('nombre_usuario')): ?>
                                         <div class="text-danger"><?= $validation->getError('nombre_usuario'); ?></div>
                                     <?php endif; ?>
@@ -177,9 +177,9 @@
                                     <label for="user">Usuario (para iniciar sesión)</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="user" name="user"
-                                               value="<?= old('user', $usuario['user']); ?>" required>
+                                                value="<?= old('user', $usuario['user']); ?>" required>
                                         <div class="input-group-append">
-                                            <button type="button" class="btn btn-outline-secondary" id="generateUsername">Generar</button>
+                                            <button type="button" class="btn btn-outline-secondary" id="generateUsernameBtn">Generar</button>
                                         </div>
                                     </div>
                                     <?php if (isset($validation) && $validation->hasError('user')): ?>
@@ -190,9 +190,10 @@
                                 <div class="form-group">
                                     <label for="password">Nueva Contraseña (dejar en blanco para no cambiar)</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="password" name="password" value="<?= old('password'); ?>">
+                                        <input type="password" class="form-control" id="password" name="password" value="<?= old('password'); ?>">
                                         <div class="input-group-append">
-                                            <button type="button" class="btn btn-outline-secondary" id="generatePassword">Generar</button>
+                                            <button type="button" class="btn btn-outline-secondary" id="generatePasswordBtn">Generar</button>
+                                            <button type="button" class="btn btn-outline-secondary" id="togglePasswordBtn">Mostrar</button>
                                         </div>
                                     </div>
                                     <small class="form-text text-muted">Si no ingresas una nueva contraseña, la actual se mantendrá.</small>
@@ -219,13 +220,14 @@
 
                                 <div class="form-group">
                                     <label>Foto de Perfil Actual</label>
-                                    <div class="mb-2">
+                                    <div class="mb-2" id="previewContainer">
                                         <?php
                                             $profilePicture = !empty($usuario['foto']) && $usuario['foto'] !== 'default.png'
                                                 ? base_url('img_user/' . $usuario['foto'])
                                                 : base_url('assets/images/user/avatar-2.jpg'); // Default image
                                         ?>
-                                        <img src="<?= $profilePicture; ?>" alt="Foto de Perfil Actual" class="img-thumbnail" style="max-width: 150px; max-height: 150px;">
+                                        <img src="<?= $profilePicture; ?>" alt="Foto de Perfil Actual" class="img-thumbnail" style="max-width: 150px; max-height: 150px;" id="imagePreview">
+                                        <input type="hidden" name="current_image" value="<?= esc($usuario['foto']); ?>">
                                     </div>
                                     <?php if (!empty($usuario['foto']) && $usuario['foto'] !== 'default.png'): ?>
                                         <div class="form-check mb-2">
@@ -243,7 +245,7 @@
 
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input" id="activo" name="activo" value="1"
-                                           <?= (old('activo', $usuario['activo']) == 1) ? 'checked' : ''; ?>>
+                                                <?= (old('activo', $usuario['activo']) == 1) ? 'checked' : ''; ?>>
                                     <label class="form-check-label" for="activo">Activo</label>
                                     <?php if (isset($validation) && $validation->hasError('activo')): ?>
                                         <div class="text-danger"><?= $validation->getError('activo'); ?></div>
@@ -320,10 +322,10 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const generarUsuarioBtn = document.getElementById('generarUsuarioBtn');
+    const generateUsernameBtn = document.getElementById('generateUsernameBtn');
     const userInput = document.getElementById('user'); // Este es el campo 'user' (usuario/username)
 
-    const generarPasswordBtn = document.getElementById('generarPasswordBtn');
+    const generatePasswordBtn = document.getElementById('generatePasswordBtn');
     const passwordInput = document.getElementById('password');
     const togglePasswordBtn = document.getElementById('togglePasswordBtn');
 
@@ -332,8 +334,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const previewContainer = document.getElementById('previewContainer');
 
     // Función para generar un nuevo usuario (username) via AJAX
-    if (generarUsuarioBtn) {
-        generarUsuarioBtn.addEventListener('click', function() {
+    if (generateUsernameBtn) {
+        generateUsernameBtn.addEventListener('click', function() {
             // Usar la ruta con el nombre correcto que configuramos en app/Config/Routes.php
             fetch('<?= route_to('admin_generate_username_ajax') ?>')
                 .then(response => response.json())
@@ -352,8 +354,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Función para generar una nueva contraseña via AJAX
-    if (generarPasswordBtn) {
-        generarPasswordBtn.addEventListener('click', function() {
+    if (generatePasswordBtn) {
+        generatePasswordBtn.addEventListener('click', function() {
             // Usar la ruta con el nombre correcto que configuramos en app/Config/Routes.php
             fetch('<?= route_to('admin_generate_password_ajax') ?>')
                 .then(response => response.json())
@@ -401,14 +403,14 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // Si no se selecciona un archivo, mantener la imagen actual o ocultar si no hay ninguna
                 const currentImage = document.querySelector('input[name="current_image"]').value;
-                if (currentImage) {
+                if (currentImage && currentImage !== 'default.png') { // Only display if there's a non-default current image
                     imagePreview.src = '<?= base_url('img_user/') ?>' + currentImage;
                     previewContainer.style.display = 'block';
                     imagePreview.style.display = 'block';
                 } else {
-                    imagePreview.src = '';
-                    previewContainer.style.display = 'none';
-                    imagePreview.style.display = 'none';
+                    imagePreview.src = '<?= base_url('assets/images/user/avatar-2.jpg'); ?>'; // Show default if no image
+                    previewContainer.style.display = 'block';
+                    imagePreview.style.display = 'block';
                 }
             }
         });
@@ -418,22 +420,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // y que la previsualización se oculte si no hay imagen (nueva o existente)
     // También manejar el caso cuando se devuelve old() data de una imagen que no se pudo cargar.
     const initialCurrentSrc = document.querySelector('input[name="current_image"]').value;
-    const oldImageFile = '<?= old('imagen_perfil') ?>'; // old('imagen_perfil') para files no contiene la ruta del archivo, solo el nombre.
+    // old('imagen_perfil') for file inputs doesn't contain the actual file path, just the file name.
+    // So, we cannot re-preview a previously uploaded 'old' file directly from old('imagen_perfil').
+    // The best approach is to display the *currently saved* image or the default, and let the user re-upload if needed.
     
-    if (initialCurrentSrc && !oldImageFile) { // Si hay una imagen actual y no se ha intentado subir una nueva (o la vieja está bien)
+    if (initialCurrentSrc && initialCurrentSrc !== 'default.png') {
         imagePreview.src = '<?= base_url('img_user/') ?>' + initialCurrentSrc;
         previewContainer.style.display = 'block';
         imagePreview.style.display = 'block';
-    } else if (oldImageFile) { // Si hay un intento de subir una nueva imagen y falló (oldImageFile podría ser el nombre, pero no el path)
-        // No podemos previsualizar un archivo 'old' subido. Es mejor dejar que el usuario lo suba de nuevo.
-        // Ocultamos la previsualización para archivos "old" que no son rutas válidas.
-        previewContainer.style.display = 'none';
-        imagePreview.style.display = 'none';
-        // Opcionalmente, mostrar un mensaje al usuario.
-        // alert('Hubo un problema con la imagen. Por favor, selecciónela de nuevo.');
-    } else { // Si no hay imagen actual ni se ha intentado subir una nueva válida
-        previewContainer.style.display = 'none';
-        imagePreview.style.display = 'none';
+    } else {
+        // If no specific user image, show the default avatar
+        imagePreview.src = '<?= base_url('assets/images/user/avatar-2.jpg'); ?>';
+        previewContainer.style.display = 'block';
+        imagePreview.style.display = 'block';
     }
 });
 </script>

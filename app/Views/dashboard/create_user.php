@@ -141,18 +141,31 @@
                     <h1><?= $page_title; ?></h1>
 
                     <?php if (session()->getFlashdata('success')): ?>
-                        <div class="alert alert-success"><?= session()->getFlashdata('success'); ?></div>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashdata('success'); ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     <?php endif; ?>
                     <?php if (session()->getFlashdata('error')): ?>
-                        <div class="alert alert-danger"><?= session()->getFlashdata('error'); ?></div>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashdata('error'); ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     <?php endif; ?>
                     <?php if (isset($validation) && $validation->getErrors()): ?>
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <ul>
                                 <?php foreach ($validation->getErrors() as $error): ?>
                                     <li><?= esc($error); ?></li>
                                 <?php endforeach; ?>
                             </ul>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                     <?php endif; ?>
 
@@ -161,7 +174,7 @@
                             <h5>Formulario de Creación de Usuario</h5>
                         </div>
                         <div class="card-body">
-                            <?= form_open_multipart('users/store'); ?>
+                            <?= form_open_multipart('usuario/store'); // Cambiado a 'usuario/store' para que coincida con el controlador Usuario ?>
                                 <?= csrf_field(); ?>
 
                                 <div class="form-group">
@@ -281,6 +294,7 @@
                 <li id="theme14"></li>
                 <li id="theme15"></li>
             </ul>
+
         </div>
     </div>
 </div>
@@ -300,40 +314,63 @@
 
 <script>
     $(document).ready(function() {
+        // Cierre de alertas flashdata
+        $('.alert .close').on('click', function() {
+            $(this).closest('.alert').alert('close');
+        });
+
         $('#generateUsername').on('click', function() {
             $.ajax({
-                url: '<?= base_url('users/generateUsernameAjax'); ?>', // Adjust URL as per your routes
+                url: '<?= base_url('usuario/generateUsernameAjax'); ?>', // Ajustado a 'usuario'
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {
                     if (response.username) {
                         $('#user').val(response.username);
                     } else {
-                        alert('Error al generar nombre de usuario.');
+                        // En caso de respuesta exitosa pero sin username (lo cual no debería pasar si el controlador funciona)
+                        alert('Error al generar nombre de usuario: Respuesta inesperada.');
+                        console.log('Respuesta del servidor para username:', response);
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.error("AJAX Error: " + status + error);
-                    alert('Error al conectar con el servidor para generar nombre de usuario.');
+                    // Depuración más detallada
+                    console.error("AJAX Error (generateUsername):", status, error);
+                    console.error("Response Text:", xhr.responseText);
+                    try {
+                        let jsonResponse = JSON.parse(xhr.responseText);
+                        alert('Error al generar nombre de usuario: ' + (jsonResponse.message || 'Error desconocido del servidor.'));
+                    } catch (e) {
+                        alert('Error al conectar con el servidor para generar nombre de usuario. Ver consola para más detalles.');
+                    }
                 }
             });
         });
 
         $('#generatePassword').on('click', function() {
             $.ajax({
-                url: '<?= base_url('users/generatePasswordAjax'); ?>', // Adjust URL as per your routes
+                url: '<?= base_url('usuario/generatePasswordAjax'); ?>', // Ajustado a 'usuario'
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {
                     if (response.password) {
                         $('#password').val(response.password);
                     } else {
-                        alert('Error al generar contraseña.');
+                        // En caso de respuesta exitosa pero sin password
+                        alert('Error al generar contraseña: Respuesta inesperada.');
+                        console.log('Respuesta del servidor para password:', response);
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.error("AJAX Error: " + status + error);
-                    alert('Error al conectar con el servidor para generar contraseña.');
+                    // Depuración más detallada
+                    console.error("AJAX Error (generatePassword):", status, error);
+                    console.error("Response Text:", xhr.responseText);
+                    try {
+                        let jsonResponse = JSON.parse(xhr.responseText);
+                        alert('Error al generar contraseña: ' + (jsonResponse.message || 'Error desconocido del servidor.'));
+                    } catch (e) {
+                        alert('Error al conectar con el servidor para generar contraseña. Ver consola para más detalles.');
+                    }
                 }
             });
         });

@@ -5,8 +5,9 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\UsuarioModel;
 use App\Models\RolModel;
-use CodeIgniter\HTTP\RedirectResponse; // Para asegurar el tipo de retorno en redirecciones
-use CodeIgniter\HTTP\ResponseInterface; // Para asegurar el tipo de retorno en respuestas JSON
+use CodeIgniter\HTTP\RedirectResponse;
+use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\Exceptions\PageNotFoundException; // Asegúrate de que esta clase esté importada
 
 class Usuario extends BaseController
 {
@@ -17,7 +18,7 @@ class Usuario extends BaseController
     {
         $this->usuarioModel = new UsuarioModel();
         $this->rolModel     = new RolModel();
-        helper(['form', 'url']); // Carga helpers para formularios y URLs
+        helper(['form', 'url', 'filesystem']); // Asegura que 'filesystem' también esté cargado para unlink
     }
 
     /**
@@ -27,12 +28,21 @@ class Usuario extends BaseController
      */
     public function index(): string
     {
+        // Se une con la tabla de roles para obtener el nombre del rol directamente
+        // Esto es más eficiente que buscar el rol para cada usuario en la vista.
+        $usuarios = $this->usuarioModel
+                         ->select('usuarios.*, roles.nombre_rol as rol_nombre')
+                         ->join('roles', 'roles.id = usuarios.rol_id')
+                         ->findAll();
+
         $data = [
             'page_title' => 'Gestión de Usuarios',
-            'usuarios'   => $this->usuarioModel->findAll(),
-            'roles'      => $this->rolModel->findAll(), // Necesario para mostrar el nombre del rol
+            'usuarios'   => $usuarios,
+            // 'roles' ya no es estrictamente necesario pasarlo completo si el join es suficiente
+            // pero si tu vista lo usa para un dropdown de filtro o similar, déjalo.
+            'roles'      => $this->rolModel->findAll(),
         ];
-        return view('dashboard/user', $data); // Vista: app/Views/dashboard/user.php
+        return view('dashboard/user', $data);
     }
 
     /**
@@ -47,7 +57,7 @@ class Usuario extends BaseController
             'roles'      => $this->rolModel->findAll(),
             'validation' => \Config\Services::validation(),
         ];
-        return view('dashboard/create_user', $data); // Vista: app/Views/dashboard/create_user.php
+        return view('dashboard/create_user', $data);
     }
 
     /**
@@ -61,12 +71,12 @@ class Usuario extends BaseController
     {
         // Reglas de validación
         $rules = [
-            'nombre_usuario'   => 'required|min_length[3]|max_length[100]', // Nombre Completo, no es único
-            'user'             => 'required|max_length[255]|is_unique[usuarios.user]', // Usuario (login), debe ser único
-            'password'         => 'required|min_length[6]', // Contraseña
-            'rol_id'           => 'required|integer',
-            'activo'           => 'permit_empty|is_natural_no_zero',
-            'imagen_perfil'    => [ // Reglas para la imagen de perfil
+            'nombre_usuario'  => 'required|min_length[3]|max_length[100]',
+            'user'            => 'required|max_length[255]|is_unique[usuarios.user]',
+            'password'        => 'required|min_length[6]',
+            'rol_id'          => 'required|integer|is_not_unique[roles.id]', // Validar que el rol exista
+            'activo'          => 'permit_empty|in_list[0,1]', // <<< CORRECCIÓN: Si puede ser 0 o 1
+            'imagen_perfil'   => [
                 'rules'  => 'if_exist|uploaded[imagen_perfil]|max_size[imagen_perfil,1024]|is_image[imagen_perfil]|mime_in[imagen_perfil,image/jpg,image/jpeg,image/png,image/gif]',
                 'errors' => [
                     'uploaded' => 'Por favor, sube una imagen de perfil.',
@@ -83,10 +93,9 @@ class Usuario extends BaseController
 
         // Datos para guardar en la base de datos
         $data = [
-            'nombre_usuario' => $this->request->getPost('nombre_usuario'), // Tomado del formulario
-            'user'           => $this->request->getPost('user'),           // El usuario (username) generado para login
-            'password'       => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-
+            'nombre_usuario' => $this->request->getPost('nombre_usuario'),
+            'user'           => $this->request->getPost('user'),
+            'password'       => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT), // Hashing de la contraseña
             'rol_id'         => $this->request->getPost('rol_id'),
             'activo'         => $this->request->getPost('activo') ? 1 : 0,
         ];
@@ -96,23 +105,32 @@ class Usuario extends BaseController
         $rutaFoto = 'default.png'; // Valor por defecto si no se sube imagen
 
         // Asegúrate de que IMG_USER_PATH esté definido en app/Config/Constants.php
+        // Si no está, esta línea lo define como fallback.
         if (!defined('IMG_USER_PATH')) {
-            define('IMG_USER_PATH', 'img_user'); // Definición de fallback si no está en Constants.php
+            define('IMG_USER_PATH', 'img_user');
         }
 
+        $uploadPath = FCPATH . IMG_USER_PATH; // Ruta completa al directorio de subida
+
         if ($imagen && $imagen->isValid() && !$imagen->hasMoved()) {
-            $nombreAleatorio = $imagen->getRandomName(); // Genera un nombre único para el archivo
-            // Mover la imagen a la carpeta public/img_user
-            $imagen->move(FCPATH . IMG_USER_PATH, $nombreAleatorio);
+            // Asegurarse de que el directorio de subida existe
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+            $nombreAleatorio = $imagen->getRandomName();
+            $imagen->move($uploadPath, $nombreAleatorio);
             $rutaFoto = $nombreAleatorio; // Solo guardamos el nombre del archivo en la DB
         }
 
         $data['foto'] = $rutaFoto; // Asigna la ruta de la foto a los datos
 
         if ($this->usuarioModel->save($data)) {
-            session()->setFlashdata('success', 'Usuario "' . esc($data['nombre_usuario']) . '" creado exitosamente. Nombre de usuario para acceso: **' . esc($data['user']) . '**. Contraseña: **' . esc($this->request->getPost('password')) . '**');
+            // <<< CORRECCIÓN DE SEGURIDAD: NO mostrar la contraseña en flashdata
+            session()->setFlashdata('success', 'Usuario "' . esc($data['nombre_usuario']) . '" creado exitosamente. Nombre de usuario para acceso: **' . esc($data['user']) . '**.');
         } else {
-            session()->setFlashdata('error', 'Error al crear el usuario.');
+            $dbErrors = $this->usuarioModel->errors();
+            log_message('error', 'UsuarioModel insert error: ' . json_encode($dbErrors));
+            session()->setFlashdata('error', 'Error al crear el usuario. Detalles: ' . json_encode($dbErrors));
         }
 
         return redirect()->to(base_url('users'));
@@ -123,14 +141,14 @@ class Usuario extends BaseController
      *
      * @param int|null $id ID del usuario a editar.
      * @return string
-     * @throws \CodeIgniter\Exceptions\PageNotFoundException Si el usuario no es encontrado.
+     * @throws PageNotFoundException Si el usuario no es encontrado.
      */
     public function edit(?int $id = null): string
     {
         $usuario = $this->usuarioModel->find($id);
 
         if (!$usuario) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('No se pudo encontrar el usuario con ID: ' . $id);
+            throw new PageNotFoundException('No se pudo encontrar el usuario con ID: ' . $id);
         }
 
         $data = [
@@ -139,7 +157,7 @@ class Usuario extends BaseController
             'roles'      => $this->rolModel->findAll(),
             'validation' => \Config\Services::validation(),
         ];
-        return view('dashboard/update_user', $data); // Vista: app/Views/dashboard/update_user.php
+        return view('dashboard/update_user', $data);
     }
 
     /**
@@ -148,22 +166,22 @@ class Usuario extends BaseController
      *
      * @param int $id ID del usuario a actualizar.
      * @return RedirectResponse
-     * @throws \CodeIgniter\Exceptions\PageNotFoundException Si el usuario no es encontrado.
+     * @throws PageNotFoundException Si el usuario no es encontrado.
      */
     public function update(int $id): RedirectResponse
     {
         $usuarioExistente = $this->usuarioModel->find($id);
         if (!$usuarioExistente) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('No se pudo encontrar el usuario con ID: ' . $id);
+            throw new PageNotFoundException('No se pudo encontrar el usuario con ID: ' . $id);
         }
 
         // Reglas de validación para la actualización
         $rules = [
-            'nombre_usuario' => 'required|min_length[3]|max_length[100]', // Nombre Completo, no es único
-            'user'           => 'required|max_length[255]|is_unique[usuarios.user,id,' . $id . ']', // Usuario (login), debe ser único
-            'rol_id'         => 'required|integer',
-            'activo'         => 'permit_empty|is_natural_no_zero',
-            'imagen_perfil'  => [ // Reglas para la imagen de perfil (opcional en edición)
+            'nombre_usuario' => 'required|min_length[3]|max_length[100]',
+            'user'           => 'required|max_length[255]|is_unique[usuarios.user,id,' . $id . ']',
+            'rol_id'         => 'required|integer|is_not_unique[roles.id]', // Validar que el rol exista
+            'activo'         => 'permit_empty|in_list[0,1]', // <<< CORRECCIÓN: Si puede ser 0 o 1
+            'imagen_perfil'  => [
                 'rules'  => 'if_exist|uploaded[imagen_perfil]|max_size[imagen_perfil,1024]|is_image[imagen_perfil]|mime_in[imagen_perfil,image/jpg,image/jpeg,image/png,image/gif]',
                 'errors' => [
                     'max_size' => 'La imagen de perfil es demasiado grande (máximo 1MB).',
@@ -175,7 +193,7 @@ class Usuario extends BaseController
 
         // Solo añade la regla de validación de contraseña si se proporciona una nueva
         if ($this->request->getPost('password')) {
-            $rules['password'] = 'required|min_length[6]'; // La contraseña se hasheará en el modelo
+            $rules['password'] = 'required|min_length[6]';
         }
 
         if (!$this->validate($rules)) {
@@ -189,32 +207,35 @@ class Usuario extends BaseController
             'activo'         => $this->request->getPost('activo') ? 1 : 0,
         ];
 
-        // Si se proporcionó una nueva contraseña, la incluimos en los datos.
-        // El modelo se encargará de hashearla automáticamente gracias al hook beforeUpdate.
+        // Si se proporcionó una nueva contraseña, la incluimos y hasheamos.
         if ($this->request->getPost('password')) {
-    $data['password'] = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
-}
-
+            $data['password'] = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
+        }
 
         // Manejo de la subida de la imagen de perfil en edición
         $imagen = $this->request->getFile('imagen_perfil');
         $rutaFotoActual = $usuarioExistente['foto']; // Mantener la foto existente por defecto
 
         if (!defined('IMG_USER_PATH')) {
-            define('IMG_USER_PATH', 'img_user'); // Definición de fallback (mejor definir en Constants.php)
+            define('IMG_USER_PATH', 'img_user');
         }
+        $uploadPath = FCPATH . IMG_USER_PATH;
 
         if ($imagen && $imagen->isValid() && !$imagen->hasMoved()) {
+            // Asegurarse de que el directorio de subida existe
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
             // Eliminar la foto antigua si existe y no es la por defecto
-            if (!empty($rutaFotoActual) && $rutaFotoActual !== 'default.png' && file_exists(FCPATH . IMG_USER_PATH . '/' . $rutaFotoActual)) {
-                unlink(FCPATH . IMG_USER_PATH . '/' . $rutaFotoActual);
+            if (!empty($rutaFotoActual) && $rutaFotoActual !== 'default.png' && file_exists($uploadPath . '/' . $rutaFotoActual)) {
+                unlink($uploadPath . '/' . $rutaFotoActual);
             }
             $nombreAleatorio = $imagen->getRandomName();
-            $imagen->move(FCPATH . IMG_USER_PATH, $nombreAleatorio);
+            $imagen->move($uploadPath, $nombreAleatorio);
             $data['foto'] = $nombreAleatorio; // Actualiza el nombre del archivo en la DB
         } else if ($this->request->getPost('remove_photo')) { // Si hay un checkbox para eliminar la foto
-            if (!empty($rutaFotoActual) && $rutaFotoActual !== 'default.png' && file_exists(FCPATH . IMG_USER_PATH . '/' . $rutaFotoActual)) {
-                unlink(FCPATH . IMG_USER_PATH . '/' . $rutaFotoActual);
+            if (!empty($rutaFotoActual) && $rutaFotoActual !== 'default.png' && file_exists($uploadPath . '/' . $rutaFotoActual)) {
+                unlink($uploadPath . '/' . $rutaFotoActual);
             }
             $data['foto'] = 'default.png'; // O NULL, según tu preferencia en la DB
         } else {
@@ -222,9 +243,14 @@ class Usuario extends BaseController
             $data['foto'] = $rutaFotoActual;
         }
 
-        $this->usuarioModel->update($id, $data);
+        if ($this->usuarioModel->update($id, $data)) {
+            session()->setFlashdata('success', 'Usuario actualizado exitosamente.');
+        } else {
+            $dbErrors = $this->usuarioModel->errors();
+            log_message('error', 'UsuarioModel update error: ' . json_encode($dbErrors));
+            session()->setFlashdata('error', 'Error al actualizar el usuario. Detalles: ' . json_encode($dbErrors));
+        }
 
-        session()->setFlashdata('success', 'Usuario actualizado exitosamente.');
         return redirect()->to(base_url('users'));
     }
 
@@ -241,22 +267,28 @@ class Usuario extends BaseController
 
         if (!$usuario) {
             session()->setFlashdata('error', 'Usuario no encontrado.');
-            return redirect()->to(base_url('users')); // Corregido: 'admin/users' a 'users'
+            return redirect()->to(base_url('users'));
         }
 
         // Asegúrate de que IMG_USER_PATH esté definido
         if (!defined('IMG_USER_PATH')) {
-            define('IMG_USER_PATH', 'img_user'); // Definición de fallback
+            define('IMG_USER_PATH', 'img_user');
         }
+        $uploadPath = FCPATH . IMG_USER_PATH;
 
         // Eliminar la foto de perfil asociada si existe y no es la por defecto
-        if (!empty($usuario['foto']) && $usuario['foto'] !== 'default.png' && file_exists(FCPATH . IMG_USER_PATH . '/' . $usuario['foto'])) {
-            unlink(FCPATH . IMG_USER_PATH . '/' . $usuario['foto']);
+        if (!empty($usuario['foto']) && $usuario['foto'] !== 'default.png' && file_exists($uploadPath . '/' . $usuario['foto'])) {
+            unlink($uploadPath . '/' . $usuario['foto']);
         }
 
-        $this->usuarioModel->delete($id);
+        if ($this->usuarioModel->delete($id)) {
+            session()->setFlashdata('success', 'Usuario eliminado exitosamente.');
+        } else {
+            $dbErrors = $this->usuarioModel->errors();
+            log_message('error', 'UsuarioModel delete error: ' . json_encode($dbErrors));
+            session()->setFlashdata('error', 'Error al eliminar el usuario. Detalles: ' . json_encode($dbErrors));
+        }
 
-        session()->setFlashdata('success', 'Usuario eliminado exitosamente.');
         return redirect()->to(base_url('users'));
     }
 
@@ -272,14 +304,19 @@ class Usuario extends BaseController
 
         if (!$usuario) {
             session()->setFlashdata('error', 'Usuario no encontrado para cambiar estado.');
-            return redirect()->to(base_url('users')); // Corregido: 'admin/users' a 'users'
+            return redirect()->to(base_url('users'));
         }
 
         $nuevoEstado = ($usuario['activo'] == 1) ? 0 : 1;
 
-        $this->usuarioModel->update($id, ['activo' => $nuevoEstado]);
-
-        session()->setFlashdata('success', 'Estado del usuario "' . esc($usuario['nombre_usuario']) . '" cambiado a ' . ($nuevoEstado ? 'Activo' : 'Inactivo') . ' exitosamente.');
+        if ($this->usuarioModel->update($id, ['activo' => $nuevoEstado])) {
+            session()->setFlashdata('success', 'Estado del usuario "' . esc($usuario['nombre_usuario']) . '" cambiado a ' . ($nuevoEstado ? 'Activo' : 'Inactivo') . ' exitosamente.');
+        } else {
+            $dbErrors = $this->usuarioModel->errors();
+            log_message('error', 'UsuarioModel toggleStatus error: ' . json_encode($dbErrors));
+            session()->setFlashdata('error', 'Error al cambiar el estado del usuario. Detalles: ' . json_encode($dbErrors));
+        }
+        
         return redirect()->to(base_url('users'));
     }
 
@@ -318,10 +355,9 @@ class Usuario extends BaseController
         $attempt = 0;
         $username = '';
 
-        while (!$unique && $attempt < 10) { // Intentar un número limitado de veces
-            $randomString = bin2hex(random_bytes(4)); // Genera 8 caracteres hexadecimales
+        while (!$unique && $attempt < 10) {
+            $randomString = bin2hex(random_bytes(4));
             $username = $baseUsername . $randomString;
-            // Verificar si el nombre de usuario ya existe en la base de datos en la columna 'user'
             $existingUser = $this->usuarioModel->where('user', $username)->first();
             if (empty($existingUser)) {
                 $unique = true;
@@ -330,7 +366,6 @@ class Usuario extends BaseController
         }
 
         if (!$unique) {
-            // Si después de varios intentos no se genera un nombre único, lanza una excepción
             throw new \RuntimeException('No se pudo generar un nombre de usuario único automático. Intenta de nuevo.');
         }
 
@@ -349,7 +384,7 @@ class Usuario extends BaseController
         $charactersLength = strlen($characters);
         $randomPassword = '';
         for ($i = 0; $i < $length; $i++) {
-            $randomPassword .= $characters[random_int(0, $charactersLength - 1)]; // Usa random_int para mayor seguridad
+            $randomPassword .= $characters[random_int(0, $charactersLength - 1)];
         }
         return $randomPassword;
     }
