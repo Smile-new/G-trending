@@ -17,6 +17,8 @@
     <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/sidebar-menu.css'); ?>" rel="stylesheet"/>
     <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/app-style.css'); ?>" rel="stylesheet"/>
 
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
 </head>
 
 <body class="bg-theme bg-theme1">
@@ -110,7 +112,7 @@
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
                         <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle"
-                                                         alt="user avatar"></span>
+                                                        alt="user avatar"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-item user-details">
@@ -193,7 +195,7 @@
 
                                 <div class="form-group">
                                     <label for="descripcion">Descripción</label>
-                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="5"><?= old('descripcion'); ?></textarea>
+                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="10"><?= old('descripcion'); ?></textarea>
                                     <?php if (isset($validation) && $validation->hasError('descripcion')): ?>
                                         <div class="text-danger"><?= $validation->getError('descripcion'); ?></div>
                                     <?php endif; ?>
@@ -326,6 +328,29 @@
 <script src="<?= base_url(RECURSOS_ADMIN_JS . '/sidebar-menu.js'); ?>"></script>
 
 <script src="<?= base_url(RECURSOS_ADMIN_JS . '/app-script.js'); ?>"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#descripcion').summernote({
+            height: 300, // set editor height
+            minHeight: null, // set minimum height of editor
+            maxHeight: null, // set maximum height of editor
+            focus: true, // set focus to editable area after initializing summernote
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    });
+</script>
 
 </body>
 </html>

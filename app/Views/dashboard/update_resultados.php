@@ -4,8 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta name="description" content="Interfaz de edición de resultados con editor de texto enriquecido."/>
     <title><?= $page_title; ?> | Dashtreme Admin</title>
     <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/pace.min.css'); ?>" rel="stylesheet"/>
     <script src="<?= base_url(RECURSOS_ADMIN_JS . '/pace.min.js'); ?>"></script>
@@ -180,119 +179,105 @@
                         </div>
                         <div class="card-body">
                             <?= form_open_multipart('resultado/update/' . esc($publicacion['id'])); ?>
-                                <?= csrf_field(); ?>
+                            <?= csrf_field(); ?>
 
-                                <div class="form-group">
-                                    <label for="titulo">Título</label>
-                                    <input type="text" class="form-control" id="titulo" name="titulo"
-                                           value="<?= old('titulo', $publicacion['titulo']); ?>" required>
-                                    <?php if (isset($validation) && $validation->hasError('titulo')): ?>
-                                        <div class="text-danger"><?= $validation->getError('titulo'); ?></div>
+                            <div class="form-group">
+                                <label for="titulo">Título</label>
+                                <input type="text" class="form-control" id="titulo" name="titulo"
+                                       value="<?= old('titulo', $publicacion['titulo']); ?>" required>
+                                <?php if (isset($validation) && $validation->hasError('titulo')): ?>
+                                    <div class="text-danger"><?= $validation->getError('titulo'); ?></div>
+                                <?php endif; ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descripcion">Descripción</label>
+                                <textarea class="form-control" id="editor" name="descripcion" rows="5"><?= old('descripcion', $publicacion['descripcion']); ?></textarea>
+                                <?php if (isset($validation) && $validation->hasError('descripcion')): ?>
+                                    <div class="text-danger"><?= $validation->getError('descripcion'); ?></div>
+                                <?php endif; ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fecha_publicacion">Fecha de Publicación</label>
+                                <input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion"
+                                       value="<?= old('fecha_publicacion', $publicacion['fecha_publicacion']); ?>" required>
+                                <?php if (isset($validation) && $validation->hasError('fecha_publicacion')): ?>
+                                    <div class="text-danger"><?= $validation->getError('fecha_publicacion'); ?></div>
+                                <?php endif; ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Imagen Actual</label>
+                                <div class="mb-2">
+                                    <?php if (!empty($publicacion['ruta_foto'])): ?>
+                                        <img src="<?= base_url($publicacion['ruta_foto']); ?>" alt="Imagen Actual" class="img-thumbnail" style="max-width: 150px; max-height: 150px;">
+                                        <div class="form-check mt-2">
+                                            <input type="checkbox" class="form-check-input" id="remove_ruta_foto" name="remove_ruta_foto" value="1">
+                                            <label class="form-check-label" for="remove_ruta_foto">Eliminar imagen actual</label>
+                                        </div>
+                                    <?php else: ?>
+                                        <p>No hay imagen actual.</p>
                                     <?php endif; ?>
                                 </div>
+                                <label for="ruta_foto">Subir Nueva Imagen (opcional)</label>
+                                <input type="file" class="form-control-file" id="ruta_foto" name="ruta_foto">
+                                <?php if (isset($validation) && $validation->hasError('ruta_foto')): ?>
+                                    <div class="text-danger"><?= $validation->getError('ruta_foto'); ?></div>
+                                <?php endif; ?>
+                                <small class="form-text text-muted">Archivos permitidos: JPG, JPEG, PNG. Tamaño máximo: 2MB.</small>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="descripcion">Descripción</label>
-                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="5"><?= old('descripcion', $publicacion['descripcion']); ?></textarea>
-                                    <?php if (isset($validation) && $validation->hasError('descripcion')): ?>
-                                        <div class="text-danger"><?= $validation->getError('descripcion'); ?></div>
+                            <div class="form-group">
+                                <label>Archivo PDF Actual</label>
+                                <div class="mb-2">
+                                    <?php if (!empty($publicacion['ruta_pdf'])): ?>
+                                        <a href="<?= base_url($publicacion['ruta_pdf']); ?>" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-file-pdf-o"></i> Ver PDF Actual</a>
+                                        <div class="form-check mt-2">
+                                            <input type="checkbox" class="form-check-input" id="remove_ruta_pdf" name="remove_ruta_pdf" value="1">
+                                            <label class="form-check-label" for="remove_ruta_pdf">Eliminar PDF actual</label>
+                                        </div>
+                                    <?php else: ?>
+                                        <p>No hay archivo PDF actual.</p>
                                     <?php endif; ?>
                                 </div>
+                                <label for="ruta_pdf">Subir Nuevo PDF (opcional)</label>
+                                <input type="file" class="form-control-file" id="ruta_pdf" name="ruta_pdf">
+                                <?php if (isset($validation) && $validation->hasError('ruta_pdf')): ?>
+                                    <div class="text-danger"><?= $validation->getError('ruta_pdf'); ?></div>
+                                <?php endif; ?>
+                                <small class="form-text text-muted">Archivos permitidos: PDF. Tamaño máximo: 5MB.</small>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="fecha_publicacion">Fecha de Publicación</label>
-                                    <input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion"
-                                           value="<?= old('fecha_publicacion', $publicacion['fecha_publicacion']); ?>" required>
-                                    <?php if (isset($validation) && $validation->hasError('fecha_publicacion')): ?>
-                                        <div class="text-danger"><?= $validation->getError('fecha_publicacion'); ?></div>
-                                    <?php endif; ?>
-                                </div>
+                            <div class="form-group">
+                                <label for="categoria_id">Categoría</label>
+                                <select class="form-control" id="categoria_id" name="categoria_id" required>
+                                    <option value="">Selecciona una categoría</option>
+                                    <?php foreach ($categorias as $categoria): ?>
+                                        <option value="<?= esc($categoria['id']); ?>"
+                                                <?= (old('categoria_id', $publicacion['categoria_id']) == $categoria['id']) ? 'selected' : ''; ?>>
+                                            <?= esc($categoria['nombre']); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?php if (isset($validation) && $validation->hasError('categoria_id')): ?>
+                                    <div class="text-danger"><?= $validation->getError('categoria_id'); ?></div>
+                                <?php endif; ?>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>Imagen Actual</label>
-                                    <div class="mb-2">
-                                        <?php if (!empty($publicacion['ruta_foto'])): ?>
-                                            <img src="<?= base_url($publicacion['ruta_foto']); ?>" alt="Imagen Actual" class="img-thumbnail" style="max-width: 150px; max-height: 150px;">
-                                            <div class="form-check mt-2">
-                                                <input type="checkbox" class="form-check-input" id="remove_ruta_foto" name="remove_ruta_foto" value="1">
-                                                <label class="form-check-label" for="remove_ruta_foto">Eliminar imagen actual</label>
-                                            </div>
-                                        <?php else: ?>
-                                            <p>No hay imagen actual.</p>
-                                        <?php endif; ?>
-                                    </div>
-                                    <label for="ruta_foto">Subir Nueva Imagen (opcional)</label>
-                                    <input type="file" class="form-control-file" id="ruta_foto" name="ruta_foto">
-                                    <?php if (isset($validation) && $validation->hasError('ruta_foto')): ?>
-                                        <div class="text-danger"><?= $validation->getError('ruta_foto'); ?></div>
-                                    <?php endif; ?>
-                                    <small class="form-text text-muted">Archivos permitidos: JPG, JPEG, PNG. Tamaño máximo: 2MB.</small>
-                                </div>
+                            <input type="hidden" name="usuario_id" value="<?= session()->get('user_id'); ?>">
 
-                                <div class="form-group">
-                                    <label>Archivo PDF Actual</label>
-                                    <div class="mb-2">
-                                        <?php if (!empty($publicacion['ruta_pdf'])): ?>
-                                            <a href="<?= base_url($publicacion['ruta_pdf']); ?>" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-file-pdf-o"></i> Ver PDF Actual</a>
-                                            <div class="form-check mt-2">
-                                                <input type="checkbox" class="form-check-input" id="remove_ruta_pdf" name="remove_ruta_pdf" value="1">
-                                                <label class="form-check-label" for="remove_ruta_pdf">Eliminar PDF actual</label>
-                                            </div>
-                                        <?php else: ?>
-                                            <p>No hay archivo PDF actual.</p>
-                                        <?php endif; ?>
-                                    </div>
-                                    <label for="ruta_pdf">Subir Nuevo PDF (opcional)</label>
-                                    <input type="file" class="form-control-file" id="ruta_pdf" name="ruta_pdf">
-                                    <?php if (isset($validation) && $validation->hasError('ruta_pdf')): ?>
-                                        <div class="text-danger"><?= $validation->getError('ruta_pdf'); ?></div>
-                                    <?php endif; ?>
-                                    <small class="form-text text-muted">Archivos permitidos: PDF. Tamaño máximo: 5MB.</small>
-                                </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="activo" name="activo" value="1"
+                                       <?= (old('activo', $publicacion['activo']) == 1) ? 'checked' : ''; ?>>
+                                <label class="form-check-label" for="activo">Activo</label>
+                                <?php if (isset($validation) && $validation->hasError('activo')): ?>
+                                    <div class="text-danger"><?= $validation->getError('activo'); ?></div>
+                                <?php endif; ?>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="categoria_id">Categoría</label>
-                                    <select class="form-control" id="categoria_id" name="categoria_id" required>
-                                        <option value="">Selecciona una categoría</option>
-                                        <?php foreach ($categorias as $categoria): ?>
-                                            <option value="<?= esc($categoria['id']); ?>"
-                                                    <?= (old('categoria_id', $publicacion['categoria_id']) == $categoria['id']) ? 'selected' : ''; ?>>
-                                                <?= esc($categoria['nombre']); ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <?php if (isset($validation) && $validation->hasError('categoria_id')): ?>
-                                        <div class="text-danger"><?= $validation->getError('categoria_id'); ?></div>
-                                    <?php endif; ?>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="usuario_id">Autor</label>
-                                    <select class="form-control" id="usuario_id" name="usuario_id" required>
-                                        <option value="">Selecciona un autor</option>
-                                        <?php foreach ($usuarios as $usuario): ?>
-                                            <option value="<?= esc($usuario['id']); ?>"
-                                                    <?= (old('usuario_id', $publicacion['usuario_id']) == $usuario['id']) ? 'selected' : ''; ?>>
-                                                <?= esc($usuario['nombre_usuario']); ?> (<?= esc($usuario['user']); ?>)
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <?php if (isset($validation) && $validation->hasError('usuario_id')): ?>
-                                        <div class="text-danger"><?= $validation->getError('usuario_id'); ?></div>
-                                    <?php endif; ?>
-                                </div>
-
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="activo" name="activo" value="1"
-                                           <?= (old('activo', $publicacion['activo']) == 1) ? 'checked' : ''; ?>>
-                                    <label class="form-check-label" for="activo">Activo</label>
-                                    <?php if (isset($validation) && $validation->hasError('activo')): ?>
-                                        <div class="text-danger"><?= $validation->getError('activo'); ?></div>
-                                    <?php endif; ?>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Actualizar Resultado</button>
-                                <a href="<?= base_url('resultado'); ?>" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Actualizar Resultado</button>
+                            <a href="<?= base_url('resultado'); ?>" class="btn btn-secondary">Cancelar</a>
                             <?= form_close(); ?>
                         </div>
                     </div>
@@ -355,5 +340,20 @@
 
 <script src="<?= base_url(RECURSOS_ADMIN_JS . '/app-script.js'); ?>"></script>
 
+<script src="<?= base_url(RECURSOS_ADMIN_JS . '/ckeditor.js'); ?>"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ), {
+            // Optional: You can customize CKEditor toolbar or other options here
+            // Example: remove certain plugins, add custom buttons
+            // toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        } )
+        .then( editor => {
+            console.log( editor );
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 </body>
 </html>
