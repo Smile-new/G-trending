@@ -19,7 +19,7 @@
     <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/app-style.css'); ?>" rel="stylesheet"/>
 </head>
 
-<body class="bg-theme bg-theme1">
+<body class="bg-theme">
 
 <div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
 <div id="wrapper">

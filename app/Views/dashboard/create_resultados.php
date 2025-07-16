@@ -21,7 +21,7 @@
 
 </head>
 
-<body class="bg-theme bg-theme1">
+<body class="bg-theme">
 
 <div id="pageloader-overlay" class="visible incoming">
     <div class="loader-wrapper-outer">

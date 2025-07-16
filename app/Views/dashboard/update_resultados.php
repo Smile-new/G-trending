@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="bg-theme bg-theme1">
+<body class="bg-theme">
 
 <div id="pageloader-overlay" class="visible incoming">
     <div class="loader-wrapper-outer">
@@ -300,18 +300,6 @@
             <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
         </div>
         <div class="right-sidebar-content">
-
-            <p class="mb-0">Gaussion Texture</p>
-            <hr>
-
-            <ul class="switcher">
-                <li id="theme1"></li>
-                <li id="theme2"></li>
-                <li id="theme3"></li>
-                <li id="theme4"></li>
-                <li id="theme5"></li>
-                <li id="theme6"></li>
-            </ul>
 
             <p class="mb-0">Gradient Background</p>
             <hr>

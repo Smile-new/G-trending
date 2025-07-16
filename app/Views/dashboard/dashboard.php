@@ -17,10 +17,10 @@
   <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/icons.css'); ?>" rel="stylesheet" type="text/css"/>
   <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/sidebar-menu.css'); ?>" rel="stylesheet"/>
   <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/app-style.css'); ?>" rel="stylesheet"/>
-  
+
 </head>
 
-<body class="bg-theme bg-theme1">
+<body class="bg-theme"> 
   
 <div id="wrapper">
   
@@ -97,15 +97,15 @@
             </div>
            </div>
           </a>
-        </li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+         </li>
+         <li class="dropdown-divider"></li>
+         <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
+         <li class="dropdown-divider"></li>
+         <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
+         <li class="dropdown-divider"></li>
+         <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
+         <li class="dropdown-divider"></li>
+         <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
       </ul>
     </li>
   </ul>
@@ -118,7 +118,7 @@
 
   <div class="overlay toggle-menu"></div>
     </div>
-    </div><a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+  </div><a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
     <footer class="footer">
       <div class="container">
         <div class="text-center">
@@ -131,19 +131,6 @@
       <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
     </div>
     <div class="right-sidebar-content">
-
-      <p class="mb-0">Gaussion Texture</p>
-      <hr>
-      
-      <ul class="switcher">
-        <li id="theme1"></li>
-        <li id="theme2"></li>
-        <li id="theme3"></li>
-        <li id="theme4"></li>
-        <li id="theme5"></li>
-        <li id="theme6"></li>
-      </ul>
-
       <p class="mb-0">Gradient Background</p>
       <hr>
       
