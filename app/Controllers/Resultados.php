@@ -7,20 +7,32 @@ use App\Models\PublicacionModel;
 use App\Models\CategoriaModel;
 use App\Models\UsuarioModel;
 use CodeIgniter\HTTP\RedirectResponse;
-use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Resultados extends BaseController
 {
     protected $publicacionModel;
     protected $categoriaModel;
     protected $usuarioModel;
-    protected $helpers = ['form', 'url', 'filesystem']; // Ensure all necessary helpers are loaded
+    protected $helpers = ['form', 'url', 'filesystem'];
 
     public function __construct()
     {
         $this->publicacionModel = new PublicacionModel();
         $this->categoriaModel = new CategoriaModel();
         $this->usuarioModel = new UsuarioModel();
+    }
+
+    /**
+     * Filters for authentication.
+     * Ensure only logged-in users can access these methods.
+     */
+    public function __before()
+    {
+        if (!session()->get('isLoggedIn')) {
+            session()->setFlashdata('error', 'Debes iniciar sesión para acceder a esta sección.');
+            return redirect()->to(base_url('login'));
+        }
     }
 
     /**
@@ -63,23 +75,21 @@ class Resultados extends BaseController
      */
     public function store(): RedirectResponse
     {
-        // IMPORTANT: Check your login process for the actual session key.
-        // If your login sets 'user_id', change 'id_usuario' back to 'user_id'.
-        $loggedInUserId = session()->get('id_usuario'); 
+        $loggedInUserId = session()->get('id');
 
         if (empty($loggedInUserId)) {
             session()->setFlashdata('error', 'Debes iniciar sesión para crear un resultado.');
-            return redirect()->to(base_url('login')); // Redirect to login if not logged in
+            return redirect()->to(base_url('login'));
         }
 
         $rules = [
-            'titulo'              => 'required|min_length[3]|max_length[255]',
-            'descripcion'         => 'permit_empty|max_length[65535]',
-            'fecha_publicacion'   => 'required|valid_date',
-            'ruta_foto'           => 'permit_empty|uploaded[ruta_foto]|max_size[ruta_foto,2048]|is_image[ruta_foto]|mime_in[ruta_foto,image/jpg,image/jpeg,image/png]',
-            'ruta_pdf'            => 'permit_empty|uploaded[ruta_pdf]|max_size[ruta_pdf,5120]|ext_in[ruta_pdf,pdf]',
-            'categoria_id'        => 'required|integer|is_not_unique[categorias_encuesta.id]',
-            'activo'              => 'permit_empty|integer|in_list[0,1]',
+            'titulo'            => 'required|min_length[3]|max_length[255]',
+            'descripcion'       => 'permit_empty|max_length[65535]',
+            'fecha_publicacion' => 'required|valid_date', // <<< RE-ACTIVADO: Model no la setea automáticamente
+            'ruta_foto'         => 'permit_empty|uploaded[ruta_foto]|max_size[ruta_foto,2048]|is_image[ruta_foto]|mime_in[ruta_foto,image/jpg,image/jpeg,image/png]',
+            'ruta_pdf'          => 'permit_empty|uploaded[ruta_pdf]|max_size[ruta_pdf,5120]|ext_in[ruta_pdf,pdf]',
+            'categoria_id'      => 'required|integer|is_not_unique[categorias_encuesta.id]',
+            'activo'            => 'permit_empty|integer|in_list[0,1]',
         ];
 
         $messages = [
@@ -91,7 +101,7 @@ class Resultados extends BaseController
             'descripcion' => [
                 'max_length' => 'La descripción es demasiado larga.',
             ],
-            'fecha_publicacion' => [
+            'fecha_publicacion' => [ // <<< RE-ACTIVADO
                 'required'   => 'La fecha de publicación es obligatoria.',
                 'valid_date' => 'La fecha de publicación no es válida.',
             ],
@@ -125,8 +135,7 @@ class Resultados extends BaseController
         $fileFoto = $this->request->getFile('ruta_foto');
         if ($fileFoto && $fileFoto->isValid() && !$fileFoto->hasMoved()) {
             $newNameFoto = $fileFoto->getRandomName();
-            // Using FCPATH for absolute path to ensure correct directory creation and movement
-            $imageUploadPath = FCPATH . PUBLICACIONES_IMAGE_UPLOAD_PATH; 
+            $imageUploadPath = FCPATH . PUBLICACIONES_IMAGE_UPLOAD_PATH;
             if (!is_dir($imageUploadPath)) {
                 mkdir($imageUploadPath, 0777, true);
             }
@@ -138,7 +147,6 @@ class Resultados extends BaseController
         $filePdf = $this->request->getFile('ruta_pdf');
         if ($filePdf && $filePdf->isValid() && !$filePdf->hasMoved()) {
             $newNamePdf = $filePdf->getRandomName();
-            // Using FCPATH for absolute path
             $pdfUploadPath = FCPATH . PUBLICACIONES_PDF_UPLOAD_PATH;
             if (!is_dir($pdfUploadPath)) {
                 mkdir($pdfUploadPath, 0777, true);
@@ -148,48 +156,54 @@ class Resultados extends BaseController
         }
 
         $data = [
-            'titulo'              => $this->request->getPost('titulo'),
-            'descripcion'         => $this->request->getPost('descripcion'),
-            'fecha_publicacion'   => $this->request->getPost('fecha_publicacion'),
-            'ruta_foto'           => $rutaFoto,
-            'ruta_pdf'            => $rutaPdf,
-            'categoria_id'        => $this->request->getPost('categoria_id'),
-            'usuario_id'          => $loggedInUserId, // Ensure this is the correct user ID from session
-            'activo'              => $this->request->getPost('activo') ? 1 : 0,
-            'fecha_creacion'      => date('Y-m-d H:i:s'),
-            'fecha_actualizacion' => date('Y-m-d H:i:s'),
+            'titulo'            => $this->request->getPost('titulo'),
+            'descripcion'       => $this->request->getPost('descripcion'),
+            'fecha_publicacion' => $this->request->getPost('fecha_publicacion'), // <<< Mantener: Ahora se obtiene del formulario
+            'ruta_foto'         => $rutaFoto,
+            'ruta_pdf'          => $rutaPdf,
+            'categoria_id'      => $this->request->getPost('categoria_id'),
+            'usuario_id'        => $loggedInUserId,
+            'activo'            => $this->request->getPost('activo') ? 1 : 0,
         ];
 
         if ($this->publicacionModel->insert($data)) {
             session()->setFlashdata('success', 'Resultado "' . esc($data['titulo']) . '" creado exitosamente.');
-            return redirect()->to(base_url('resultado')); // Explicit redirect on success
+            return redirect()->to(base_url('resultado'));
         } else {
-            session()->setFlashdata('error', 'Error al crear el resultado. Inténtelo de nuevo.');
-            log_message('error', 'PublicacionModel insert error: ' . json_encode($this->publicacionModel->errors()));
-            return redirect()->back()->withInput(); // Explicit redirect back on failure
+            $dbErrors = $this->publicacionModel->errors();
+            log_message('error', 'PublicacionModel insert error: ' . json_encode($dbErrors));
+            session()->setFlashdata('error', 'Error al crear el resultado. Inténtelo de nuevo. Detalles: ' . json_encode($dbErrors));
+            return redirect()->back()->withInput();
         }
     }
+
 
     /**
      * Muestra el formulario para editar un resultado existente.
      *
      * @param int|null $id ID del resultado a editar.
      * @return string
-     * @throws \CodeIgniter\Exceptions\PageNotFoundException Si el resultado no es encontrado.
+     * @throws PageNotFoundException Si el resultado no es encontrado.
      */
     public function edit(?int $id = null): string
     {
         $publicacion = $this->publicacionModel->find($id);
 
         if (!$publicacion) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('No se pudo encontrar el resultado con ID: ' . $id);
+            throw new PageNotFoundException('No se pudo encontrar el resultado con ID: ' . $id);
         }
+
+        // OPTIONAL: Add authorization check here if only the author or admin can edit
+        // if ($publicacion['usuario_id'] != session()->get('id') && session()->get('role') != 'admin_role_id') {
+        //     session()->setFlashdata('error', 'No tienes permiso para editar este resultado.');
+        //     return redirect()->to(base_url('resultado'));
+        // }
 
         $data = [
             'page_title'  => 'Editar Resultado',
             'publicacion' => $publicacion,
             'categorias'  => $this->categoriaModel->findAll(),
-            'usuarios'    => $this->usuarioModel->findAll(),
+            'usuarios'    => $this->usuarioModel->findAll(), // You might want to filter this based on roles for security
             'validation'  => \Config\Services::validation(),
         ];
         return view('dashboard/update_resultados', $data);
@@ -200,25 +214,30 @@ class Resultados extends BaseController
      *
      * @param int $id ID del resultado a actualizar.
      * @return RedirectResponse
-     * @throws \CodeIgniter\Exceptions\PageNotFoundException Si el resultado no es encontrado.
+     * @throws PageNotFoundException Si el resultado no es encontrado.
      */
     public function update(int $id): RedirectResponse
     {
         $publicacionExistente = $this->publicacionModel->find($id);
         if (!$publicacionExistente) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('No se pudo encontrar el resultado con ID: ' . $id);
+            throw new PageNotFoundException('No se pudo encontrar el resultado con ID: ' . $id);
         }
 
+        // OPTIONAL: Authorization check before updating
+        // if ($publicacionExistente['usuario_id'] != session()->get('id') && session()->get('role') != 'admin_role_id') {
+        //     session()->setFlashdata('error', 'No tienes permiso para actualizar este resultado.');
+        //     return redirect()->to(base_url('resultado'));
+        // }
+
         $rules = [
-            'titulo'              => 'required|min_length[3]|max_length[255]',
-            'descripcion'         => 'permit_empty|max_length[65535]',
-            'fecha_publicacion'   => 'required|valid_date',
-            // 'if_exist' checks if a file input was actually provided, then applies other rules
-            'ruta_foto'           => 'if_exist|uploaded[ruta_foto]|max_size[ruta_foto,2048]|is_image[ruta_foto]|mime_in[ruta_foto,image/jpg,image/jpeg,image/png]',
-            'ruta_pdf'            => 'if_exist|uploaded[ruta_pdf]|max_size[ruta_pdf,5120]|ext_in[ruta_pdf,pdf]',
-            'categoria_id'        => 'required|integer|is_not_unique[categorias_encuesta.id]',
-            'usuario_id'          => 'required|integer|is_not_unique[usuarios.id]', // Added this rule as it's now editable
-            'activo'              => 'permit_empty|integer|in_list[0,1]',
+            'titulo'            => 'required|min_length[3]|max_length[255]',
+            'descripcion'       => 'permit_empty|max_length[65535]',
+            'fecha_publicacion' => 'required|valid_date', // Keep this validation as user might change it
+            'ruta_foto'         => 'if_exist|uploaded[ruta_foto]|max_size[ruta_foto,2048]|is_image[ruta_foto]|mime_in[ruta_foto,image/jpg,image/jpeg,image/png]',
+            'ruta_pdf'          => 'if_exist|uploaded[ruta_pdf]|max_size[ruta_pdf,5120]|ext_in[ruta_pdf,pdf]',
+            'categoria_id'      => 'required|integer|is_not_unique[categorias_encuesta.id]',
+            'usuario_id'        => 'required|integer|is_not_unique[usuarios.id]',
+            'activo'            => 'permit_empty|integer|in_list[0,1]',
         ];
 
         $messages = [
@@ -265,11 +284,10 @@ class Resultados extends BaseController
             return redirect()->back()->withInput()->with('validation', $this->validator);
         }
 
-        $rutaFoto = $publicacionExistente['ruta_foto']; // Keep existing path by default
+        $rutaFoto = $publicacionExistente['ruta_foto'];
         $fileFoto = $this->request->getFile('ruta_foto');
-        
+
         if ($fileFoto && $fileFoto->isValid() && !$fileFoto->hasMoved()) {
-            // Delete old file if a new one is uploaded
             if (!empty($publicacionExistente['ruta_foto']) && file_exists(FCPATH . $publicacionExistente['ruta_foto'])) {
                 unlink(FCPATH . $publicacionExistente['ruta_foto']);
             }
@@ -281,18 +299,16 @@ class Resultados extends BaseController
             $fileFoto->move($imageUploadPath, $newNameFoto);
             $rutaFoto = PUBLICACIONES_IMAGE_UPLOAD_PATH . '/' . $newNameFoto;
         } elseif ($this->request->getPost('remove_ruta_foto') == 1) {
-            // Remove existing file if checkbox is checked
             if (!empty($publicacionExistente['ruta_foto']) && file_exists(FCPATH . $publicacionExistente['ruta_foto'])) {
                 unlink(FCPATH . $publicacionExistente['ruta_foto']);
             }
-            $rutaFoto = null; // Clear the path in DB
+            $rutaFoto = null;
         }
 
-        $rutaPdf = $publicacionExistente['ruta_pdf']; // Keep existing path by default
+        $rutaPdf = $publicacionExistente['ruta_pdf'];
         $filePdf = $this->request->getFile('ruta_pdf');
-        
+
         if ($filePdf && $filePdf->isValid() && !$filePdf->hasMoved()) {
-            // Delete old file if a new one is uploaded
             if (!empty($publicacionExistente['ruta_pdf']) && file_exists(FCPATH . $publicacionExistente['ruta_pdf'])) {
                 unlink(FCPATH . $publicacionExistente['ruta_pdf']);
             }
@@ -304,32 +320,31 @@ class Resultados extends BaseController
             $filePdf->move($pdfUploadPath, $newNamePdf);
             $rutaPdf = PUBLICACIONES_PDF_UPLOAD_PATH . '/' . $newNamePdf;
         } elseif ($this->request->getPost('remove_ruta_pdf') == 1) {
-            // Remove existing file if checkbox is checked
             if (!empty($publicacionExistente['ruta_pdf']) && file_exists(FCPATH . $publicacionExistente['ruta_pdf'])) {
                 unlink(FCPATH . $publicacionExistente['ruta_pdf']);
             }
-            $rutaPdf = null; // Clear the path in DB
+            $rutaPdf = null;
         }
 
         $data = [
-            'titulo'              => $this->request->getPost('titulo'),
-            'descripcion'         => $this->request->getPost('descripcion'),
-            'fecha_publicacion'   => $this->request->getPost('fecha_publicacion'),
-            'ruta_foto'           => $rutaFoto,
-            'ruta_pdf'            => $rutaPdf,
-            'categoria_id'        => $this->request->getPost('categoria_id'),
-            'usuario_id'          => $this->request->getPost('usuario_id'), // Now from form, not session
-            'activo'              => $this->request->getPost('activo') ? 1 : 0,
-            'fecha_actualizacion' => date('Y-m-d H:i:s'),
+            'titulo'            => $this->request->getPost('titulo'),
+            'descripcion'       => $this->request->getPost('descripcion'),
+            'fecha_publicacion' => $this->request->getPost('fecha_publicacion'), // <<< Mantener: Se actualiza manualmente
+            'ruta_foto'         => $rutaFoto,
+            'ruta_pdf'          => $rutaPdf,
+            'categoria_id'      => $this->request->getPost('categoria_id'),
+            'usuario_id'        => $this->request->getPost('usuario_id'),
+            'activo'            => $this->request->getPost('activo') ? 1 : 0,
+            // 'fecha_actualizacion' - REMOVED: No such column in DB, and model isn't configured for it.
         ];
 
         if ($this->publicacionModel->update($id, $data)) {
             session()->setFlashdata('success', 'Resultado "' . esc($data['titulo']) . '" actualizado exitosamente.');
-            return redirect()->to(base_url('resultado')); // Explicit redirect on success
+            return redirect()->to(base_url('resultado'));
         } else {
             session()->setFlashdata('error', 'Error al actualizar el resultado.');
             log_message('error', 'PublicacionModel update error: ' . json_encode($this->publicacionModel->errors()));
-            return redirect()->back()->withInput(); // Explicit redirect back on failure
+            return redirect()->back()->withInput();
         }
     }
 
@@ -347,6 +362,12 @@ class Resultados extends BaseController
             session()->setFlashdata('error', 'Resultado no encontrado.');
             return redirect()->to(base_url('resultado'));
         }
+
+        // OPTIONAL: Authorization check before deleting
+        // if ($publicacion['usuario_id'] != session()->get('id') && session()->get('role') != 'admin_role_id') {
+        //     session()->setFlashdata('error', 'No tienes permiso para eliminar este resultado.');
+        //     return redirect()->to(base_url('resultado'));
+        // }
 
         // Delete associated files from the file system
         if (!empty($publicacion['ruta_foto']) && file_exists(FCPATH . $publicacion['ruta_foto'])) {

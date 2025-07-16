@@ -18,6 +18,92 @@
     <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/app-style.css'); ?>" rel="stylesheet"/>
 
     <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        /* Estilos personalizados para la tabla */
+        #resultadosTable {
+            color: #fff; /* Color de texto predeterminado para toda la tabla */
+        }
+
+        #resultadosTable thead th {
+            color: #ccc; /* Color para los encabezados de la tabla */
+            border-bottom: 1px solid #444;
+        }
+
+        #resultadosTable tbody td {
+            color: #eee; /* Color para las celdas del cuerpo de la tabla */
+            background-color: #2a2a2a; /* Un color de fondo ligeramente más claro para las celdas */
+            border-top: 1px solid #444;
+        }
+
+        /* Estilo para las filas impares y pares para mayor contraste */
+        #resultadosTable tbody tr:nth-child(even) {
+            background-color: #333; /* Fondo para filas pares */
+        }
+
+        #resultadosTable tbody tr:nth-child(odd) {
+            background-color: #2a2a2a; /* Fondo para filas impares */
+        }
+
+        /* Quitar el efecto hover si no lo quieres, o definirlo explícitamente */
+        #resultadosTable.table-hover tbody tr:hover {
+            background-color: #4a4a4a; /* Un color de fondo más claro al pasar el ratón */
+            color: #fff; /* Asegura que el texto siga siendo visible al hacer hover */
+        }
+
+        /* Estilo para los botones dentro de la tabla */
+        #resultadosTable .btn {
+            margin-right: 5px;
+        }
+
+        /* Estilo para las imágenes dentro de la tabla */
+        #resultadosTable img {
+            border-radius: 4px; /* Bordes ligeramente redondeados para las imágenes */
+            border: 1px solid #555;
+        }
+
+        /* Ajustes para el paginador de DataTables */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            color: #eee !important; /* Color del texto de los botones de paginación */
+            background-color: #333 !important;
+            border: 1px solid #555 !important;
+            margin: 0 5px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            color: #fff !important;
+            background-color: #007bff !important; /* Color primario para el botón activo */
+            border-color: #007bff !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background-color: #555 !important;
+            color: #fff !important;
+        }
+
+        /* Estilo para los controles de búsqueda y entradas por página de DataTables */
+        .dataTables_wrapper .dataTables_filter label,
+        .dataTables_wrapper .dataTables_length label {
+            color: #eee;
+        }
+
+        .dataTables_wrapper .dataTables_filter input,
+        .dataTables_wrapper .dataTables_length select {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        /* Información de "Showing X to Y of Z entries" */
+        .dataTables_wrapper .dataTables_info {
+            color: #eee;
+        }
+    </style>
 
 </head>
 
@@ -53,7 +139,7 @@
                 </a>
             </li>
 
-            <li>
+            <li class="active">
                 <a href="<?= base_url('resultado'); ?>">
                     <i class="zmdi zmdi-grid"></i> <span>Resultados</span>
                 </a>
@@ -179,7 +265,7 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table id="resultadosTable" class="table table-bordered">
+                                <table id="resultadosTable" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
@@ -248,7 +334,8 @@
                 </div>
             </div><div class="overlay toggle-menu"></div>
             </div>
-        </div><a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+        </div>
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
     <footer class="footer">
         <div class="container">
             <div class="text-center">
@@ -301,14 +388,32 @@
 <script src="<?= base_url(RECURSOS_ADMIN_JS . '/app-script.js'); ?>"></script>
 
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+
 <script>
     $(document).ready(function () {
-        // Initialize DataTables (optional)
         $('#resultadosTable').DataTable({
-            // Add any DataTables options here, e.g., for pagination, searching, sorting
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-            }
+            },
+            "responsive": true,
+            "columnDefs": [
+                { "responsivePriority": 1, "targets": 0 }, // ID
+                { "responsivePriority": 2, "targets": 1 }, // Título
+                { "responsivePriority": 3, "targets": -1 },// Acciones (última columna)
+                { "responsivePriority": 4, "targets": 6 }, // Imagen (columna 6)
+                { "responsivePriority": 5, "targets": 7 }, // PDF (columna 7)
+                { "responsivePriority": 6, "targets": 3 }, // Fecha Publicación (columna 3)
+                { "responsivePriority": 7, "targets": 4 }, // Categoría (columna 4)
+                { "responsivePriority": 8, "targets": 5 }, // Autor (columna 5)
+                { "responsivePriority": 9, "targets": 8 }, // Activo (columna 8)
+                { "responsivePriority": 10, "targets": 2 }  // Descripción (columna 2 - se oculta primero)
+            ]
+        });
+
+        // Cerrar alertas flashdata
+        $('.alert .close').on('click', function() {
+            $(this).closest('.alert').alert('close');
         });
     });
 </script>

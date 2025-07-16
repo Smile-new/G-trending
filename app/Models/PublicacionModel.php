@@ -6,8 +6,8 @@ use CodeIgniter\Model;
 
 class PublicacionModel extends Model
 {
-    protected $table      = 'publicaciones_encuesta';
-    protected $primaryKey = 'id';
+    protected $table          = 'publicaciones_encuesta';
+    protected $primaryKey     = 'id';
 
     protected $useAutoIncrement = true;
 
@@ -15,15 +15,15 @@ class PublicacionModel extends Model
     protected $useSoftDeletes = false; // No hay columna 'deleted_at'
 
     protected $allowedFields = [
-        'titulo', 'descripcion', 'fecha_publicacion',
+        'titulo', 'descripcion', 'fecha_publicacion', // 'fecha_publicacion' es 'date' en la DB
         'ruta_foto', 'ruta_pdf', 'categoria_id', 'usuario_id', 'activo'
     ];
 
-    // Timestamps: tienes 'fecha_creacion' y 'fecha_actualizacion'
-    protected $useTimestamps = true;
-    protected $dateFormat    = 'datetime'; // El formato debe coincidir con el de la DB
-    protected $createdField  = 'fecha_creacion';
-    protected $updatedField  = 'fecha_actualizacion';
-    // Si tu `fecha_actualizacion` no es actualizada automáticamente por MySQL (ON UPDATE CURRENT_TIMESTAMP),
-    // CodeIgniter la establecerá cuando hagas un update con este modelo.
+    // Timestamps
+    protected $useTimestamps = false; // <<< CAMBIO IMPORTANTE: Desactivado porque no tienes 'fecha_actualizacion'
+    protected $dateFormat    = 'date'; // <<< CAMBIO IMPORTANTE: Cambiado a 'date' porque 'fecha_publicacion' es 'date'
+    protected $createdField  = 'fecha_publicacion'; // Se usará al insertar si useTimestamps fuera true, pero ahora lo manejaremos manualmente
+    protected $updatedField  = ''; // <<< CAMBIO IMPORTANTE: Vacío porque no hay columna de actualización automática
+
+    
 }
