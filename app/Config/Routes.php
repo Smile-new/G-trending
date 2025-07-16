@@ -71,13 +71,12 @@ $routes->post('categorias/delete/(:num)', 'Categorias::delete/$1', ['as' => 'cat
 
 
 //Publicaciones CRUD 
-
-$routes->get('publicacion', 'Publicaciones::index'); // URL: http://tu_dominio/publicacion
-$routes->get('publicacion/create', 'Publicaciones::create'); // URL: http://tu_dominio/publicacion/create
-$routes->post('publicacion/store', 'Publicaciones::store'); // URL: http://tu_dominio/publicacion/store
-$routes->get('publicacion/edit/(:num)', 'Publicaciones::edit/$1'); // URL: http://tu_dominio/publicacion/edit/ID
-$routes->post('publicacion/update/(:num)', 'Publicaciones::update/$1'); // URL: http://tu_dominio/publicacion/update/ID
-$routes->post('publicacion/delete/(:num)', 'Publicaciones::delete/$1'); // URL: http://tu_dominio/publicacion/delete/ID (POST recomendado)
+$routes->get('resultado', 'Resultados::index');
+$routes->get('resultado/create', 'Resultados::create');
+$routes->post('resultado/store', 'Resultados::store');
+$routes->get('resultado/edit/(:num)', 'Resultados::edit/$1');
+$routes->post('resultado/update/(:num)', 'Resultados::update/$1');
+$routes->get('resultado/delete/(:num)', 'Resultados::delete/$1');
 
 
 //Rutas Login

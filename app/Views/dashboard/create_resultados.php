@@ -10,18 +10,24 @@
     <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/pace.min.css'); ?>" rel="stylesheet"/>
     <script src="<?= base_url(RECURSOS_ADMIN_JS . '/pace.min.js'); ?>"></script>
     <link rel="icon" href="<?= base_url('assets/images/favicon.ico'); ?>" type="image/x-icon">
-    <link href="<?= base_url(RECURSOS_ADMIN_PLUGINS . '/fullcalendar/css/fullcalendar.min.css'); ?>" rel='stylesheet'/>
     <link href="<?= base_url(RECURSOS_ADMIN_PLUGINS . '/simplebar/css/simplebar.css'); ?>" rel="stylesheet"/>
     <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/bootstrap.min.css'); ?>" rel="stylesheet"/>
     <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/animate.css'); ?>" rel="stylesheet" type="text/css"/>
     <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/icons.css'); ?>" rel="stylesheet" type="text/css"/>
     <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/sidebar-menu.css'); ?>" rel="stylesheet"/>
     <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/app-style.css'); ?>" rel="stylesheet"/>
+
 </head>
 
 <body class="bg-theme bg-theme1">
 
-<div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
+<div id="pageloader-overlay" class="visible incoming">
+    <div class="loader-wrapper-outer">
+        <div class="loader-wrapper-inner">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
 <div id="wrapper">
 
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
@@ -82,35 +88,37 @@
 
             <ul class="navbar-nav align-items-center right-nav-link">
                 <li class="nav-item dropdown-lg">
-                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-                        <i class="fa fa-envelope-open-o"></i>
-                    </a>
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown"
+                       href="javascript:void();">
+                        <i class="fa fa-envelope-open-o"></i></a>
                 </li>
                 <li class="nav-item dropdown-lg">
-                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-                        <i class="fa fa-bell-o"></i>
-                    </a>
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown"
+                       href="javascript:void();">
+                        <i class="fa fa-bell-o"></i></a>
                 </li>
                 <li class="nav-item language">
-                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-                        <i class="fa fa-flag"></i>
-                    </a>
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown"
+                       href="javascript:void();"><i class="fa fa-flag"></i></a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
-                        <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
-                        <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
-                        <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
+                        <li class="dropdown-item"><i class="flag-icon flag-icon-gb mr-2"></i> English</li>
+                        <li class="dropdown-item"><i class="flag-icon flag-icon-fr mr-2"></i> French</li>
+                        <li class="dropdown-item"><i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
+                        <li class="dropdown-item"><i class="flag-icon flag-icon-de mr-2"></i> German</li>
                     </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                        <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
+                        <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle"
+                                                        alt="user avatar"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-item user-details">
                             <a href="javaScript:void();">
                                 <div class="media">
-                                    <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+                                    <div class="avatar"><img class="align-self-start mr-3"
+                                                             src="https://via.placeholder.com/110x110"
+                                                             alt="user avatar"></div>
                                     <div class="media-body">
                                         <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
                                         <p class="user-subtitle">mccoy@example.com</p>
@@ -141,10 +149,20 @@
                     <h1><?= $page_title; ?></h1>
 
                     <?php if (session()->getFlashdata('success')): ?>
-                        <div class="alert alert-success"><?= session()->getFlashdata('success'); ?></div>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashdata('success'); ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     <?php endif; ?>
                     <?php if (session()->getFlashdata('error')): ?>
-                        <div class="alert alert-danger"><?= session()->getFlashdata('error'); ?></div>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashdata('error'); ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     <?php endif; ?>
                     <?php if (isset($validation) && $validation->getErrors()): ?>
                         <div class="alert alert-danger">
@@ -158,80 +176,83 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h5>Formulario de Creación de Usuario</h5>
+                            <h5>Formulario para Nuevo Resultado</h5>
                         </div>
                         <div class="card-body">
-                            <?= form_open_multipart('users/store'); ?>
+                            <?= form_open_multipart('resultado/store'); ?>
                                 <?= csrf_field(); ?>
 
                                 <div class="form-group">
-                                    <label for="nombre_usuario">Nombre Completo</label>
-                                    <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" value="<?= old('nombre_usuario'); ?>" required>
-                                    <?php if (isset($validation) && $validation->hasError('nombre_usuario')): ?>
-                                        <div class="text-danger"><?= $validation->getError('nombre_usuario'); ?></div>
+                                    <label for="titulo">Título</label>
+                                    <input type="text" class="form-control" id="titulo" name="titulo"
+                                           value="<?= old('titulo'); ?>" required>
+                                    <?php if (isset($validation) && $validation->hasError('titulo')): ?>
+                                        <div class="text-danger"><?= $validation->getError('titulo'); ?></div>
                                     <?php endif; ?>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="user">Usuario (para iniciar sesión)</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="user" name="user" value="<?= old('user'); ?>" required>
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-outline-secondary" id="generateUsername">Generar</button>
-                                        </div>
-                                    </div>
-                                    <?php if (isset($validation) && $validation->hasError('user')): ?>
-                                        <div class="text-danger"><?= $validation->getError('user'); ?></div>
+                                    <label for="descripcion">Descripción</label>
+                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="5"><?= old('descripcion'); ?></textarea>
+                                    <?php if (isset($validation) && $validation->hasError('descripcion')): ?>
+                                        <div class="text-danger"><?= $validation->getError('descripcion'); ?></div>
                                     <?php endif; ?>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password">Contraseña</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="password" name="password" value="<?= old('password'); ?>" required>
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-outline-secondary" id="generatePassword">Generar</button>
-                                        </div>
-                                    </div>
-                                    <?php if (isset($validation) && $validation->hasError('password')): ?>
-                                        <div class="text-danger"><?= $validation->getError('password'); ?></div>
+                                    <label for="fecha_publicacion">Fecha de Publicación</label>
+                                    <input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion"
+                                           value="<?= old('fecha_publicacion', date('Y-m-d')); ?>" required>
+                                    <?php if (isset($validation) && $validation->hasError('fecha_publicacion')): ?>
+                                        <div class="text-danger"><?= $validation->getError('fecha_publicacion'); ?></div>
                                     <?php endif; ?>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="rol_id">Rol</label>
-                                    <select class="form-control" id="rol_id" name="rol_id" required>
-                                        <option value="">Selecciona un rol</option>
-                                        <?php foreach ($roles as $rol): ?>
-                                            <option value="<?= esc($rol['id']); ?>" <?= old('rol_id') == $rol['id'] ? 'selected' : ''; ?>>
-                                                <?= esc($rol['nombre_rol']); ?>
+                                    <label for="ruta_foto">Imagen Principal (opcional)</label>
+                                    <input type="file" class="form-control-file" id="ruta_foto" name="ruta_foto">
+                                    <?php if (isset($validation) && $validation->hasError('ruta_foto')): ?>
+                                        <div class="text-danger"><?= $validation->getError('ruta_foto'); ?></div>
+                                    <?php endif; ?>
+                                    <small class="form-text text-muted">Archivos permitidos: JPG, JPEG, PNG. Tamaño máximo: 2MB.</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ruta_pdf">Archivo PDF (opcional)</label>
+                                    <input type="file" class="form-control-file" id="ruta_pdf" name="ruta_pdf">
+                                    <?php if (isset($validation) && $validation->hasError('ruta_pdf')): ?>
+                                        <div class="text-danger"><?= $validation->getError('ruta_pdf'); ?></div>
+                                    <?php endif; ?>
+                                    <small class="form-text text-muted">Archivos permitidos: PDF. Tamaño máximo: 5MB.</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="categoria_id">Categoría</label>
+                                    <select class="form-control" id="categoria_id" name="categoria_id" required>
+                                        <option value="">Selecciona una categoría</option>
+                                        <?php foreach ($categorias as $categoria): ?>
+                                            <option value="<?= esc($categoria['id']); ?>"
+                                                    <?= (old('categoria_id') == $categoria['id']) ? 'selected' : ''; ?>>
+                                                <?= esc($categoria['nombre']); ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
-                                    <?php if (isset($validation) && $validation->hasError('rol_id')): ?>
-                                        <div class="text-danger"><?= $validation->getError('rol_id'); ?></div>
+                                    <?php if (isset($validation) && $validation->hasError('categoria_id')): ?>
+                                        <div class="text-danger"><?= $validation->getError('categoria_id'); ?></div>
                                     <?php endif; ?>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="imagen_perfil">Foto de Perfil</label>
-                                    <input type="file" class="form-control-file" id="imagen_perfil" name="imagen_perfil">
-                                    <?php if (isset($validation) && $validation->hasError('imagen_perfil')): ?>
-                                        <div class="text-danger"><?= $validation->getError('imagen_perfil'); ?></div>
-                                    <?php endif; ?>
-                                    <small class="form-text text-muted">Archivos permitidos: JPG, JPEG, PNG, GIF. Tamaño máximo: 1MB.</small>
                                 </div>
 
                                 <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="activo" name="activo" value="1" <?= old('activo') == 1 ? 'checked' : ''; ?>>
+                                    <input type="checkbox" class="form-check-input" id="activo" name="activo" value="1"
+                                           <?= old('activo') == 1 ? 'checked' : ''; ?>>
                                     <label class="form-check-label" for="activo">Activo</label>
                                     <?php if (isset($validation) && $validation->hasError('activo')): ?>
                                         <div class="text-danger"><?= $validation->getError('activo'); ?></div>
                                     <?php endif; ?>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Guardar Usuario</button>
-                                <a href="<?= base_url('users'); ?>" class="btn btn-secondary">Cancelar</a>
+                                <button type="submit" class="btn btn-primary">Guardar Resultado</button>
+                                <a href="<?= base_url('resultado'); ?>" class="btn btn-secondary">Cancelar</a>
                             <?= form_close(); ?>
                         </div>
                     </div>
@@ -293,52 +314,6 @@
 <script src="<?= base_url(RECURSOS_ADMIN_JS . '/sidebar-menu.js'); ?>"></script>
 
 <script src="<?= base_url(RECURSOS_ADMIN_JS . '/app-script.js'); ?>"></script>
-
-<script src='<?= base_url(RECURSOS_ADMIN_PLUGINS . '/fullcalendar/js/moment.min.js'); ?>'></script>
-<script src='<?= base_url(RECURSOS_ADMIN_PLUGINS . '/fullcalendar/js/fullcalendar.min.js'); ?>'></script>
-<script src="<?= base_url(RECURSOS_ADMIN_PLUGINS . '/fullcalendar/js/fullcalendar-custom-script.js'); ?>"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#generateUsername').on('click', function() {
-            $.ajax({
-                url: '<?= base_url('users/generateUsernameAjax'); ?>', // Adjust URL as per your routes
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    if (response.username) {
-                        $('#user').val(response.username);
-                    } else {
-                        alert('Error al generar nombre de usuario.');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error("AJAX Error: " + status + error);
-                    alert('Error al conectar con el servidor para generar nombre de usuario.');
-                }
-            });
-        });
-
-        $('#generatePassword').on('click', function() {
-            $.ajax({
-                url: '<?= base_url('users/generatePasswordAjax'); ?>', // Adjust URL as per your routes
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    if (response.password) {
-                        $('#password').val(response.password);
-                    } else {
-                        alert('Error al generar contraseña.');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error("AJAX Error: " + status + error);
-                    alert('Error al conectar con el servidor para generar contraseña.');
-                }
-            });
-        });
-    });
-</script>
 
 </body>
 </html>

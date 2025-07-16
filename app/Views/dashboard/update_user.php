@@ -1,190 +1,141 @@
-<!doctype html>
-<html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr" data-pc-theme="light">
-  <head>
-    <title>Editar Usuario | Monitor Dashboard</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="Datta Able is trending dashboard template made using Bootstrap 5 design framework. Datta Able is available in Bootstrap, React, CodeIgniter, Angular, and .net Technologies." />
-    <meta name="keywords" content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard" />
-    <meta name="author" content="CodedThemes" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title><?= $page_title; ?> | Dashtreme Admin</title>
+    <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/pace.min.css'); ?>" rel="stylesheet"/>
+    <script src="<?= base_url(RECURSOS_ADMIN_JS . '/pace.min.js'); ?>"></script>
+    <link rel="icon" href="<?= base_url('assets/images/favicon.ico'); ?>" type="image/x-icon">
+    <link href="<?= base_url(RECURSOS_ADMIN_PLUGINS . '/fullcalendar/css/fullcalendar.min.css'); ?>" rel='stylesheet'/>
+    <link href="<?= base_url(RECURSOS_ADMIN_PLUGINS . '/simplebar/css/simplebar.css'); ?>" rel="stylesheet"/>
+    <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/bootstrap.min.css'); ?>" rel="stylesheet"/>
+    <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/animate.css'); ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/icons.css'); ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/sidebar-menu.css'); ?>" rel="stylesheet"/>
+    <link href="<?= base_url(RECURSOS_ADMIN_CSS . '/app-style.css'); ?>" rel="stylesheet"/>
+</head>
 
-    <link rel="icon" href="<?= base_url(RECURSOS_ADMIN_IMAGES . '/favicon.svg'); ?>" type="image/x-icon" />
+<body class="bg-theme bg-theme1">
 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="<?= base_url(RECURSOS_ADMIN_FONTS . '/phosphor/duotone/style.css'); ?>" />
-    <link rel="stylesheet" href="<?= base_url(RECURSOS_ADMIN_FONTS . '/tabler-icons.min.css'); ?>" />
-    <link rel="stylesheet" href="<?= base_url(RECURSOS_ADMIN_FONTS . '/feather.css'); ?>" />
-    <link rel="stylesheet" href="<?= base_url(RECURSOS_ADMIN_FONTS . '/fontawesome.css'); ?>" />
-    <link rel="stylesheet" href="<?= base_url(RECURSOS_ADMIN_FONTS . '/material.css'); ?>" />
-    <link rel="stylesheet" href="<?= base_url(RECURSOS_ADMIN_CSS . '/style.css'); ?>" id="main-style-link" />
+<div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
+<div id="wrapper">
 
-  </head>
-  <body>
-    <div class="loader-bg fixed inset-0 bg-white dark:bg-themedark-cardbg z-[1034]">
-        <div class="loader-track h-[5px] w-full inline-block absolute overflow-hidden top-0">
-            <div class="loader-fill w-[300px] h-[5px] bg-primary-500 absolute top-0 left-0 animate-[hitZak_0.6s_ease-in-out_infinite_alternate]"></div>
+    <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+        <div class="brand-logo">
+            <a href="<?= base_url('dashboard/index'); ?>">
+                <img src="<?= base_url('assets/images/logo-icon.png'); ?>" class="logo-icon" alt="logo icon">
+                <h5 class="logo-text">Dashtreme Admin</h5>
+            </a>
         </div>
-    </div>
-    <nav class="pc-sidebar">
-        <div class="navbar-wrapper">
-            <div class="m-header flex items-center py-4 px-6 h-header-height">
-                <a href="<?= base_url('dashboard/index'); ?>" class="b-brand flex items-center gap-3">
-                    <img src="<?= base_url(RECURSOS_ADMIN_IMAGES . '/logo-white.svg'); ?>" class="img-fluid logo logo-lg" alt="logo" />
-                    <img src="<?= base_url(RECURSOS_ADMIN_IMAGES . '/favicon.svg'); ?>" class="img-fluid logo logo-sm" alt="logo" />
+        <ul class="sidebar-menu do-nicescrol">
+            <li class="sidebar-header">MAIN NAVIGATION</li>
+            <li>
+                <a href="<?= base_url('dashboard'); ?>">
+                    <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
                 </a>
-            </div>
-            <div class="navbar-content h-[calc(100vh_-_74px)] py-2.5">
-                <ul class="pc-navbar">
-                    <li class="pc-item pc-caption">
-                        <label>Navigation</label>
-                    </li>
-                    <li class="pc-item">
-                        <a href="<?= base_url('dashboard'); ?>" class="pc-link">
-                            <span class="pc-micon">
-                                <i data-feather="home"></i>
-                            </span>
-                            <span class="pc-mtext">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="pc-item pc-caption">
-                        <label>UI Components</label>
-                        <i data-feather="feather"></i>
-                    </li>
-                
-                    <li class="pc-item pc-hasmenu">
-                        <a href="<?= base_url('icon'); ?>" class="pc-link">
-                            <span class="pc-micon"> <i data-feather="feather"></i></span>
-                            <span class="pc-mtext">Icons</span>
-                        </a>
-                    </li>
+            </li>
 
-                    <li class="pc-item pc-hasmenu">
-                        <a href="<?= base_url('users'); ?>" class="pc-link"> <span class="pc-micon"> <i data-feather="user-plus"></i></span>
-                            <span class="pc-mtext">Usuarios</span> </a>
-                    </li>
-                    <li class="pc-item pc-hasmenu">
-                        <a href="<?= base_url('publicacion'); ?>" class="pc-link"> <span class="pc-micon"> <i data-feather="book"></i></span>
-                            <span class="pc-mtext">Publicaciones</span> </a>
-                    </li>
-                    <li class="pc-item pc-hasmenu">
-                        <a href="<?= base_url('categorias'); ?>" class="pc-link"> <span class="pc-micon"> <i data-feather="grid"></i></span>
-                            <span class="pc-mtext">Categorías</span> </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <header class="pc-header">
-        <div class="header-wrapper flex max-sm:px-[15px] px-[25px] grow">
-            <div class="me-auto pc-mob-drp">
-                <ul class="inline-flex *:min-h-header-height *:inline-flex *:items-center">
-                    <li class="pc-h-item pc-sidebar-collapse max-lg:hidden lg:inline-flex">
-                        <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="sidebar-hide">
-                            <i data-feather="menu"></i>
-                        </a>
-                    </li>
-                    <li class="pc-h-item pc-sidebar-popup lg:hidden">
-                        <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="mobile-collapse">
-                            <i data-feather="menu"></i>
-                        </a>
-                    </li>
-                    <li class="dropdown pc-h-item">
-                        <a class="pc-head-link dropdown-toggle me-0" data-pc-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <i data-feather="search"></i>
-                        </a>
-                        <div class="dropdown-menu pc-h-dropdown drp-search">
-                            <form class="px-2 py-1">
-                                <input type="search" class="form-control !border-0 !shadow-none" placeholder="Search here. . ." />
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="ms-auto">
-                <ul class="inline-flex *:min-h-header-height *:inline-flex *:items-center">
-                    <li class="dropdown pc-h-item">
-                        <a class="pc-head-link dropdown-toggle me-0" data-pc-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <i data-feather="sun"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
-                            <a href="#!" class="dropdown-item" onclick="layout_change('dark')">
-                                <i data-feather="moon"></i>
-                                <span>Dark</span>
-                            </a>
-                            <a href="#!" class="dropdown-item" onclick="layout_change('light')">
-                                <i data-feather="sun"></i>
-                                <span>Light</span>
-                            </a>
-                            <a href="#!" class="dropdown-item" onclick="layout_change_default()">
-                                <i data-feather="settings"></i>
-                                <span>Default</span>
-                            </a>
-                        </div>
-                    </li>
-                    
-                    
-                    <li class="dropdown pc-h-item header-user-profile">
-                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-pc-toggle="dropdown" href="#" role="button" aria-haspopup="false" data-pc-auto-close="outside" aria-expanded="false">
-                            <i data-feather="user"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown p-2 overflow-hidden">
-                            <div class="dropdown-header flex items-center justify-between py-4 px-5 bg-primary-500">
-                                <div class="flex mb-1 items-center">
-                                    <div class="shrink-0">
-                                        <img src="<?= base_url(RECURSOS_ADMIN_IMAGES . '/user/avatar-2.jpg'); ?>" alt="user-image" class="w-10 rounded-full" />
-                                    </div>
-                                    <div class="grow ms-3">
-                                        <h6 class="mb-1 text-white">Carson Darrin 🖖</h6>
-                                        <span class="text-white">carson.darrin@company.io</span>
+            <li>
+                <a href="<?= base_url('forms'); ?>">
+                    <i class="zmdi zmdi-format-list-bulleted"></i> <span>Forms</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?= base_url('resultado'); ?>">
+                    <i class="zmdi zmdi-grid"></i> <span>Resultados</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?= base_url('categorias'); ?>">
+                    <i class="zmdi zmdi-calendar-check"></i> <span>Categorias</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?= base_url('users'); ?>">
+                    <i class="zmdi zmdi-face"></i> <span>Usuarios</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <header class="topbar-nav">
+        <nav class="navbar navbar-expand fixed-top">
+            <ul class="navbar-nav mr-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link toggle-menu" href="javascript:void();">
+                        <i class="icon-menu menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <form class="search-bar">
+                        <input type="text" class="form-control" placeholder="Enter keywords">
+                        <a href="javascript:void();"><i class="icon-magnifier"></i></a>
+                    </form>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav align-items-center right-nav-link">
+                <li class="nav-item dropdown-lg">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+                        <i class="fa fa-envelope-open-o"></i>
+                    </a>
+                </li>
+                <li class="nav-item dropdown-lg">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+                        <i class="fa fa-bell-o"></i>
+                    </a>
+                </li>
+                <li class="nav-item language">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+                        <i class="fa fa-flag"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
+                        <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
+                        <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
+                        <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+                        <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-item user-details">
+                            <a href="javaScript:void();">
+                                <div class="media">
+                                    <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+                                    <div class="media-body">
+                                        <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
+                                        <p class="user-subtitle">mccoy@example.com</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="dropdown-body py-4 px-5">
-                                <div class="profile-notification-scroll position-relative" style="max-height: calc(100vh - 225px)">
-                                    <a href="#" class="dropdown-item">
-                                        <span>
-                                            <svg class="pc-icon text-muted me-2 inline-block">
-                                                <use xlink:href="#custom-setting-outline"></use>
-                                            </svg>
-                                            <span>Settings</span>
-                                        </span>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <span>
-                                            <svg class="pc-icon text-muted me-2 inline-block">
-                                                <use xlink:href="#custom-share-bold"></use>
-                                            </svg>
-                                            <span>Share</span>
-                                        </span>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <span>
-                                            <svg class="pc-icon text-muted me-2 inline-block">
-                                                <use xlink:href="#custom-lock-outline"></use>
-                                            </svg>
-                                            <span>Change Password</span>
-                                        </span>
-                                    </a>
-                                    <div class="grid my-3">
-                                        <button class="btn btn-primary flex items-center justify-center">
-                                            <svg class="pc-icon me-2 w-[22px] h-[22px]">
-                                                <use xlink:href="#custom-logout-1-outline"></use>
-                                            </svg>
-                                            Logout
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                            </a>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     </header>
+    <div class="clearfix"></div>
 
-    <div class="pc-container">
-        <div class="pc-content">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
             <div class="row">
                 <div class="col-md-12">
                     <h1><?= $page_title; ?></h1>
@@ -195,52 +146,68 @@
                     <?php if (session()->getFlashdata('error')): ?>
                         <div class="alert alert-danger"><?= session()->getFlashdata('error'); ?></div>
                     <?php endif; ?>
+                    <?php if (isset($validation) && $validation->getErrors()): ?>
+                        <div class="alert alert-danger">
+                            <ul>
+                                <?php foreach ($validation->getErrors() as $error): ?>
+                                    <li><?= esc($error); ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="card">
                         <div class="card-header">
-                            <h5>Editar Usuario</h5>
+                            <h5>Formulario de Edición de Usuario</h5>
                         </div>
                         <div class="card-body">
-                            <?= form_open_multipart('users/update/' . $usuario['id']); ?>
+                            <?= form_open_multipart('users/update/' . esc($usuario['id'])); ?>
                                 <?= csrf_field(); ?>
 
-                                <div class="form-group mb-3">
-                                    <label for="nombre_usuario" class="form-label">Nombre Completo</label>
-                                    <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" value="<?= old('nombre_usuario', $usuario['nombre_usuario'] ?? ''); ?>" required>
+                                <div class="form-group">
+                                    <label for="nombre_usuario">Nombre Completo</label>
+                                    <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario"
+                                           value="<?= old('nombre_usuario', $usuario['nombre_usuario']); ?>" required>
                                     <?php if (isset($validation) && $validation->hasError('nombre_usuario')): ?>
                                         <div class="text-danger"><?= $validation->getError('nombre_usuario'); ?></div>
                                     <?php endif; ?>
                                 </div>
 
-                                <div class="form-group mb-3">
-                                    <label for="user" class="form-label">Usuario</label>
+                                <div class="form-group">
+                                    <label for="user">Usuario (para iniciar sesión)</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="user" name="user" value="<?= old('user', $usuario['user'] ?? ''); ?>" required readonly>
-                                        <button class="btn btn-outline-secondary" type="button" id="generarUsuarioBtn">Generar</button>
+                                        <input type="text" class="form-control" id="user" name="user"
+                                               value="<?= old('user', $usuario['user']); ?>" required>
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-outline-secondary" id="generateUsername">Generar</button>
+                                        </div>
                                     </div>
                                     <?php if (isset($validation) && $validation->hasError('user')): ?>
                                         <div class="text-danger"><?= $validation->getError('user'); ?></div>
                                     <?php endif; ?>
                                 </div>
 
-                                <div class="form-group mb-3">
-                                    <label for="password" class="form-label">Contraseña</label>
+                                <div class="form-group">
+                                    <label for="password">Nueva Contraseña (dejar en blanco para no cambiar)</label>
                                     <div class="input-group">
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Dejar en blanco para no cambiar">
-                                        <button class="btn btn-outline-secondary" type="button" id="generarPasswordBtn">Generar</button>
-                                        <button class="btn btn-outline-info" type="button" id="togglePasswordBtn">Mostrar</button>
+                                        <input type="text" class="form-control" id="password" name="password" value="<?= old('password'); ?>">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-outline-secondary" id="generatePassword">Generar</button>
+                                        </div>
                                     </div>
+                                    <small class="form-text text-muted">Si no ingresas una nueva contraseña, la actual se mantendrá.</small>
                                     <?php if (isset($validation) && $validation->hasError('password')): ?>
                                         <div class="text-danger"><?= $validation->getError('password'); ?></div>
                                     <?php endif; ?>
                                 </div>
 
-                                <div class="form-group mb-3">
-                                    <label for="rol_id" class="form-label">Rol</label>
+                                <div class="form-group">
+                                    <label for="rol_id">Rol</label>
                                     <select class="form-control" id="rol_id" name="rol_id" required>
-                                        <option value="">Seleccione un rol</option>
+                                        <option value="">Selecciona un rol</option>
                                         <?php foreach ($roles as $rol): ?>
-                                            <option value="<?= $rol['id']; ?>" <?= (old('rol_id', $usuario['rol_id'] ?? '') == $rol['id']) ? 'selected' : ''; ?>>
+                                            <option value="<?= esc($rol['id']); ?>"
+                                                    <?= (old('rol_id', $usuario['rol_id']) == $rol['id']) ? 'selected' : ''; ?>>
                                                 <?= esc($rol['nombre_rol']); ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -250,107 +217,108 @@
                                     <?php endif; ?>
                                 </div>
 
-                                <div class="form-group mb-3">
-                                    <label for="imagen_perfil" class="form-label">Foto de Perfil</label>
-                                    <input type="file" class="form-control" id="imagen_perfil" name="imagen_perfil" accept="image/*">
+                                <div class="form-group">
+                                    <label>Foto de Perfil Actual</label>
+                                    <div class="mb-2">
+                                        <?php
+                                            $profilePicture = !empty($usuario['foto']) && $usuario['foto'] !== 'default.png'
+                                                ? base_url('img_user/' . $usuario['foto'])
+                                                : base_url('assets/images/user/avatar-2.jpg'); // Default image
+                                        ?>
+                                        <img src="<?= $profilePicture; ?>" alt="Foto de Perfil Actual" class="img-thumbnail" style="max-width: 150px; max-height: 150px;">
+                                    </div>
+                                    <?php if (!empty($usuario['foto']) && $usuario['foto'] !== 'default.png'): ?>
+                                        <div class="form-check mb-2">
+                                            <input type="checkbox" class="form-check-input" id="remove_photo" name="remove_photo" value="1">
+                                            <label class="form-check-label" for="remove_photo">Eliminar foto actual</label>
+                                        </div>
+                                    <?php endif; ?>
+                                    <label for="imagen_perfil">Subir Nueva Foto de Perfil (opcional)</label>
+                                    <input type="file" class="form-control-file" id="imagen_perfil" name="imagen_perfil">
                                     <?php if (isset($validation) && $validation->hasError('imagen_perfil')): ?>
                                         <div class="text-danger"><?= $validation->getError('imagen_perfil'); ?></div>
                                     <?php endif; ?>
-                                    <input type="hidden" name="current_image" value="<?= esc($usuario['foto'] ?? ''); ?>">
-
-                                    <div class="mt-2" id="previewContainer" style="display: <?= !empty($usuario['foto']) || old('foto') ? 'block' : 'none'; ?>;">
-                                        <p>Vista previa (actual o nueva):</p>
-                                        <?php if (!empty($usuario['foto']) && empty(old('imagen_perfil'))): // Check 'imagen_perfil' from old input for file upload ?>
-                                            <img id="imagePreview" src="<?= base_url('img_user/' . $usuario['foto']); ?>" alt="Foto de Perfil Actual" style="max-width: 200px; height: auto;">
-                                        <?php elseif (!empty(old('imagen_perfil')) && is_string(old('imagen_perfil'))): // If a file was old-ed, we can't show it directly. This case is tricky. ?>
-                                            <img id="imagePreview" src="<?= base_url('img_user/' . $usuario['foto']); ?>" alt="Previsualización de Foto de Perfil" style="max-width: 200px; height: auto;">
-                                            <small class="text-warning">Debe seleccionar la imagen nuevamente si hubo un error.</small>
-                                        <?php else: ?>
-                                            <img id="imagePreview" src="" alt="Previsualización de Foto de Perfil" style="max-width: 200px; height: auto; display: none;">
-                                        <?php endif; ?>
-                                    </div>
+                                    <small class="form-text text-muted">Archivos permitidos: JPG, JPEG, PNG, GIF. Tamaño máximo: 1MB.</small>
                                 </div>
 
-                                <div class="form-group mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="activo" name="activo" value="1" <?= old('activo', $usuario['activo'] ?? '') ? 'checked' : ''; ?>>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="activo" name="activo" value="1"
+                                           <?= (old('activo', $usuario['activo']) == 1) ? 'checked' : ''; ?>>
                                     <label class="form-check-label" for="activo">Activo</label>
+                                    <?php if (isset($validation) && $validation->hasError('activo')): ?>
+                                        <div class="text-danger"><?= $validation->getError('activo'); ?></div>
+                                    <?php endif; ?>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
                                 <a href="<?= base_url('users'); ?>" class="btn btn-secondary">Cancelar</a>
                             <?= form_close(); ?>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="overlay toggle-menu"></div>
         </div>
     </div>
-
-    <footer class="pc-footer">
-      <div class="footer-wrapper container-fluid mx-10">
-        <div class="grid grid-cols-12 gap-1.5">
-          <div class="col-span-12 sm:col-span-6 my-1">
-            <p class="m-0"></p>
-              <a href="https://codedthemes.com/" class="text-theme-bodycolor dark:text-themedark-bodycolor hover:text-primary-500 dark:hover:text-primary-500" target="_blank">CodedThemes</a>
-              , Built with ♥ for a smoother web presence.
-            </p>
-          </div>
-          <div class="col-span-12 sm:col-span-6 my-1 justify-self-end">
-               <p class="inline-block max-sm:mr-3 sm:ml-2">Distributed by <a href="https://themewagon.com" target="_blank">Themewagon</a></p>
-          </div>
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <footer class="footer">
+        <div class="container">
+            <div class="text-center">
+                Copyright © 2018 Dashtreme Admin
+            </div>
         </div>
-      </div>
     </footer>
-  
-    <script src="<?= base_url(RECURSOS_ADMIN_JS . '/plugins/simplebar.min.js'); ?>"></script>
-    <script src="<?= base_url(RECURSOS_ADMIN_JS . '/plugins/popper.min.js'); ?>"></script>
-    <script src="<?= base_url(RECURSOS_ADMIN_JS . '/icon/custom-icon.js'); ?>"></script>
-    <script src="<?= base_url(RECURSOS_ADMIN_JS . '/plugins/feather.min.js'); ?>"></script>
-    <script src="<?= base_url(RECURSOS_ADMIN_JS . '/component.js'); ?>"></script>
-    <script src="<?= base_url(RECURSOS_ADMIN_JS . '/theme.js'); ?>"></script>
-    <script src="<?= base_url(RECURSOS_ADMIN_JS . '/script.js'); ?>"></script>
+    <div class="right-sidebar">
+        <div class="switcher-icon">
+            <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+        </div>
+        <div class="right-sidebar-content">
 
-    <div class="floting-button fixed bottom-[50px] right-[30px] z-[1030]">
+            <p class="mb-0">Gaussion Texture</p>
+            <hr>
+
+            <ul class="switcher">
+                <li id="theme1"></li>
+                <li id="theme2"></li>
+                <li id="theme3"></li>
+                <li id="theme4"></li>
+                <li id="theme5"></li>
+                <li id="theme6"></li>
+            </ul>
+
+            <p class="mb-0">Gradient Background</p>
+            <hr>
+
+            <ul class="switcher">
+                <li id="theme7"></li>
+                <li id="theme8"></li>
+                <li id="theme9"></li>
+                <li id="theme10"></li>
+                <li id="theme11"></li>
+                <li id="theme12"></li>
+                <li id="theme13"></li>
+                <li id="theme14"></li>
+                <li id="theme15"></li>
+            </ul>
+        </div>
     </div>
+</div>
 
-    
-    <script>
-      layout_change('false');
-    </script>
-      
-    
-    <script>
-      layout_theme_sidebar_change('dark');
-    </script>
-    
-      
-    <script>
-      change_box_container('false');
-    </script>
-      
-    <script>
-      layout_caption_change('true');
-    </script>
-      
-    <script>
-      layout_rtl_change('false');
-    </script>
-      
-    <script>
-      preset_change('preset-1');
-    </script>
-      
-    <script>
-      main_layout_change('vertical');
-    </script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            feather.replace(); // Esto busca todos los elementos con data-feather y los reemplaza con los SVG de iconos
-        });
-    </script>
+<script src="<?= base_url(RECURSOS_ADMIN_JS . '/jquery.min.js'); ?>"></script>
+<script src="<?= base_url(RECURSOS_ADMIN_JS . '/popper.min.js'); ?>"></script>
+<script src="<?= base_url(RECURSOS_ADMIN_JS . '/bootstrap.min.js'); ?>"></script>
 
-    <script>
+<script src="<?= base_url(RECURSOS_ADMIN_PLUGINS . '/simplebar/js/simplebar.js'); ?>"></script>
+<script src="<?= base_url(RECURSOS_ADMIN_JS . '/sidebar-menu.js'); ?>"></script>
+
+<script src="<?= base_url(RECURSOS_ADMIN_JS . '/app-script.js'); ?>"></script>
+
+<script src='<?= base_url(RECURSOS_ADMIN_PLUGINS . '/fullcalendar/js/moment.min.js'); ?>'></script>
+<script src='<?= base_url(RECURSOS_ADMIN_PLUGINS . '/fullcalendar/js/fullcalendar.min.js'); ?>'></script>
+<script src="<?= base_url(RECURSOS_ADMIN_PLUGINS . '/fullcalendar/js/fullcalendar-custom-script.js'); ?>"></script>
+
+<script>
 document.addEventListener('DOMContentLoaded', function() {
     const generarUsuarioBtn = document.getElementById('generarUsuarioBtn');
     const userInput = document.getElementById('user'); // Este es el campo 'user' (usuario/username)
@@ -469,6 +437,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-
-  </body>
+</body>
 </html>

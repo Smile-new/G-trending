@@ -47,9 +47,8 @@ defined('IMG_USER_PATH') || define('IMG_USER_PATH', 'img_user');
 // app/Config/Constants.php o app/Common.php
 // ... otras constantes ...
 
-define('PUBLICACIONES_IMAGE_UPLOAD_PATH', 'publicaciones/imagenes');
-define('PUBLICACIONES_PDF_UPLOAD_PATH', 'publicaciones/pdf');
-
+defined('PUBLICACIONES_IMAGE_UPLOAD_PATH') || define('PUBLICACIONES_IMAGE_UPLOAD_PATH', 'public/publicaciones/imagenes');
+defined('PUBLICACIONES_PDF_UPLOAD_PATH') || define('PUBLICACIONES_PDF_UPLOAD_PATH', 'public/publicaciones/pdf');
 //diseño de usuario
 
 define('RECURSOS_PUBLICOS_CSS', 'recursos_publicos/css');
@@ -61,7 +60,7 @@ define('RECURSOS_PUBLICOS_IMAGES', 'recursos_publicos/images');
 //diseño administrador
 define('RECURSOS_ADMIN_CSS', 'recursos_admin/css');
 define('RECURSOS_ADMIN_FONTS', 'recursos_admin/fonts');
-define('RECURSOS_ADMIN_IMAGES', 'recursos_admin/images');
+define('RECURSOS_ADMIN_PLUGINS', 'recursos_admin/plugins');
 define('RECURSOS_ADMIN_JS', 'recursos_admin/js');
 
 //diseño de login 
