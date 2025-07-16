@@ -34,8 +34,8 @@ $routes->setAutoRoute(true);
 
 //Portal
 $routes->get('/', 'Portal::index');
+$routes->get('/causes', 'VistasPublicas::index');
 $routes->get('/about', 'Portal::about');
-$routes->get('/causes', 'Portal::causes');
 $routes->get('/contact', 'Portal::contact');
 
 

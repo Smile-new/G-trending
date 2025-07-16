@@ -26,4 +26,15 @@ class PublicacionModel extends Model
     protected $updatedField  = ''; // <<< CAMBIO IMPORTANTE: Vacío porque no hay columna de actualización automática
 
     
+ public function getPublicacionesActivas()
+    {
+        return $this->select('publicaciones_encuesta.*, categorias_encuesta.nombre as categoria_nombre, usuarios.nombre_usuario as usuario_nombre')
+                    ->join('categorias_encuesta', 'categorias_encuesta.id = publicaciones_encuesta.categoria_id')
+                    ->join('usuarios', 'usuarios.id = publicaciones_encuesta.usuario_id')
+                    ->where('publicaciones_encuesta.activo', 1) // **FILTRO CLAVE: solo publicaciones activas**
+                    ->orderBy('publicaciones_encuesta.fecha_publicacion', 'DESC') // Ordenar por fecha de publicación
+                    ->findAll();
+    }
+
+
 }

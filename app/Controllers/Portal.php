@@ -53,15 +53,7 @@ class Portal extends Controller
     /**
      * Muestra la página "Causas" (causes.php).
      */
-    public function causes()
-    {
-        $data = [
-            'page_title' => 'Trending Local - Causas',
-        ];
-
-        // Carga la vista desde app/Views/portal/causes.php
-        return view('portal/causes', $data);
-    }
+   
 
     /**
      * Muestra la página de "Contacto" (contact.php).

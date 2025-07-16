@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +44,7 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="<?= base_url() ?>index.html">Trending Local</a>
+            <a class="navbar-brand" href="<?= base_url() ?>">Trending Local</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
@@ -53,10 +52,9 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                    <li class="nav-item active"><a href="<?= base_url('/'); ?>" class="nav-link">Home</a></li>
-<li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">About</a></li>
-<li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Causes</a></li>
-<li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contact</a></li>
-                
+                    <li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Causes</a></li>
+                    <li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -66,7 +64,7 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-end">
                 <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="<?= base_url() ?>index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Causes <i class="ion-ios-arrow-forward"></i></span></p>
+                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="<?= base_url() ?>">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Causes <i class="ion-ios-arrow-forward"></i></span></p>
                     <h1 class="mb-0 bread">Causes</h1>
                 </div>
             </div>
@@ -74,156 +72,51 @@
     </section>
 
     <section class="ftco-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-3">
-                    <div class="causes causes-2 text-center ftco-animate">
-                        <a href="#" class="img w-100" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/causes-1.jpg') ?>);"></a>
-                        <div class="text p-3">
-                            <h2><a href="#">Save the poor children from hunger</a></h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <div class="goal mb-4">
-                                <p><span>$3,800</span> to go</p>
-                                <div class="progress" style="height:20px">
-                                    <div class="progress-bar progress-bar-striped" style="width:70%; height:20px">70%</div>
-                                </div>
+    <div class="container">
+        <div class="row">
+            <?php if (!empty($publicaciones)): ?>
+                <?php foreach ($publicaciones as $publicacion): ?>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="causes causes-2 text-center ftco-animate" style="margin-bottom: 20px;">
+                            <a href="#" class="img w-100" style="background-image: url(<?= base_url($publicacion['ruta_foto']) ?>); height: 180px; background-size: cover; background-position: center;"></a>
+                            <div class="text p-2">
+                                <h2 style="font-size: 16px;"><?= esc($publicacion['titulo']) ?></h2>
+                                <p style="font-size: 12px;">Categoría: <strong><?= esc($publicacion['categoria_nombre']) ?></strong></p>
+                                <p style="font-size: 12px;">Fecha de Publicación: <strong><?= esc(date('d M, Y', strtotime($publicacion['fecha_publicacion']))) ?></strong></p>
+                                <p>
+                                    <a href="<?= base_url('publicacion/ver-resultados/' . $publicacion['id']) ?>" class="btn btn-light w-100 btn-sm">
+                                        Ver resultados
+                                    </a>
+                                </p>
                             </div>
-                            <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
                         </div>
                     </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12 text-center">
+                    <p>No se encontraron publicaciones activas en este momento.</p>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="causes causes-2 text-center ftco-animate">
-                        <a href="#" class="img w-100" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/causes-2.jpg') ?>);"></a>
-                        <div class="text p-3">
-                            <h2><a href="#">Save the poor children from hunger</a></h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <div class="goal mb-4">
-                                <p><span>$3,800</span> to go</p>
-                                <div class="progress" style="height:20px">
-                                    <div class="progress-bar progress-bar-striped" style="width:82%; height:20px">82%</div>
-                                </div>
-                            </div>
-                            <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="causes causes-2 text-center ftco-animate">
-                        <a href="#" class="img w-100" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/causes-3.jpg') ?>);"></a>
-                        <div class="text p-3">
-                            <h2><a href="#">Save the poor children from hunger</a></h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <div class="goal mb-4">
-                                <p><span>$3,800</span> to go</p>
-                                <div class="progress" style="height:20px">
-                                    <div class="progress-bar progress-bar-striped" style="width:95%; height:20px">95%</div>
-                                </div>
-                            </div>
-                            <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="causes causes-2 text-center ftco-animate">
-                        <a href="#" class="img w-100" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/causes-4.jpg') ?>);"></a>
-                        <div class="text p-3">
-                            <h2><a href="#">Save the poor children from hunger</a></h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <div class="goal mb-4">
-                                <p><span>$3,800</span> to go</p>
-                                <div class="progress" style="height:20px">
-                                    <div class="progress-bar progress-bar-striped" style="width:75%; height:20px">75%</div>
-                                </div>
-                            </div>
-                            <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
-                        </div>
-                    </div>
-                </div>
+            <?php endif; ?>
+        </div>
 
-                <div class="col-md-6 col-lg-3">
-                    <div class="causes causes-2 text-center ftco-animate">
-                        <a href="#" class="img w-100" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/causes-5.jpg') ?>);"></a>
-                        <div class="text p-3">
-                            <h2><a href="#">Save the poor children from hunger</a></h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <div class="goal mb-4">
-                                <p><span>$3,800</span> to go</p>
-                                <div class="progress" style="height:20px">
-                                    <div class="progress-bar progress-bar-striped" style="width:70%; height:20px">70%</div>
-                                </div>
-                            </div>
-                            <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="causes causes-2 text-center ftco-animate">
-                        <a href="#" class="img w-100" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/causes-6.jpg') ?>);"></a>
-                        <div class="text p-3">
-                            <h2><a href="#">Save the poor children from hunger</a></h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <div class="goal mb-4">
-                                <p><span>$3,800</span> to go</p>
-                                <div class="progress" style="height:20px">
-                                    <div class="progress-bar progress-bar-striped" style="width:82%; height:20px">82%</div>
-                                </div>
-                            </div>
-                            <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="causes causes-2 text-center ftco-animate">
-                        <a href="#" class="img w-100" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/causes-7.jpg') ?>);"></a>
-                        <div class="text p-3">
-                            <h2><a href="#">Save the poor children from hunger</a></h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <div class="goal mb-4">
-                                <p><span>$3,800</span> to go</p>
-                                <div class="progress" style="height:20px">
-                                    <div class="progress-bar progress-bar-striped" style="width:95%; height:20px">95%</div>
-                                </div>
-                            </div>
-                            <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="causes causes-2 text-center ftco-animate">
-                        <a href="#" class="img w-100" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/causes-8.jpg') ?>);"></a>
-                        <div class="text p-3">
-                            <h2><a href="#">Save the poor children from hunger</a></h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
-                            <div class="goal mb-4">
-                                <p><span>$3,800</span> to go</p>
-                                <div class="progress" style="height:20px">
-                                    <div class="progress-bar progress-bar-striped" style="width:75%; height:20px">75%</div>
-                                </div>
-                            </div>
-                            <p><a href="#" class="btn btn-light w-100">Donate Now</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col text-center">
-                    <div class="block-27">
-                        <ul>
-                            <li><a href="#">&lt;</a></li>
-                            <li class="active"><span>1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&gt;</a></li>
-                        </ul>
-                    </div>
+        <div class="row mt-5">
+            <div class="col text-center">
+                <div class="block-27">
+                    <ul>
+                        <li><a href="#">&lt;</a></li>
+                        <li class="active"><span>1</span></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&gt;</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
 
     <footer class="footer">
@@ -295,9 +188,6 @@
                 </div>
             </div>
         </footer>
-
-
-
 
         <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
