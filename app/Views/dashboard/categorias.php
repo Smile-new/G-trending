@@ -47,7 +47,7 @@
       </li>
 
       <li>
-        <a href="<?= base_url('tables'); ?>">
+        <a href="<?= base_url('resultado'); ?>">
           <i class="zmdi zmdi-grid"></i> <span>Resultados</span>
         </a>
       </li>
