@@ -200,7 +200,7 @@
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
                         <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle"
-                                                         alt="user avatar"></span>
+                                                        alt="user avatar"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-item user-details">
@@ -285,7 +285,13 @@
                                         <?php foreach ($publicaciones as $publicacion): ?>
                                             <tr>
                                                 <td><?= esc($publicacion['id']); ?></td>
-                                                <td><?= esc($publicacion['titulo']); ?></td>
+                                                <td>
+                                                    <?php
+                                                    $fullTitle = esc($publicacion['titulo']);
+                                                    $truncatedTitle = substr($fullTitle, 0, 50); // Adjust length as needed
+                                                    echo "En esta noticia podrás ver: " . $truncatedTitle . (strlen($fullTitle) > 50 ? '...' : '');
+                                                    ?>
+                                                </td>
                                                 <td><?= esc(substr($publicacion['descripcion'], 0, 100)); ?><?= (strlen($publicacion['descripcion']) > 100) ? '...' : ''; ?></td>
                                                 <td><?= esc($publicacion['fecha_publicacion']); ?></td>
                                                 <td><?= esc($publicacion['categoria_nombre']); ?></td>
@@ -331,7 +337,7 @@
                                                         <a href="<?= base_url('resultado/delete/' . esc($publicacion['id'])); ?>"
                                                            class="btn btn-danger btn-sm" title="Eliminar"
                                                            onclick="return confirm('¿Estás seguro de que quieres eliminar este resultado?');"><i
-                                                                class="fa fa-trash-o"></i></a>
+                                                                    class="fa fa-trash-o"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

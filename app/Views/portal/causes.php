@@ -17,6 +17,45 @@
     <link rel="stylesheet" href="<?= base_url(RECURSOS_PUBLICOS_CSS . '/jquery.timepicker.css') ?>">
     <link rel="stylesheet" href="<?= base_url(RECURSOS_PUBLICOS_CSS . '/flaticon.css') ?>">
     <link rel="stylesheet" href="<?= base_url(RECURSOS_PUBLICOS_CSS . '/style.css') ?>">
+    <style>
+        .causes.causes-2 {
+            height: 400px; /* Altura fija para la caja de la publicación */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribuye el espacio entre los elementos */
+            margin-bottom: 20px;
+        }
+
+        .causes-2 .img {
+            height: 180px; /* Altura fija para la imagen */
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .causes-2 .text {
+            flex-grow: 1; /* Permite que el contenido de texto ocupe el espacio restante */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribuye el espacio entre los elementos del texto */
+            padding: 10px; /* Espaciado interno para el texto */
+        }
+
+        /* Ajustes para asegurar que el contenido dentro de .text no se desborde */
+        .causes-2 .text h2 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .causes-2 .text p {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .causes-2 .btn {
+            margin-top: auto; /* Empuja el botón hacia la parte inferior */
+        }
+    </style>
 </head>
 <body>
 
@@ -77,14 +116,14 @@
             <?php if (!empty($publicaciones)): ?>
                 <?php foreach ($publicaciones as $publicacion): ?>
                     <div class="col-md-6 col-lg-3">
-                        <div class="causes causes-2 text-center ftco-animate" style="margin-bottom: 20px;">
-                            <a href="#" class="img w-100" style="background-image: url(<?= base_url($publicacion['ruta_foto']) ?>); height: 180px; background-size: cover; background-position: center;"></a>
+                        <div class="causes causes-2 text-center ftco-animate">
+                            <a href="#" class="img w-100" style="background-image: url(<?= base_url($publicacion['ruta_foto']) ?>);"></a>
                             <div class="text p-2">
-                                <h2 style="font-size: 16px;"><?= esc($publicacion['titulo']) ?></h2>
-                                <p style="font-size: 12px;">Categoría: <strong><?= esc($publicacion['categoria_nombre']) ?></strong></p>
-                                <p style="font-size: 12px;">Fecha de Publicación: <strong><?= esc(date('d M, Y', strtotime($publicacion['fecha_publicacion']))) ?></strong></p>
+                                <h2><?= esc($publicacion['titulo']) ?></h2>
+                                <p>Categoría: <strong><?= esc($publicacion['categoria_nombre']) ?></strong></p>
+                                <p>Fecha de Publicación: <strong><?= esc(date('d M, Y', strtotime($publicacion['fecha_publicacion']))) ?></strong></p>
                                 <p>
-                                    <a href="<?= base_url('publicacion/ver-resultados/' . $publicacion['id']) ?>" class="btn btn-light w-100 btn-sm">
+                                    <a href="<?= base_url('publicacion/detalle/' . $publicacion['id']) ?>" class="btn btn-light w-100 btn-sm">
                                         Ver resultados
                                     </a>
                                 </p>
@@ -116,8 +155,6 @@
         </div>
     </div>
 </section>
-
-
 
     <footer class="footer">
         <div class="container">

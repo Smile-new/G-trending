@@ -37,6 +37,7 @@ $routes->get('/', 'Portal::index');
 $routes->get('/causes', 'VistasPublicas::index');
 $routes->get('/about', 'Portal::about');
 $routes->get('/contact', 'Portal::contact');
+$routes->get('publicacion/detalle/(:num)', 'VistasPublicas::detallePublicacion/$1');
 
 
 //Panel
