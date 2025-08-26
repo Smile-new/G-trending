@@ -59,10 +59,10 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                   <li class="nav-item"><a href="<?= base_url('/'); ?>" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">About</a></li>
-                    <li class="nav-item active"><a href="<?= base_url('causes'); ?>" class="nav-link">Causes</a></li>
-                    <li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contact</a></li>
+                    <li class="nav-item active"><a href="<?= base_url('/'); ?>" class="nav-link">Inicio</a></li>
+<li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">Servicios</a></li>
+<li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y estudios</a></li>
+<li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contactanos</a></li>
                 </ul>
             </div>
         </div>

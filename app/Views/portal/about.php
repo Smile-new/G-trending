@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Unicare - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Trending Local - Soluciones en Inteligencia de Datos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -52,10 +51,10 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="<?= base_url('/'); ?>" class="nav-link">Home</a></li>
-<li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">About</a></li>
-<li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Causes</a></li>
-<li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contact</a></li>
+                    <li class="nav-item active"><a href="<?= base_url('/'); ?>" class="nav-link">Inicio</a></li>
+<li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">Servicios</a></li>
+<li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y estudios</a></li>
+<li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contactanos</a></li>
                 </ul>
             </div>
         </div>
@@ -65,8 +64,8 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-end">
                 <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="<?= base_url() ?>index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>About us <i class="ion-ios-arrow-forward"></i></span></p>
-                    <h1 class="mb-0 bread">About Us</h1>
+                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="<?= base_url() ?>index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Servicios <i class="ion-ios-arrow-forward"></i></span></p>
+                    <h1 class="mb-0 bread">Nuestros Servicios</h1>
                 </div>
             </div>
         </div>
@@ -81,11 +80,10 @@
                 </div>
                 <div class="col-md-6 pr-md-5 py-md-5">
                     <div class="heading-section pt-md-5 mb-4">
-                        <span class="subheading">About us</span>
-                        <h2 class="mb-2">Give a helping hand to a needy people</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                        <p><a href="#" class="btn btn-secondary">Become a Volunteer</a></p>
+                        <span class="subheading">Servicios</span>
+                        <h2 class="mb-2">Tecnología Propia: Precisión y Eficiencia</h2>
+                        <p>Contamos con una **plataforma de inteligencia de datos** exclusiva, desarrollada para obtener resultados precisos y eficientes. Esta herramienta tecnológica nos permite tener control total del proceso, garantizando **calidad, rapidez y fiabilidad** en cada etapa, desde la recolección hasta el análisis final.</p>
+                        <p><a href="#" class="btn btn-secondary">Contactar</a></p>
                     </div>
                 </div>
             </div>
@@ -96,105 +94,52 @@
         <div class="container">
             <div class="row justify-content-center pb-5">
                 <div class="col-md-7 heading-section text-center ftco-animate">
-                    <span class="subheading">Welcome to Unicare</span>
-                    <h2>We Believe that We Can Save More Lifes with You</h2>
+                    <span class="subheading">Nuestras Ventajas</span>
+                    <h2>Soluciones de Datos que Impulsan tu Negocio</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-3 services-2 w-100 text-center">
                     <div class="icon icon-1 d-flex align-items-center justify-content-center"><span class="flaticon-water-drop"></span></div>
                     <div class="text">
-                        <h4>Water</h4>
-                        <p>Far far away, behind the word mountains, far from the countries.</p>
+                        <h4>Análisis Estratégico Multidimensional</h4>
+                        <p>Nuestra base de datos dinámica permite cruzar resultados con múltiples variables, ofreciendo un análisis más profundo y segmentado. Descubre tendencias y oportunidades ocultas en tus datos.</p>
                     </div>
                 </div>
                 <div class="col-md-3 services-2 w-100 text-center">
                     <div class="icon icon-2 d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
                     <div class="text">
-                        <h4>Medical</h4>
-                        <p>Far far away, behind the word mountains, far from the countries.</p>
+                        <h4>Datos de Última Generación</h4>
+                        <p>Obtenemos información precisa, actual y georreferenciada para impulsar estrategias sólidas y decisiones efectivas en el momento justo. Confía en datos que realmente marcan la diferencia.</p>
                     </div>
                 </div>
                 <div class="col-md-3 services-2 w-100 text-center">
                     <div class="icon icon-3 d-flex align-items-center justify-content-center"><span class="flaticon-bread"></span></div>
                     <div class="text">
-                        <h4>Food</h4>
-                        <p>Far far away, behind the word mountains, far from the countries.</p>
+                        <h4>Soluciones Adaptadas</h4>
+                        <p>La información está completamente disponible para nuestros clientes. Creamos análisis específicos y personalizados para tus necesidades, entregando soluciones claras y accionables.</p>
                     </div>
                 </div>
                 <div class="col-md-3 services-2 w-100 text-center">
                     <div class="icon icon-4 d-flex align-items-center justify-content-center"><span class="flaticon-university"></span></div>
                     <div class="text">
-                        <h4>Education</h4>
-                        <p>Far far away, behind the word mountains, far from the countries.</p>
+                        <h4>Consultoría Experta</h4>
+                        <p>Nuestro equipo de especialistas te guiará en la interpretación de los datos, ayudándote a transformar la información en una estrategia de negocio ganadora.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="ftco-counter" id="section-counter">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 mb-5 mb-md-0 text-center text-md-left">
-                    <h2 class="font-weight-bold" style="color: #fff; font-size: 22px;">We're on a mission to help all your problems</h2>
-                    <a href="#" class="btn btn-white btn-outline-white">Donate Now</a>
-                </div>
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                            <div class="block-18 text-center">
-                                <div class="text">
-                                    <strong class="number" data-number="88984">0</strong>
-                                </div>
-                                <div class="text">
-                                    <span>Donation Campaigns are running</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                            <div class="block-18 text-center">
-                                <div class="text">
-                                    <strong class="number" data-number="65000">0</strong>
-                                </div>
-                                <div class="text">
-                                    <span>Professional and kind volunteers</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                            <div class="block-18 text-center">
-                                <div class="text">
-                                    <strong class="number" data-number="77000">0</strong>
-                                </div>
-                                <div class="text">
-                                    <span>Funds we raised till now on site</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                            <div class="block-18 text-center">
-                                <div class="text">
-                                    <strong class="number" data-number="50">0</strong>
-                                </div>
-                                <div class="text">
-                                    <span>Dedicated Donors</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <section class="ftco-section testimony-section">
         <div class="overlay"></div>
         <div class="container">
             <div class="row justify-content-center pb-5">
                 <div class="col-md-7 heading-section heading-section-white text-center ftco-animate">
-                    <span class="subheading">Testimony</span>
-                    <h2>Happy Clients &amp; Feedbacks</h2>
+                    <span class="subheading">Testimonios</span>
+                    <h2>Clientes Satisfechos y sus Historias de Éxito</h2>
                 </div>
             </div>
             <div class="row ftco-animate">
@@ -215,9 +160,9 @@
                                         <span class="fa fa-star"></span>
                                         <span class="fa fa-star"></span>
                                     </p>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                                    <p>La información de Trending Local nos permitió identificar un nicho de mercado que desconocíamos. Nuestro crecimiento se ha disparado desde entonces.</p>
                                     <p class="name">Racky Henderson</p>
-                                    <span class="position">Father</span>
+                                    <span class="position">Empresario</span>
                                 </div>
                             </div>
                         </div>
@@ -236,9 +181,9 @@
                                         <span class="fa fa-star"></span>
                                         <span class="fa fa-star"></span>
                                     </p>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                                    <p>Su análisis personalizado fue clave para nuestra estrategia de expansión. Ahorramos tiempo y recursos valiosos gracias a sus insights.</p>
                                     <p class="name">Henry Dee</p>
-                                    <span class="position">Businesswoman</span>
+                                    <span class="position">Directora de Marketing</span>
                                 </div>
                             </div>
                         </div>
@@ -257,9 +202,9 @@
                                         <span class="fa fa-star"></span>
                                         <span class="fa fa-star"></span>
                                     </p>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                                    <p>La plataforma es increíblemente intuitiva y los datos son de la más alta calidad. Nos ayudó a tomar decisiones estratégicas en tiempo real.</p>
                                     <p class="name">Mark Huff</p>
-                                    <span class="position">Businesswoman</span>
+                                    <span class="position">Gerente de Operaciones</span>
                                 </div>
                             </div>
                         </div>
@@ -278,9 +223,9 @@
                                         <span class="fa fa-star"></span>
                                         <span class="fa fa-star"></span>
                                     </p>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                                    <p>Gracias a Trending Local, pudimos validar nuestra estrategia de producto con datos sólidos y georreferenciados. Nos dio la confianza para seguir adelante.</p>
                                     <p class="name">Benjie Busk Jr.</p>
-                                    <span class="position">Businesswoman</span>
+                                    <span class="position">Fundador de Startup</span>
                                 </div>
                             </div>
                         </div>
@@ -299,9 +244,9 @@
                                         <span class="fa fa-star"></span>
                                         <span class="fa fa-star"></span>
                                     </p>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                                    <p>El equipo de soporte es excepcional. Siempre están listos para ayudarnos a entender los informes y a aplicar los hallazgos en nuestra operación diaria.</p>
                                     <p class="name">Ken Bosh</p>
-                                    <span class="position">Businesswoman</span>
+                                    <span class="position">Analista de Mercado</span>
                                 </div>
                             </div>
                         </div>
@@ -316,11 +261,11 @@
             <div class="row justify-content-between">
                 <div class="col-md-8 col-lg-8 d-flex align-items-center">
                     <div class="w-100">
-                        <h2>Best Way to Make a Difference in the Lives of Others</h2>
+                        <h2>La mejor forma de tomar decisiones es con información precisa y poderosa</h2>
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-4 d-flex align-items-center justify-content-end">
-                    <p class="mb-0"><a href="#" class="btn btn-primary py-3 px-4">Become A Volunteer</a></p>
+                    <p class="mb-0"><a href="#" class="btn btn-primary py-3 px-4">¡Contáctanos ya!</a></p>
                 </div>
             </div>
         </div>
@@ -331,58 +276,57 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Unicare.</h2>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                    <h2 class="footer-heading">Trending Local</h2>
+                    <p>Obtenemos información precisa, actual y georreferenciada para impulsar estrategias sólidas y decisiones efectivas en el momento justo.</p>
                     <ul class="ftco-footer-social p-0">
                         <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
                         <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
                         <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
                     </ul>
-                    <p><a href="#" class="btn btn-quarternary">Donate Now</a></p>
+                    <p><a href="#" class="btn btn-quarternary">¡Contáctanos!</a></p>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Latest News</h2>
+                    <h2 class="footer-heading">Noticias Recientes</h2>
                     <div class="block-21 mb-4 d-flex">
                         <a class="img mr-4 rounded" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/image_1.jpg') ?>);"></a>
                         <div class="text">
-                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                            <h3 class="heading"><a href="#">Nuevas herramientas de análisis predictivo lanzadas</a></h3>
                             <div class="meta">
-                                <div><a href="#">Jul 20, 2020</a></div>
+                                <div><a href="#">Jul 20, 2025</a></div>
                                 <div><a href="#">Admin</a></div>
-                                <div><a href="#">19</a></div>
+                                <div><a href="#">Comentarios</a></div>
                             </div>
                         </div>
                     </div>
                     <div class="block-21 mb-4 d-flex">
                         <a class="img mr-4 rounded" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/image_2.jpg') ?>);"></a>
                         <div class="text">
-                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                            <h3 class="heading"><a href="#">El poder de la geolocalización en las estrategias de marketing</a></h3>
                             <div class="meta">
-                                <div><a href="#">Jul 20, 2020</a></div>
+                                <div><a href="#">Jul 15, 2025</a></div>
                                 <div><a href="#">Admin</a></div>
-                                <div><a href="#">19</a></div>
+                                <div><a href="#">Comentarios</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Quick Links</h2>
+                    <h2 class="footer-heading">Enlaces Rápidos</h2>
                     <ul class="list-unstyled">
                         <li><a href="#" class="py-2 d-block">Home</a></li>
-                        <li><a href="#" class="py-2 d-block">About</a></li>
-                        <li><a href="#" class="py-2 d-block">Causes</a></li>
-                        <li><a href="#" class="py-2 d-block">New Campaigns</a></li>
+                        <li><a href="#" class="py-2 d-block">Servicios</a></li>
+                        <li><a href="#" class="py-2 d-block">Casos de Éxito</a></li>
                         <li><a href="#" class="py-2 d-block">Blog</a></li>
-                        <li><a href="#" class="py-2 d-block">Contact</a></li>
+                        <li><a href="#" class="py-2 d-block">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Have a Questions?</h2>
+                    <h2 class="footer-heading">¿Tienes Preguntas?</h2>
                     <div class="block-23 mb-3">
                         <ul>
-                            <li><span class="icon fa fa-map"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                            <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                            <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
+                            <li><span class="icon fa fa-map"></span><span class="text">Calle Ficticia 123, Ciudad de México, México</span></li>
+                            <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+52 55 3965 6252</span></a></li>
+                            <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">trendinglocalmx@gmail.com</span></a></li>
                         </ul>
                     </div>
                 </div>

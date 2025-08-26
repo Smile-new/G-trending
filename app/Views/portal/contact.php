@@ -51,10 +51,10 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="<?= base_url('/'); ?>" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Causes</a></li>
-                    <li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contact</a></li>
+                    <li class="nav-item active"><a href="<?= base_url('/'); ?>" class="nav-link">Inicio</a></li>
+<li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">Servicios</a></li>
+<li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y estudios</a></li>
+<li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contactanos</a></li>
                 </ul>
             </div>
         </div>
@@ -64,8 +64,8 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-end">
                 <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="<?= base_url() ?>index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Contact us <i class="ion-ios-arrow-forward"></i></span></p>
-                    <h1 class="mb-0 bread">Contact us</h1>
+                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="<?= base_url() ?>index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Contactanos <i class="ion-ios-arrow-forward"></i></span></p>
+                    <h1 class="mb-0 bread">Contactanos</h1>
                 </div>
             </div>
         </div>
