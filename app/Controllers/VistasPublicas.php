@@ -24,8 +24,12 @@ class VistasPublicas extends BaseController
      */
     public function index(): string
     {
+
+        $perPage = 4;
+
         // Obtener las publicaciones activas desde el modelo
-        $data['publicaciones'] = $this->publicacionModel->getPublicacionesActivas();
+        $data['publicaciones'] = $this->publicacionModel->getPublicacionesActivas($perPage);
+        $data['pager'] = $this->publicacionModel->pager;
 
         // Cargar la vista 'causes.php' ubicada en la carpeta 'portal'
         return view('portal/causes', $data); // Asumo que causes.php es la vista que lista las publicaciones.
@@ -54,6 +58,12 @@ class VistasPublicas extends BaseController
         }
 
         $data['publicacion'] = $publicacion;
+
+        $data['recientes'] = $this->publicacionModel
+                           ->where('activo', 1)
+                           ->orderBy('fecha_publicacion', 'DESC')
+                           ->limit(2)
+                           ->findAll();
 
         // Cargar la vista 'publicacion_detalle.php' ubicada en la carpeta 'portal'
         return view('portal/publicacion_detalle', $data);

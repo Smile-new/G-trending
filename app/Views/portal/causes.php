@@ -55,6 +55,27 @@
         .causes-2 .btn {
             margin-top: auto; /* Empuja el botón hacia la parte inferior */
         }
+
+        /* Centrar la paginación de CodeIgniter */
+        .block-27 ul {
+            display: flex;
+            justify-content: center; /* Centra los elementos horizontalmente */
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 5px; /* Espacio entre los números */
+        }
+
+        .block-27 ul li {
+            display: inline-block;
+        }
+
+
+        .block-27 ul li.active span {
+            background: #007bff;
+            color: #fff;
+        }
+
     </style>
 </head>
 <body>
@@ -90,10 +111,10 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="<?= base_url('/'); ?>" class="nav-link">Inicio</a></li>
-<li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">Servicios</a></li>
-<li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y estudios</a></li>
-<li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contactanos</a></li>
+                    <li class="nav-item"><a href="<?= base_url('/'); ?>" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">Servicios</a></li>
+                    <li class="nav-item active"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y estudios</a></li>
+                    <li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contáctanos</a></li>
                 </ul>
             </div>
         </div>
@@ -141,15 +162,7 @@
         <div class="row mt-5">
             <div class="col text-center">
                 <div class="block-27">
-                    <ul>
-                        <li><a href="#">&lt;</a></li>
-                        <li class="active"><span>1</span></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&gt;</a></li>
-                    </ul>
+                    <?= $pager->links('default', 'default_full') ?>
                 </div>
             </div>
         </div>
@@ -195,14 +208,12 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Quick Links</h2>
+                    <h2 class="footer-heading">Enlaces Rápidos</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">Home</a></li>
-                        <li><a href="#" class="py-2 d-block">About</a></li>
-                        <li><a href="#" class="py-2 d-block">Causes</a></li>
-                        <li><a href="#" class="py-2 d-block">New Campaigns</a></li>
-                        <li><a href="#" class="py-2 d-block">Blog</a></li>
-                        <li><a href="#" class="py-2 d-block">Contact</a></li>
+                        <li><a href="<?= base_url('/'); ?>" class="py-2 d-block">Inicio</a></li>
+                        <li><a href="<?= base_url('about'); ?>" class="py-2 d-block">Servicios</a></li>
+                        <li><a href="<?= base_url('causes'); ?>" class="py-2 d-block">Encuestas y estudios</a></li>
+                        <li><a href="<?= base_url('contact'); ?>" class="py-2 d-block">Contáctanos</a></li>
                     </ul>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-4 mb-md-0">

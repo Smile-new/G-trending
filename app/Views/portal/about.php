@@ -51,10 +51,10 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="<?= base_url('/'); ?>" class="nav-link">Inicio</a></li>
-<li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">Servicios</a></li>
-<li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y estudios</a></li>
-<li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contactanos</a></li>
+                    <li class="nav-item"><a href="<?= base_url('/'); ?>" class="nav-link">Inicio</a></li>
+                    <li class="nav-item active"><a href="<?= base_url('about'); ?>" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y estudios</a></li>
+                    <li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contáctanos</a></li>
                 </ul>
             </div>
         </div>
@@ -313,11 +313,10 @@
                 <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
                     <h2 class="footer-heading">Enlaces Rápidos</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">Home</a></li>
-                        <li><a href="#" class="py-2 d-block">Servicios</a></li>
-                        <li><a href="#" class="py-2 d-block">Casos de Éxito</a></li>
-                        <li><a href="#" class="py-2 d-block">Blog</a></li>
-                        <li><a href="#" class="py-2 d-block">Contacto</a></li>
+                        <li><a href="<?= base_url('/'); ?>" class="py-2 d-block">Inicio</a></li>
+                        <li><a href="<?= base_url('about'); ?>" class="py-2 d-block">Servicios</a></li>
+                        <li><a href="<?= base_url('causes'); ?>" class="py-2 d-block">Encuestas y estudios</a></li>
+                        <li><a href="<?= base_url('contact'); ?>" class="py-2 d-block">Contáctanos</a></li>
                     </ul>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-4 mb-md-0">

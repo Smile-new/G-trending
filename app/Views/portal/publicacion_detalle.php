@@ -59,10 +59,10 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="<?= base_url('/'); ?>" class="nav-link">Inicio</a></li>
-<li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">Servicios</a></li>
-<li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y estudios</a></li>
-<li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contactanos</a></li>
+                    <li class="nav-item"><a href="<?= base_url('/'); ?>" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">Servicios</a></li>
+                    <li class="nav-item active"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y estudios</a></li>
+                    <li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contáctanos</a></li>
                 </ul>
             </div>
         </div>
@@ -118,44 +118,23 @@
             </div>
 
             <div class="col-lg-4 sidebar ftco-animate py-md-5">
-                <div class="sidebar-box ftco-animate">
-                    <h3>Publicaciones Recientes</h3>
+    <div class="sidebar-box ftco-animate">
+        <h3>Publicaciones Recientes</h3>
 
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/image_1.jpg') ?>);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Título de Publicación Reciente 1</a></h3>
-                            <div class="meta">
-                                <div><a href="#"><span class="fa fa-calendar"></span> Jul 10, 2025</a></div>
-                                <div><a href="#"><span class="fa fa-user"></span> Admin</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/image_2.jpg') ?>);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Título de Publicación Reciente 2</a></h3>
-                            <div class="meta">
-                                <div><a href="#"><span class="fa fa-calendar"></span> Jul 05, 2025</a></div>
-                                <div><a href="#"><span class="fa fa-user"></span> Admin</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/image_3.jpg') ?>);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Título de Publicación Reciente 3</a></h3>
-                            <div class="meta">
-                                <div><a href="#"><span class="fa fa-calendar"></span> Jun 28, 2025</a></div>
-                                <div><a href="#"><span class="fa fa-user"></span> Admin</a></div>
-                            </div>
-                        </div>
-                    </div>
-
+        <?php foreach($recientes as $reciente): ?>
+        <div class="block-21 mb-4 d-flex">
+            <a class="blog-img mr-4" style="background-image: url(<?= base_url($reciente['ruta_foto'] ?? RECURSOS_PUBLICOS_IMAGES . '/placeholder.jpg') ?>);"></a>
+            <div class="text">
+                <h3 class="heading"><a href="<?= base_url('publicacion/detalle/' . $reciente['id']) ?>"><?= esc($reciente['titulo']) ?></a></h3>
+                <div class="meta">
+                    <div><a href="#"><span class="fa fa-calendar"></span> <?= date('d M, Y', strtotime($reciente['fecha_publicacion'])) ?></a></div>
+                    <div><a href="#"><span class="fa fa-user"></span> <?= esc($reciente['usuario_nombre'] ?? 'Admin') ?></a></div>
                 </div>
             </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
         </div>
     </div>
 </section>
@@ -176,38 +155,27 @@
                 </div>
                 <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
                     <h2 class="footer-heading">Últimas Noticias</h2>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="img mr-4 rounded" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/image_1.jpg') ?>);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Explora eventos y oportunidades en tu área.</a></h3>
-                            <div class="meta">
-                                <div><a href="#">Jul 17, 2025</a></div>
-                                <div><a href="#">Admin</a></div>
-                                <div><a href="#">5</a></div>
+                    <?php foreach($recientes as $reciente): ?>
+                        <div class="block-21 mb-4 d-flex">
+                            <a class="img mr-4 rounded" style="background-image: url(<?= base_url($reciente['ruta_foto'] ?? RECURSOS_PUBLICOS_IMAGES.'/placeholder.jpg') ?>);"></a>
+                            <div class="text">
+                                <h3 class="heading"><a href="<?= base_url('detalle/'.$reciente['id']) ?>"><?= esc($reciente['titulo']) ?></a></h3>
+                                <div class="meta">
+                                    <div><a href="#"><?= date('d M, Y', strtotime($reciente['fecha_publicacion'])) ?></a></div>
+                                    <div><a href="#"><?= esc($reciente['usuario_nombre'] ?? 'Admin') ?></a></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="img mr-4 rounded" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/image_2.jpg') ?>);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Apoya a los negocios y talentos locales.</a></h3>
-                            <div class="meta">
-                                <div><a href="#">Jul 17, 2025</a></div>
-                                <div><a href="#">Admin</a></div>
-                                <div><a href="#">3</a></div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
+
                 <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
                     <h2 class="footer-heading">Enlaces Rápidos</h2>
                     <ul class="list-unstyled">
                         <li><a href="<?= base_url('/'); ?>" class="py-2 d-block">Inicio</a></li>
-                        <li><a href="<?= base_url('about'); ?>" class="py-2 d-block">Nosotros</a></li>
-                        <li><a href="<?= base_url('causes'); ?>" class="py-2 d-block">Causas/Proyectos</a></li>
-                        <li><a href="<?= base_url('#') ?>" class="py-2 d-block">Nuevas Campañas</a></li>
-                        <li><a href="<?= base_url('#') ?>" class="py-2 d-block">Blog</a></li>
-                        <li><a href="<?= base_url('contact'); ?>" class="py-2 d-block">Contacto</a></li>
+                        <li><a href="<?= base_url('about'); ?>" class="py-2 d-block">Servicios</a></li>
+                        <li><a href="<?= base_url('causes'); ?>" class="py-2 d-block">Encuestas y estudios</a></li>
+                        <li><a href="<?= base_url('contact'); ?>" class="py-2 d-block">Contáctanos</a></li>
                     </ul>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
