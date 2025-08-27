@@ -43,23 +43,6 @@ class BaseController extends Controller
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
          parent::initController($request, $response, $logger);
-
-        // Inicializar modelo de publicaciones para todos los controllers
-        $this->publicacionModel = new \App\Models\PublicacionModel();
     }
 
-    /**
-     * Obtiene las publicaciones recientes activas
-     *
-     * @param int $limit Número de publicaciones a mostrar
-     * @return array
-     */
-    protected function obtenerRecientes(int $limit = 2): array
-    {
-        return $this->publicacionModel
-                    ->where('activo', 1)
-                    ->orderBy('fecha_publicacion', 'DESC')
-                    ->limit($limit)
-                    ->findAll();
-    }
 }

@@ -31,6 +31,9 @@ class VistasPublicas extends BaseController
         $data['publicaciones'] = $this->publicacionModel->getPublicacionesActivas($perPage);
         $data['pager'] = $this->publicacionModel->pager;
 
+         // Agregamos las noticias recientes para el footer
+        $data['recientes'] = $this->publicacionModel->getRecientes(2);
+
         // Cargar la vista 'causes.php' ubicada en la carpeta 'portal'
         return view('portal/causes', $data); // Asumo que causes.php es la vista que lista las publicaciones.
     }
@@ -59,11 +62,8 @@ class VistasPublicas extends BaseController
 
         $data['publicacion'] = $publicacion;
 
-        $data['recientes'] = $this->publicacionModel
-                           ->where('activo', 1)
-                           ->orderBy('fecha_publicacion', 'DESC')
-                           ->limit(2)
-                           ->findAll();
+        // Noticias recientes para footer
+        $data['recientes'] = $this->publicacionModel->getRecientes(2);
 
         // Cargar la vista 'publicacion_detalle.php' ubicada en la carpeta 'portal'
         return view('portal/publicacion_detalle', $data);

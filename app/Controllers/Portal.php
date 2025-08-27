@@ -3,9 +3,11 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller; // Asegúrate de importar la clase base Controller
+use App\Models\PublicacionModel;
 
 class Portal extends Controller
 {
+    protected $publicacionModel;
     /**
      * Constructor del controlador.
      * Puedes cargar helpers, modelos, etc. aquí.
@@ -21,6 +23,9 @@ class Portal extends Controller
 
         // También asegúrate de que tus constantes estén definidas y accesibles.
         // Si Constants.php está en app/Config, ya debería estar cargado automáticamente.
+
+        // Inicializamos el modelo
+        $this->publicacionModel = new PublicacionModel();
     }
 
     /**
@@ -31,6 +36,7 @@ class Portal extends Controller
         $data = [
             'page_title' => 'Trending Local - Inicio',
             // Puedes añadir más datos que necesites pasar a la vista
+            'recientes'  => $this->publicacionModel->getRecientes(2), // Noticias recientes para footer
         ];
 
         // Carga la vista desde app/Views/portal/index.php
@@ -44,6 +50,7 @@ class Portal extends Controller
     {
         $data = [
             'page_title' => 'Trending Local - Acerca de Nosotros',
+            'recientes'  => $this->publicacionModel->getRecientes(2), // Noticias recientes para footer
         ];
 
         // Carga la vista desde app/Views/portal/about.php
@@ -62,6 +69,7 @@ class Portal extends Controller
     {
         $data = [
             'page_title' => 'Trending Local - Contacto',
+            'recientes'  => $this->publicacionModel->getRecientes(2), // Noticias recientes para footer
         ];
 
         // Carga la vista desde app/Views/portal/contact.php

@@ -272,76 +272,7 @@
     </section>
 
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Trending Local</h2>
-                    <p>Obtenemos información precisa, actual y georreferenciada para impulsar estrategias sólidas y decisiones efectivas en el momento justo.</p>
-                    <ul class="ftco-footer-social p-0">
-                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
-                    </ul>
-                    <p><a href="#" class="btn btn-quarternary">¡Contáctanos!</a></p>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Noticias Recientes</h2>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="img mr-4 rounded" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/image_1.jpg') ?>);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Nuevas herramientas de análisis predictivo lanzadas</a></h3>
-                            <div class="meta">
-                                <div><a href="#">Jul 20, 2025</a></div>
-                                <div><a href="#">Admin</a></div>
-                                <div><a href="#">Comentarios</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="img mr-4 rounded" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/image_2.jpg') ?>);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">El poder de la geolocalización en las estrategias de marketing</a></h3>
-                            <div class="meta">
-                                <div><a href="#">Jul 15, 2025</a></div>
-                                <div><a href="#">Admin</a></div>
-                                <div><a href="#">Comentarios</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Enlaces Rápidos</h2>
-                    <ul class="list-unstyled">
-                        <li><a href="<?= base_url('/'); ?>" class="py-2 d-block">Inicio</a></li>
-                        <li><a href="<?= base_url('about'); ?>" class="py-2 d-block">Servicios</a></li>
-                        <li><a href="<?= base_url('causes'); ?>" class="py-2 d-block">Encuestas y estudios</a></li>
-                        <li><a href="<?= base_url('contact'); ?>" class="py-2 d-block">Contáctanos</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                    <h2 class="footer-heading">¿Tienes Preguntas?</h2>
-                    <div class="block-23 mb-3">
-                        <ul>
-                            <li><span class="icon fa fa-map"></span><span class="text">Calle Ficticia 123, Ciudad de México, México</span></li>
-                            <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+52 55 3965 6252</span></a></li>
-                            <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">trendinglocalmx@gmail.com</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-md-12 text-center">
-
-                    <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-
-
+        <?= $this->include('portal/footer'); ?> <!-- Incluye la vista del footer con noticias recientes, enlaces y contacto -->
 
         <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 

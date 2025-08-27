@@ -134,19 +134,26 @@
     <section class="ftco-section">
     <div class="container">
         <div class="row">
+            <!-- Verifica si existen publicaciones activas -->
             <?php if (!empty($publicaciones)): ?>
+                <!-- Recorre cada publicación y la muestra en un card -->
                 <?php foreach ($publicaciones as $publicacion): ?>
                     <div class="col-md-6 col-lg-3">
                         <div class="causes causes-2 text-center ftco-animate">
+                            <!-- Imagen de la publicación como fondo -->
                             <a href="#" class="img w-100" style="background-image: url(<?= base_url($publicacion['ruta_foto']) ?>);"></a>
                             <div class="text p-2">
+                                <!-- Título de la publicación -->
                                 <h2><?= esc($publicacion['titulo']) ?></h2>
+                                <!-- Categoría de la publicación -->
                                 <p>Categoría: <strong><?= esc($publicacion['categoria_nombre']) ?></strong></p>
+                                <!-- Fecha de publicación -->
                                 <p>Fecha de Publicación: <strong><?= esc(date('d M, Y', strtotime($publicacion['fecha_publicacion']))) ?></strong></p>
                                 <p>
+                                    <!-- Botón para ver detalle de la publicación -->
                                     <a href="<?= base_url('publicacion/detalle/' . $publicacion['id']) ?>" class="btn btn-light w-100 btn-sm">
-    Ver resultados
-</a>
+                                        Ver resultados
+                                    </a>
                                 </p>
                             </div>
                         </div>
@@ -154,11 +161,13 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="col-12 text-center">
+                    <!-- Mensaje si no hay publicaciones activas -->
                     <p>No se encontraron publicaciones activas en este momento.</p>
                 </div>
             <?php endif; ?>
         </div>
 
+        <!-- Paginación de publicaciones usando el pager de CodeIgniter -->
         <div class="row mt-5">
             <div class="col text-center">
                 <div class="block-27">
@@ -169,73 +178,9 @@
     </div>
 </section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Unicare.</h2>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                    <ul class="ftco-footer-social p-0">
-                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
-                    </ul>
-                    <p><a href="#" class="btn btn-quarternary">Donate Now</a></p>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Latest News</h2>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="img mr-4 rounded" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/image_1.jpg') ?>);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                            <div class="meta">
-                                <div><a href="#">Jul 20, 2020</a></div>
-                                <div><a href="#">Admin</a></div>
-                                <div><a href="#">19</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="img mr-4 rounded" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/image_2.jpg') ?>);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                            <div class="meta">
-                                <div><a href="#">Jul 20, 2020</a></div>
-                                <div><a href="#">Admin</a></div>
-                                <div><a href="#">19</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Enlaces Rápidos</h2>
-                    <ul class="list-unstyled">
-                        <li><a href="<?= base_url('/'); ?>" class="py-2 d-block">Inicio</a></li>
-                        <li><a href="<?= base_url('about'); ?>" class="py-2 d-block">Servicios</a></li>
-                        <li><a href="<?= base_url('causes'); ?>" class="py-2 d-block">Encuestas y estudios</a></li>
-                        <li><a href="<?= base_url('contact'); ?>" class="py-2 d-block">Contáctanos</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Have a Questions?</h2>
-                    <div class="block-23 mb-3">
-                        <ul>
-                            <li><span class="icon fa fa-map"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                            <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                            <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-md-12 text-center">
 
-                    <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?= $this->include('portal/footer'); ?> <!-- Incluye la vista del footer con noticias recientes, enlaces y contacto -->
+
 
         <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
