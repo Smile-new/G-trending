@@ -25,7 +25,7 @@ class VistasPublicas extends BaseController
     public function index(): string
     {
 
-        $perPage = 4;
+        $perPage = 16;
 
         // Obtener las publicaciones activas desde el modelo
         $data['publicaciones'] = $this->publicacionModel->getPublicacionesActivas($perPage);

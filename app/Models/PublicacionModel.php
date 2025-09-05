@@ -32,7 +32,7 @@ class PublicacionModel extends Model
  * @param int $perPage Número de publicaciones por página (por defecto 4).
  * @return array Devuelve un array paginado de publicaciones activas con información de categoría y usuario.
  */
- public function getPublicacionesActivas($perPage = 4)
+ public function getPublicacionesActivas($perPage = 16)
     {
         return $this->select('publicaciones_encuesta.*, categorias_encuesta.nombre as categoria_nombre, usuarios.nombre_usuario as usuario_nombre')
                     ->join('categorias_encuesta', 'categorias_encuesta.id = publicaciones_encuesta.categoria_id')
