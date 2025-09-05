@@ -121,9 +121,12 @@
                 <!-- Sidebar que muestra las publicaciones recientes -->
                 <div class="sidebar-box ftco-animate">
                     <h3>Publicaciones Recientes</h3>
-                    <<?php foreach (array_slice($recientes, 0, 2) as $reciente): ?>
+                    <?php foreach (array_slice($recientes, 0, 2) as $reciente): ?>
                     <!-- Cada publicación reciente se representa en un bloque flexible -->
                     <div class="block-21 mb-4 d-flex">
+                        <a class="img mr-3 rounded" 
+                   style="width: 80px; height: 80px; background-size: cover; background-position: center; background-image: url('<?= !empty($reciente['ruta_foto']) ? base_url($reciente['ruta_foto']) : base_url(RECURSOS_PUBLICOS_IMAGES . '/placeholder.jpg') ?>');">
+                </a>
                         <div class="text">
                             <!-- Título de la publicación con enlace a la vista de detalle -->
                             <h3 class="heading"><a href="<?= base_url('publicacion/detalle/' . $reciente['id']) ?>"><?= esc($reciente['titulo']) ?></a></h3>

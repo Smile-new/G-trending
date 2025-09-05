@@ -48,18 +48,12 @@ class PublicacionModel extends Model
  * @param int $limit Número máximo de noticias a devolver (por defecto 2).
  * @return array Devuelve un array con las noticias más recientes (id, título y fecha de publicación).
  */
-    public function getRecientes($limit = 2)
+public function getRecientes($limit = 2)
 {
-    return $this->select('publicaciones_encuesta.id, publicaciones_encuesta.titulo, publicaciones_encuesta.fecha_publicacion')
+    return $this->select('publicaciones_encuesta.id, publicaciones_encuesta.titulo, publicaciones_encuesta.fecha_publicacion, publicaciones_encuesta.ruta_foto')
                 ->where('publicaciones_encuesta.activo', 1) // Solo noticias activas
                 ->orderBy('publicaciones_encuesta.fecha_publicacion', 'DESC') // Orden descendente por fecha
                 ->limit($limit)
                 ->findAll();
 }
-
 }
-
-
-
-
-

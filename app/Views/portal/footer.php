@@ -13,26 +13,31 @@
                     </ul>
                 </div>
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                <div class="ftco-footer-widget mb-4 ml-md-4">
-                    <h2 class="footer-heading">Noticias Recientes</h2>
-                    <ul class="list-unstyled">
-                        <?php if (!empty($recientes)): ?>
-                            <?php foreach (array_slice($recientes, 0, 2) as $reciente): ?>
-                                <li>
-                                    <a href="<?= site_url('vistaspublicas/detallePublicacion/' . $reciente['id']); ?>">
-                                        <?= esc($reciente['titulo']); ?>
-                                    </a>
-                                    <small class="d-block text-muted">
-                                        <?= date('d/m/Y', strtotime($reciente['fecha_publicacion'])); ?>
-                                    </small>
-                                </li>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <li><em>No hay noticias recientes</em></li>
-                        <?php endif; ?>
-                    </ul>
+    <h2 class="footer-heading">Noticias Recientes</h2>
+
+    <?php if (!empty($recientes)): ?>
+        <?php foreach (array_slice($recientes, 0, 2) as $reciente): ?>
+            <div class="block-21 mb-4 d-flex">
+                <!-- Imagen de la noticia -->
+                <a class="img mr-4 rounded" style="background-image: url('<?= !empty($reciente['ruta_foto']) ? base_url($reciente['ruta_foto']) : base_url(RECURSOS_PUBLICOS_IMAGES . '/placeholder.jpg') ?>');"></a>
+                
+                <div class="text">
+                    <!-- Título con enlace al detalle -->
+                    <h3 class="heading"><a href="<?= site_url('vistaspublicas/detallePublicacion/' . $reciente['id']) ?>"><?= esc($reciente['titulo']) ?></a></h3>
+                    
+                    <!-- Fecha y autor opcional -->
+                    <div class="meta">
+                        <div><a href="#"><span class="fa fa-calendar"></span> <?= date('d M, Y', strtotime($reciente['fecha_publicacion'])) ?></a></div>
+                        <div><a href="#"><span class="fa fa-user"></span> <?= esc($reciente['usuario_nombre'] ?? 'Admin') ?></a></div>
+                    </div>
                 </div>
             </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p><em>No hay noticias recientes</em></p>
+    <?php endif; ?>
+</div>
+
             <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
                 <h2 class="footer-heading">Enlaces Rápidos</h2>
                 <ul class="list-unstyled">
