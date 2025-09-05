@@ -17,7 +17,7 @@
                     <h2 class="footer-heading">Noticias Recientes</h2>
                     <ul class="list-unstyled">
                         <?php if (!empty($recientes)): ?>
-                            <?php foreach ($recientes as $reciente): ?>
+                            <?php foreach (array_slice($recientes, 0, 2) as $reciente): ?>
                                 <li>
                                     <a href="<?= site_url('vistaspublicas/detallePublicacion/' . $reciente['id']); ?>">
                                         <?= esc($reciente['titulo']); ?>

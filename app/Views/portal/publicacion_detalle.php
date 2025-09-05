@@ -121,7 +121,7 @@
                 <!-- Sidebar que muestra las publicaciones recientes -->
                 <div class="sidebar-box ftco-animate">
                     <h3>Publicaciones Recientes</h3>
-                    <?php foreach($recientes as $reciente): ?>
+                    <<?php foreach (array_slice($recientes, 0, 2) as $reciente): ?>
                     <!-- Cada publicación reciente se representa en un bloque flexible -->
                     <div class="block-21 mb-4 d-flex">
                         <div class="text">
