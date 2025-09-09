@@ -198,8 +198,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7 heading-section heading-section-white text-center ftco-animate">
-                <span class="subheading">Voces que Confían</span>
-                <h2>El Impacto Habla Por Sí Mismo</h2>
+                <span class="subheading">Testimonios</span>
+                <h2>Lo que opinan nuestros clientes</h2>
             </div>
         </div>
         <div class="row ftco-animate">
@@ -220,7 +220,7 @@
                                     <span class="fa fa-star"></span>
                                     <span class="fa fa-star"></span>
                                 </p>
-                                <p>Trending Local no es una opción, es la base de nuestra estrategia. Su análisis nos dio una ventaja decisiva para entender a nuestra audiencia y actuar con precisión.</p>
+                                <p>El servicio nos brindó una comprensión más clara de la información que necesitábamos para avanzar con seguridad.</p>
                             </div>
                         </div>
                     </div>
@@ -239,7 +239,7 @@
                                     <span class="fa fa-star"></span>
                                     <span class="fa fa-star"></span>
                                 </p>
-                                <p>La información es poder. Gracias a los datos transparentes y sin sesgos de Trending Local, nuestras decisiones son sólidas y nuestros resultados, innegables.</p>
+                                <p>La información entregada es clara, confiable y nos permitió tomar decisiones con mayor respaldo.</p>
                             </div>
                         </div>
                     </div>
@@ -258,7 +258,7 @@
                                     <span class="fa fa-star"></span>
                                     <span class="fa fa-star"></span>
                                 </p>
-                                <p>La exactitud de sus resultados es impactante. Cada inversión que hicimos basada en sus insights se tradujo en un éxito medible y significativo.</p>
+                                <p>Los resultados fueron precisos y fáciles de interpretar, lo que facilitó nuestro trabajo diario.</p>
                             </div>
                         </div>
                     </div>
@@ -277,7 +277,7 @@
                                     <span class="fa fa-star"></span>
                                     <span class="fa fa-star"></span>
                                 </p>
-                                <p>No hay incongruencias con nosotros. Solo datos duros y un plan claro. Trending Local nos mostró dónde enfocar nuestra energía para lograr un impacto real y duradero.</p>
+                                <p>Nos ayudó a identificar puntos clave y a enfocarnos en lo que realmente genera impacto.</p>
                             </div>
                         </div>
                     </div>
@@ -296,7 +296,7 @@
                                     <span class="fa fa-star"></span>
                                     <span class="fa fa-star"></span>
                                 </p>
-                                <p>Su capacidad para simplificar la información compleja es asombrosa. Ahora, cualquier miembro de nuestro equipo puede entender el porqué de cada decisión.</p>
+                                <p>La manera en que la información fue presentada permitió que todo el equipo la comprendiera fácilmente.</p>
                             </div>
                         </div>
                     </div>
@@ -305,6 +305,7 @@
         </div>
     </div>
 </section>
+
 
 <section class="ftco-section pt-5">
     <div class="container">

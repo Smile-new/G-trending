@@ -9682,7 +9682,8 @@ textarea.form-control {
     width: calc(100% - 80px);
     position: relative; }
     .testimony-wrap .text p {
-      color: #000000; }
+      color: #000000; 
+      text-align: justify;}
   .testimony-wrap .quote {
     position: absolute;
     top: -50px;

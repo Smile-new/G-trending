@@ -132,130 +132,110 @@
         </div>
     </section>
 
-    
-
-    <section class="ftco-section testimony-section">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row justify-content-center pb-5">
-                <div class="col-md-7 heading-section heading-section-white text-center ftco-animate">
-                    <span class="subheading">Testimonios</span>
-                    <h2>Clientes Satisfechos y sus Historias de Éxito</h2>
-                </div>
-            </div>
-            <div class="row ftco-animate">
-                <div class="col-md-12">
-                    <div class="carousel-testimony owl-carousel">
-                        <div class="item">
-                            <div class="testimony-wrap d-flex">
-                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona2.png') ?>)">
-                                </div>
-                                <div class="text pl-4">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="fa fa-quote-left"></i>
-                                    </span>
-                                    <p class="rate">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </p>
-                                    <p>La información de Trending Local nos permitió identificar un nicho de mercado que desconocíamos. Nuestro crecimiento se ha disparado desde entonces.</p>
-                                    <p class="name">Racky Henderson</p>
-                                    <span class="position">Empresario</span>
-                                </div>
+    <section class="ftco-section testimony-section"> 
+        <div class="overlay"></div> <div class="container"> 
+            <div class="row justify-content-center pb-5"> 
+                <div class="col-md-7 heading-section heading-section-white text-center ftco-animate"> 
+                    <h2>La Voz De Todos</h2> 
+                </div> 
+            </div> 
+            <div class="row ftco-animate"> 
+                <div class="col-md-12"> 
+                    <div class="carousel-testimony owl-carousel"> 
+                        <div class="item"> <div class="testimony-wrap d-flex"> 
+                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona2.png') ?>)"> 
                             </div>
+                            <div class="text pl-4"> 
+                                <span class="quote d-flex align-items-center justify-content-center"><i class="fa fa-quote-left"></i></span> 
+                                <p class="rate"> 
+                                    <span class="fa fa-star"></span> 
+                                    <span class="fa fa-star"></span> 
+                                    <span class="fa fa-star"></span> 
+                                    <span class="fa fa-star"></span> 
+                                    <span class="fa fa-star"></span> 
+                                </p> 
+                                <p>La participación ciudadana fortalece la toma de decisiones informadas.</p> 
+                            </div> 
                         </div>
-                        <div class="item">
-                            <div class="testimony-wrap d-flex">
-                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona3.png') ?>)">
-                                </div>
-                                <div class="text pl-4">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="fa fa-quote-left"></i>
-                                    </span>
-                                    <p class="rate">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </p>
-                                    <p>Su análisis personalizado fue clave para nuestra estrategia de expansión. Ahorramos tiempo y recursos valiosos gracias a sus insights.</p>
-                                    <p class="name">Henry Dee</p>
-                                    <span class="position">Director de Marketing</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap d-flex">
-                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona4.png') ?>)">
-                                </div>
-                                <div class="text pl-4">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="fa fa-quote-left"></i>
-                                    </span>
-                                    <p class="rate">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </p>
-                                    <p>La plataforma es increíblemente intuitiva y los datos son de la más alta calidad. Nos ayudó a tomar decisiones estratégicas en tiempo real.</p>
-                                    <p class="name">Mark Huff</p>
-                                    <span class="position">Gerente de Operaciones</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap d-flex">
-                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona5.png') ?>)">
-                                </div>
-                                <div class="text pl-4">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="fa fa-quote-left"></i>
-                                    </span>
-                                    <p class="rate">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </p>
-                                    <p>Gracias a Trending Local, pudimos validar nuestra estrategia de producto con datos sólidos y georreferenciados. Nos dio la confianza para seguir adelante.</p>
-                                    <p class="name">Benjie Busk Jr.</p>
-                                    <span class="position">Fundador de Startup</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap d-flex">
-                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona1.png') ?>)">
-                                </div>
-                                <div class="text pl-4">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="fa fa-quote-left"></i>
-                                    </span>
-                                    <p class="rate">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </p>
-                                    <p>El equipo de soporte es excepcional. Siempre están listos para ayudarnos a entender los informes y a aplicar los hallazgos en nuestra operación diaria.</p>
-                                    <p class="name">Ken Bosh</p>
-                                    <span class="position">Analista de Mercado</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    </div> 
+                    <div class="item"> 
+                        <div class="testimony-wrap d-flex"> 
+                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona3.png') ?>)"> 
+                            </div> 
+                            <div class="text pl-4"> 
+                                <span class="quote d-flex align-items-center justify-content-center"> 
+                                    <i class="fa fa-quote-left"></i> 
+                                </span> 
+                                <p class="rate"> 
+                                        <span class="fa fa-star"></span> <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                    </p> 
+                                    <p>Cuando todos opinamos, los resultados reflejan la realidad.</p> 
+                                </div> 
+                            </div> 
+                        </div> 
+                        <div class="item"> 
+                            <div class="testimony-wrap d-flex"> 
+                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona4.png') ?>)"> 
+                                </div> 
+                                <div class="text pl-4"> 
+                                    <span class="quote d-flex align-items-center justify-content-center"> 
+                                        <i class="fa fa-quote-left"></i> 
+                                    </span> 
+                                    <p class="rate"> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                    </p> 
+                                    <p>Los datos recopilados muestran lo que realmente importa a la comunidad.</p> 
+                                </div> 
+                            </div> 
+                        </div> 
+                        <div class="item"> 
+                            <div class="testimony-wrap d-flex"> 
+                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona5.png') ?>)"> 
+                                </div> 
+                                <div class="text pl-4"> 
+                                    <span class="quote d-flex align-items-center justify-content-center"> 
+                                        <i class="fa fa-quote-left"></i> 
+                                    </span> 
+                                    <p class="rate"> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                    </p> 
+                                    <p>La transparencia en la información genera confianza.</p> 
+                                </div> 
+                            </div> 
+                        </div> 
+                        <div class="item"> 
+                            <div class="testimony-wrap d-flex"> 
+                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona1.png') ?>)"> </div> 
+                                <div class="text pl-4"> 
+                                    <span class="quote d-flex align-items-center justify-content-center"> 
+                                        <i class="fa fa-quote-left"></i> 
+                                    </span> 
+                                    <p class="rate"> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                        <span class="fa fa-star"></span> 
+                                    </p> 
+                                    <p>Cada opinión cuenta y contribuye al cambio.</p> 
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+    </section> 
 
     <section class="ftco-hireme bg-secondary">
         <div class="container">
