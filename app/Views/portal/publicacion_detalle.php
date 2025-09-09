@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <title>Trending Local - Detalle de Publicación</title>
     <meta charset="utf-8">
@@ -73,7 +73,7 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-end">
                 <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="<?= base_url() ?>">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="<?= base_url('causes'); ?>">Publicaciones <i class="ion-ios-arrow-forward"></i></a></span> <span>Detalle <i class="ion-ios-arrow-forward"></i></span></p>
+                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="<?= base_url() ?>">Inicio <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="<?= base_url('causes'); ?>">Publicaciones <i class="ion-ios-arrow-forward"></i></a></span> <span>Detalle <i class="ion-ios-arrow-forward"></i></span></p>
                     <h1 class="mb-0 bread">Detalle de Publicación</h1>
                 </div>
             </div>

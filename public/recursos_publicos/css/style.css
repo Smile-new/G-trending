@@ -10214,3 +10214,44 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+    /* Forzar layout flexible dentro del carousel para que las tarjetas se estiren igual */
+.carousel-testimony .owl-stage,
+.carousel-testimony .owl-stage-outer {
+  height: auto !important;
+}
+
+.carousel-testimony .owl-item {
+  display: flex !important;
+  align-items: stretch !important;
+  height: auto !important;
+}
+
+/* Aseguramos que el wrap de cada testimonio use box-sizing y se comporte como columna */
+.carousel-testimony .testimony-wrap {
+  display: flex !important;
+  flex-direction: row !important;     /* imagen + texto en fila */
+  align-items: stretch !important;
+  box-sizing: border-box !important;
+  height: auto !important;
+}
+
+/* fija tamaño de avatar para evitar que cambie la altura por la imagen */
+.carousel-testimony .testimony-wrap .user-img {
+  width: 90px;
+  height: 90px;
+  min-width: 90px;
+  min-height: 90px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* el texto ocupa el resto y se muestra en columna */
+.carousel-testimony .testimony-wrap .text {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between;
+  flex: 1 1 auto;
+}

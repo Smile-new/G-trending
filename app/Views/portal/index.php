@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <title>Trending Local - Inteligencia de Datos para el Futuro</title>
     <meta charset="utf-8">
@@ -129,8 +129,8 @@
                 <div class="col-md-7 wrap-about py-5">
                     <div class="heading-section pr-md-5 pt-md-5">
                         <span class="subheading">Trending Local</span>
-                        <h2 class="mb-4">Tu Estrategia Basada en Datos Reales</h2>
-                        <p>En un mundo que cambia rápidamente, tomar decisiones sin información precisa es un riesgo. En **Trending Local**, transformamos el ruido en señal. Recopilamos y analizamos datos clave sobre tu comunidad, mercado o electorado para ofrecerte insights claros y accionables. No adivines, **sabe**. Desde censos detallados hasta encuestas dinámicas, nuestras herramientas te dan la ventaja que necesitas para liderar con confianza.</p>
+                        <h2 class="mb-4">Tu Estrategia Basada En Datos Reales</h2>
+                        <p>En un mundo que cambia rápidamente, tomar decisiones sin información precisa es un riesgo. En <strong>Trending Local</strong>, transformamos el ruido en señal. Recopilamos y analizamos datos clave sobre tu comunidad, mercado o electorado para ofrecerte insights claros y accionables. No adivines, <strong>sabe</strong>. Desde censos detallados hasta encuestas dinámicas, nuestras herramientas te dan la ventaja que necesitas para liderar con confianza.</p>
                     </div>
                 </div>
             </div>
@@ -154,7 +154,7 @@
                 <div class="col-md-3 d-flex align-items-stretch">
                     <div class="services">
                         <div class="text text-center bg-tertiary">
-                            <h3>Tecnología de<br>Recolección Datos</h3>
+                            <h3>Tecnología de<br>Recolección de Datos</h3>
                             <p>Utilizamos herramientas digitales para captura de datos eficiente, precisa y sin errores</p>
                         </div>
                         <div class="img border-3" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/campo.jpg') ?>);">
@@ -192,10 +192,11 @@
     <div class="container">
     </div>
 </section>
+
 <section class="ftco-section testimony-section">
     <div class="overlay"></div>
     <div class="container">
-        <div class="row justify-content-center pb-5">
+        <div class="row justify-content-center">
             <div class="col-md-7 heading-section heading-section-white text-center ftco-animate">
                 <span class="subheading">Voces que Confían</span>
                 <h2>El Impacto Habla Por Sí Mismo</h2>
@@ -206,7 +207,7 @@
                 <div class="carousel-testimony owl-carousel">
                     <div class="item">
                         <div class="testimony-wrap d-flex">
-                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/person_1.jpg') ?>)">
+                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona1.png') ?>)">
                             </div>
                             <div class="text pl-4">
                                 <span class="quote d-flex align-items-center justify-content-center">
@@ -225,7 +226,7 @@
                     </div>
                     <div class="item">
                         <div class="testimony-wrap d-flex">
-                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/person_2.jpg') ?>)">
+                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona2.png') ?>)">
                             </div>
                             <div class="text pl-4">
                                 <span class="quote d-flex align-items-center justify-content-center">
@@ -244,7 +245,7 @@
                     </div>
                     <div class="item">
                         <div class="testimony-wrap d-flex">
-                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/person_3.jpg') ?>)">
+                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona3.png') ?>)">
                             </div>
                             <div class="text pl-4">
                                 <span class="quote d-flex align-items-center justify-content-center">
@@ -263,7 +264,7 @@
                     </div>
                     <div class="item">
                         <div class="testimony-wrap d-flex">
-                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/person_4.jpg') ?>)">
+                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona4.png') ?>)">
                             </div>
                             <div class="text pl-4">
                                 <span class="quote d-flex align-items-center justify-content-center">
@@ -282,7 +283,7 @@
                     </div>
                     <div class="item">
                         <div class="testimony-wrap d-flex">
-                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/person_1.jpg') ?>)">
+                            <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona5.png') ?>)">
                             </div>
                             <div class="text pl-4">
                                 <span class="quote d-flex align-items-center justify-content-center">
@@ -305,11 +306,11 @@
     </div>
 </section>
 
-<section class="ftco-section ftco-no-pt">
+<section class="ftco-section pt-5">
     <div class="container">
-        <div class="row justify-content-center pb-5">
+        <div class="row justify-content-center" style="margin-bottom: -150px;">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">Conoce a los Pilares de Nuestra Misión</span>
+                <span class="subheading pt-10">Conoce a los Pilares de Nuestra Misión</span>
                 <h2>Las Mentes que Hacen la Diferencia</h2>
             </div>
         </div>
@@ -346,7 +347,7 @@
                     <div class="img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/team-4.jpg') ?>);"></div>
                     <div class="text text-4">
                         <h3>Estrategias Ganadoras</h3>
-                        <span>Desarrollamos planes de acción basados en herramientas tecnologicas</span>
+                        <span>Desarrollamos planes de acción basados en herramientas tecnológicas</span>
                     </div>
                 </div>
             </div>
@@ -369,6 +370,70 @@
         <script src="<?= base_url(RECURSOS_PUBLICOS_JS . '/bootstrap-datepicker.js') ?>"></script>
         <script src="<?= base_url(RECURSOS_PUBLICOS_JS . '/jquery.timepicker.min.js') ?>"></script>
         <script src="<?= base_url(RECURSOS_PUBLICOS_JS . '/owl.carousel.min.js') ?>"></script>
+                <script>
+  (function($){
+    $(function(){
+
+      var $carousel = $('.carousel-testimony');
+
+      function equalizeHeights(){
+        if(!$carousel.length) return;
+        // Reset
+        $carousel.find('.testimony-wrap').css({height: 'auto', 'min-height': ''});
+
+        var max = 0;
+        // Medimos todas las tarjetas (incluye clones)
+        $carousel.find('.testimony-wrap').each(function(){
+          var h = $(this).outerHeight();
+          if(h > max) max = h;
+        });
+
+        if(max > 0){
+          // Aplicamos altura consistente
+          $carousel.find('.testimony-wrap').css({height: max + 'px', 'min-height': max + 'px'});
+        }
+
+        // Debug: ver en consola cuántos y el máximo
+        if(window.console && window.console.log){
+          console.log('equalizeHeights -> items:', $carousel.find('.testimony-wrap').length, 'maxHeight:', max);
+        }
+      }
+
+      // Inicializar Owl (si ya lo inicializabas en otro sitio, borra esa otra inicialización)
+      $carousel.owlCarousel({
+        loop: true,
+        margin: 30,
+        autoplay: true,
+        nav: false,
+        dots: true,
+        responsive:{
+          0:{ items:1 },
+          768:{ items:2 },
+          1000:{ items:3 }
+        }
+      });
+
+      // Ejecutar en eventos clave de Owl (esperamos un tick para que termine layout)
+      $carousel.on('initialized.owl.carousel refreshed.owl.carousel resized.owl.carousel changed.owl.carousel translated.owl.carousel', function(){
+        setTimeout(equalizeHeights, 30);
+      });
+
+      // Ejecutar también al cargar la ventana y redimensionar
+      $(window).on('load resize', function(){
+        setTimeout(equalizeHeights, 50);
+      });
+
+      // Reintentos (por si fonts/backgrounds cargan después)
+      [100, 300, 800].forEach(function(ms){
+        setTimeout(equalizeHeights, ms);
+      });
+
+      // ejecución inicial por si algo ya cargó
+      setTimeout(equalizeHeights, 200);
+
+    });
+  })(jQuery);
+</script>
         <script src="<?= base_url(RECURSOS_PUBLICOS_JS . '/jquery.magnific-popup.min.js') ?>"></script>
         <script src="<?= base_url(RECURSOS_PUBLICOS_JS . '/scrollax.min.js') ?>"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>

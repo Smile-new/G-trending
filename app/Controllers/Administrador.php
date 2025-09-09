@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 
-class Administrador extends Controller
+class Administrador extends BaseController
 {
     public function __construct()
     {
@@ -18,13 +18,13 @@ class Administrador extends Controller
      * Muestra la página principal del Dashboard de administración.
      * Corresponde a la vista app/Views/dashboard/dashboard.php
      */
-    public function index()
-    {
+    public function index(){
+
         $data = [
             'page_title' => 'Dashboard Principal | Administración',
             // Puedes añadir datos dinámicos que necesites en el dashboard
         ];
-        return view('dashboard/dashboard', $data); // Apunta a app/Views/dashboard/dashboard.php
+        return view('dashboard/dashboard', $data,); // Apunta a app/Views/dashboard/dashboard.php
     }
 
 

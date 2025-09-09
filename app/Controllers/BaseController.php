@@ -43,6 +43,6 @@ class BaseController extends Controller
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
          parent::initController($request, $response, $logger);
-    }
 
+}
 }

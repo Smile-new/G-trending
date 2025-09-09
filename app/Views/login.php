@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="<?= base_url('recursos_login/style.css') ?>">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .alert {
             padding: 10px;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <title>Trending Local - Contacto</title>
     <meta charset="utf-8">
@@ -53,23 +53,31 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="<?= base_url('/'); ?>" class="nav-link">Inicio</a></li>
                     <li class="nav-item"><a href="<?= base_url('about'); ?>" class="nav-link">Servicios</a></li>
-                    <li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y estudios</a></li>
+                    <li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y Estudios</a></li>
                     <li class="nav-item active"><a href="<?= base_url('contact'); ?>" class="nav-link">Contáctanos</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/4.jpg') ?>'); text-align: center;" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row no-gutters slider-text align-items-end">
-                <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="<?= base_url() ?>index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Contáctanos <i class="ion-ios-arrow-forward"></i></span></p>
-                    <h1 class="mb-0 bread">Contáctanos</h1>
-                </div>
+<section class="hero-wrap hero-wrap-2" 
+    style="background-image: url('<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/4.jpg') ?>');" 
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs mb-2">
+                    <span class="mr-2">
+                        <a href="<?= base_url() ?>index.html">Inicio <i class="ion-ios-arrow-forward"></i></a>
+                    </span> 
+                    <span>Contáctanos <i class="ion-ios-arrow-forward"></i></span>
+                </p>
+                <h1 class="mb-0 bread">Contáctanos</h1>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <section class="ftco-section">
         <div class="container">

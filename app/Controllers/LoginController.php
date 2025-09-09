@@ -34,7 +34,7 @@ class LoginController extends Controller
             return redirect()->back()->withInput();
         }
 
-        $user_data = $model->where('user', $user_input)->first();
+        $user_data = $model->getUserByUsernameWithRole($user_input);
 
         if ($user_data) {
             if (password_verify($password_input, $user_data['password'])) {
@@ -49,6 +49,8 @@ class LoginController extends Controller
                     'username'   => $user_data['nombre_usuario'],
                     'user'       => $user_data['user'],
                     'role'       => $user_data['rol_id'],
+                    'role_name'  => $user_data['nombre_rol'], // Obtenemos el NOMBRE del rol de la sesión
+                    'foto'       => $user_data['foto'], 
                     'isLoggedIn' => true,
                 ];
                 $session->set($ses_data);

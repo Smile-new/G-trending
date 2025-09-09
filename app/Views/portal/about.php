@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <title>Trending Local - Soluciones en Inteligencia de Datos</title>
     <meta charset="utf-8">
@@ -53,18 +53,18 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="<?= base_url('/'); ?>" class="nav-link">Inicio</a></li>
                     <li class="nav-item active"><a href="<?= base_url('about'); ?>" class="nav-link">Servicios</a></li>
-                    <li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y estudios</a></li>
+                    <li class="nav-item"><a href="<?= base_url('causes'); ?>" class="nav-link">Encuestas y Estudios</a></li>
                     <li class="nav-item"><a href="<?= base_url('contact'); ?>" class="nav-link">Contáctanos</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/fond.jpg') ?>');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/s.jpg') ?>');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-end">
                 <div class="col-md-9 ftco-animate pb-5">
-                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="<?= base_url() ?>index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Servicios <i class="ion-ios-arrow-forward"></i></span></p>
+                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="<?= base_url() ?>index.html">Inicio <i class="ion-ios-arrow-forward"></i></a></span> <span>Servicios <i class="ion-ios-arrow-forward"></i></span></p>
                     <h1 class="mb-0 bread">Nuestros Servicios</h1>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                     <div class="heading-section pt-md-5 mb-4">
                         <span class="subheading">Servicios</span>
                         <h2 class="mb-2">Tecnología Propia: Precisión y Eficiencia</h2>
-                        <p>Contamos con una **plataforma de inteligencia de datos** exclusiva, desarrollada para obtener resultados precisos y eficientes. Esta herramienta tecnológica nos permite tener control total del proceso, garantizando **calidad, rapidez y fiabilidad** en cada etapa, desde la recolección hasta el análisis final.</p>
+                        <p>Contamos con una <strong>plataforma de inteligencia de datos</strong> exclusiva, desarrollada para obtener resultados precisos y eficientes. Esta herramienta tecnológica nos permite tener control total del proceso, garantizando <strong>calidad, rapidez y fiabilidad</strong> en cada etapa, desde la recolección hasta el análisis final.</p>
                         <p><a href="#" class="btn btn-secondary">Contactar</a></p>
                     </div>
                 </div>
@@ -100,28 +100,29 @@
             </div>
             <div class="row">
                 <div class="col-md-3 services-2 w-100 text-center">
-                    <div class="icon icon-1 d-flex align-items-center justify-content-center"><span class="flaticon-water-drop"></span></div>
+                    <div class="icon icon-1 d-flex align-items-center justify-content-center"><span class="fa fa-pie-chart"></span>
+</div>
                     <div class="text">
                         <h4>Análisis Estratégico Multidimensional</h4>
                         <p>Nuestra base de datos dinámica permite cruzar resultados con múltiples variables, ofreciendo un análisis más profundo y segmentado. Descubre tendencias y oportunidades ocultas en tus datos.</p>
                     </div>
                 </div>
                 <div class="col-md-3 services-2 w-100 text-center">
-                    <div class="icon icon-2 d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
+                    <div class="icon icon-2 d-flex align-items-center justify-content-center"><span class="fa fa-database"></span></div>
                     <div class="text">
                         <h4>Datos de Última Generación</h4>
                         <p>Obtenemos información precisa, actual y georreferenciada para impulsar estrategias sólidas y decisiones efectivas en el momento justo. Confía en datos que realmente marcan la diferencia.</p>
                     </div>
                 </div>
                 <div class="col-md-3 services-2 w-100 text-center">
-                    <div class="icon icon-3 d-flex align-items-center justify-content-center"><span class="flaticon-bread"></span></div>
+                    <div class="icon icon-3 d-flex align-items-center justify-content-center"><span class="fa fa-cogs"></span></div>
                     <div class="text">
                         <h4>Soluciones Adaptadas</h4>
                         <p>La información está completamente disponible para nuestros clientes. Creamos análisis específicos y personalizados para tus necesidades, entregando soluciones claras y accionables.</p>
                     </div>
                 </div>
                 <div class="col-md-3 services-2 w-100 text-center">
-                    <div class="icon icon-4 d-flex align-items-center justify-content-center"><span class="flaticon-university"></span></div>
+                    <div class="icon icon-4 d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
                     <div class="text">
                         <h4>Consultoría Experta</h4>
                         <p>Nuestro equipo de especialistas te guiará en la interpretación de los datos, ayudándote a transformar la información en una estrategia de negocio ganadora.</p>
@@ -147,7 +148,7 @@
                     <div class="carousel-testimony owl-carousel">
                         <div class="item">
                             <div class="testimony-wrap d-flex">
-                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/person_1.jpg') ?>)">
+                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona2.png') ?>)">
                                 </div>
                                 <div class="text pl-4">
                                     <span class="quote d-flex align-items-center justify-content-center">
@@ -168,7 +169,7 @@
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex">
-                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/person_2.jpg') ?>)">
+                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona3.png') ?>)">
                                 </div>
                                 <div class="text pl-4">
                                     <span class="quote d-flex align-items-center justify-content-center">
@@ -183,13 +184,13 @@
                                     </p>
                                     <p>Su análisis personalizado fue clave para nuestra estrategia de expansión. Ahorramos tiempo y recursos valiosos gracias a sus insights.</p>
                                     <p class="name">Henry Dee</p>
-                                    <span class="position">Directora de Marketing</span>
+                                    <span class="position">Director de Marketing</span>
                                 </div>
                             </div>
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex">
-                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/person_3.jpg') ?>)">
+                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona4.png') ?>)">
                                 </div>
                                 <div class="text pl-4">
                                     <span class="quote d-flex align-items-center justify-content-center">
@@ -210,7 +211,7 @@
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex">
-                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/person_4.jpg') ?>)">
+                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona5.png') ?>)">
                                 </div>
                                 <div class="text pl-4">
                                     <span class="quote d-flex align-items-center justify-content-center">
@@ -231,7 +232,7 @@
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex">
-                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/person_1.jpg') ?>)">
+                                <div class="user-img" style="background-image: url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/persona1.png') ?>)">
                                 </div>
                                 <div class="text pl-4">
                                     <span class="quote d-flex align-items-center justify-content-center">
@@ -288,6 +289,71 @@
         <script src="<?= base_url(RECURSOS_PUBLICOS_JS . '/bootstrap-datepicker.js') ?>"></script>
         <script src="<?= base_url(RECURSOS_PUBLICOS_JS . '/jquery.timepicker.min.js') ?>"></script>
         <script src="<?= base_url(RECURSOS_PUBLICOS_JS . '/owl.carousel.min.js') ?>"></script>
+        <script>
+  (function($){
+    $(function(){
+
+      var $carousel = $('.carousel-testimony');
+
+      function equalizeHeights(){
+        if(!$carousel.length) return;
+        // Reset
+        $carousel.find('.testimony-wrap').css({height: 'auto', 'min-height': ''});
+
+        var max = 0;
+        // Medimos todas las tarjetas (incluye clones)
+        $carousel.find('.testimony-wrap').each(function(){
+          var h = $(this).outerHeight();
+          if(h > max) max = h;
+        });
+
+        if(max > 0){
+          // Aplicamos altura consistente
+          $carousel.find('.testimony-wrap').css({height: max + 'px', 'min-height': max + 'px'});
+        }
+
+        // Debug: ver en consola cuántos y el máximo
+        if(window.console && window.console.log){
+          console.log('equalizeHeights -> items:', $carousel.find('.testimony-wrap').length, 'maxHeight:', max);
+        }
+      }
+
+      // Inicializar Owl (si ya lo inicializabas en otro sitio, borra esa otra inicialización)
+      $carousel.owlCarousel({
+        loop: true,
+        margin: 30,
+        autoplay: true,
+        nav: false,
+        dots: true,
+        responsive:{
+          0:{ items:1 },
+          768:{ items:2 },
+          1000:{ items:3 }
+        }
+      });
+
+      // Ejecutar en eventos clave de Owl (esperamos un tick para que termine layout)
+      $carousel.on('initialized.owl.carousel refreshed.owl.carousel resized.owl.carousel changed.owl.carousel translated.owl.carousel', function(){
+        setTimeout(equalizeHeights, 30);
+      });
+
+      // Ejecutar también al cargar la ventana y redimensionar
+      $(window).on('load resize', function(){
+        setTimeout(equalizeHeights, 50);
+      });
+
+      // Reintentos (por si fonts/backgrounds cargan después)
+      [100, 300, 800].forEach(function(ms){
+        setTimeout(equalizeHeights, ms);
+      });
+
+      // ejecución inicial por si algo ya cargó
+      setTimeout(equalizeHeights, 200);
+
+    });
+  })(jQuery);
+</script>
+
         <script src="<?= base_url(RECURSOS_PUBLICOS_JS . '/jquery.magnific-popup.min.js') ?>"></script>
         <script src="<?= base_url(RECURSOS_PUBLICOS_JS . '/scrollax.min.js') ?>"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>

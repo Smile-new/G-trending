@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-                    <h2 class="footer-heading">Trending Local.</h2>
+                    <h2 class="footer-heading">Trending Local</h2>
                     <p>Conéctate con lo local. Noticias, eventos y servicios en tu comunidad.</p>
                     <ul class="ftco-footer-social p-0">
                         <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
@@ -43,7 +43,7 @@
                 <ul class="list-unstyled">
                     <li><a href="<?= base_url('/'); ?>" class="py-2 d-block">Inicio</a></li>
                     <li><a href="<?= base_url('about'); ?>" class="py-2 d-block">Servicios</a></li>
-                    <li><a href="<?= base_url('causes'); ?>" class="py-2 d-block">Encuestas y estudios</a></li>
+                    <li><a href="<?= base_url('causes'); ?>" class="py-2 d-block">Encuestas y Estudios</a></li>
                     <li><a href="<?= base_url('contact'); ?>" class="py-2 d-block">Contáctanos</a></li>
                 </ul>
             </div>
@@ -51,7 +51,7 @@
                 <h2 class="footer-heading">¿Tienes Preguntas?</h2>
                 <div class="block-23 mb-3">
                     <ul>
-                        <li><span class="icon fa fa-map"></span><span class="text">C. Ignacio Allende 61, Centro, 90300 Tlaxcala de Xicohténcatl, Tlax.</span></li>
+                        <li><span class="icon fa fa-map"></span><span class="text">Calle Ignacio Allende 61, Centro, 90300 Tlaxcala de Xicohténcatl, Tlax.</span></li>
                         <li><a href="tel:+525539656252"><span class="icon fa fa-phone"></span><span class="text">55 3965 6252</span></a></li>
                         <li><a href="mailto:trendinglocalmx@gmail.com"><span class="icon fa fa-paper-plane"></span><span class="text">trendinglocalmx@gmail.com</span></a></li>
                     </ul>
@@ -60,9 +60,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-md-12 text-center">
-                <p class="copyright">
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Template by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-                </p>
+                <p class="copywrite-text">&copy; <?= date('Y') ?> Todos los derechos reservados | Este sitio fue creado por Ranker</p>
             </div>
         </div>
     </div>
