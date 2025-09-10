@@ -9667,7 +9667,8 @@ textarea.form-control {
           border-color: #fff; }
 
 .testimony-wrap {
-  display: block;
+  display: flex;
+  align-items: flex-start;
   position: relative;
   padding: 30px 20px;
   border-radius: 5px;
@@ -9683,7 +9684,10 @@ textarea.form-control {
     position: relative; }
     .testimony-wrap .text p {
       color: #000000; 
-      text-align: justify;}
+      text-align: justify;
+      font-size: 14px;   /* <- aquí ajustas el tamaño */
+      line-height: 1.6;
+    }
   .testimony-wrap .quote {
     position: absolute;
     top: -50px;

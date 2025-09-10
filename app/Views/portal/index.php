@@ -130,7 +130,7 @@
                     <div class="heading-section pr-md-5 pt-md-5">
                         <span class="subheading">Trending Local</span>
                         <h2 class="mb-4">Tu Estrategia Basada En Datos Reales</h2>
-                        <p>En un mundo que cambia rápidamente, tomar decisiones sin información precisa es un riesgo. En <strong>Trending Local</strong>, transformamos el ruido en señal. Recopilamos y analizamos datos clave sobre tu comunidad, mercado o electorado para ofrecerte insights claros y accionables. No adivines, <strong>sabe</strong>. Desde censos detallados hasta encuestas dinámicas, nuestras herramientas te dan la ventaja que necesitas para liderar con confianza.</p>
+                        <p style="text-align: justify;">En un mundo que cambia rápidamente, tomar decisiones sin información precisa es un riesgo. En <strong>Trending Local</strong>, transformamos el ruido en señal. Recopilamos y analizamos datos clave sobre tu comunidad, mercado o electorado para ofrecerte insights claros y accionables. No adivines, <strong>sabe</strong>. Desde censos detallados hasta encuestas dinámicas, nuestras herramientas te dan la ventaja que necesitas para liderar con confianza.</p>
                     </div>
                 </div>
             </div>
@@ -220,7 +220,7 @@
                                     <span class="fa fa-star"></span>
                                     <span class="fa fa-star"></span>
                                 </p>
-                                <p>El servicio nos brindó una comprensión más clara de la información que necesitábamos para avanzar con seguridad.</p>
+                                <p>El servicio nos brindó una comprensión más clara de la información que necesitábamos.</p>
                             </div>
                         </div>
                     </div>
@@ -296,7 +296,7 @@
                                     <span class="fa fa-star"></span>
                                     <span class="fa fa-star"></span>
                                 </p>
-                                <p>La manera en que la información fue presentada permitió que todo el equipo la comprendiera fácilmente.</p>
+                                <p>La manera en que la información fue presentada permitió que todo el equipo la comprendiera.</p>
                             </div>
                         </div>
                     </div>
@@ -413,6 +413,11 @@
           1000:{ items:3 }
         }
       });
+
+      .testimony-wrap .text {
+  flex: 1;             /* ocupa todo el espacio disponible */
+  text-align: left;    /* texto alineado a la izquierda */
+}
 
       // Ejecutar en eventos clave de Owl (esperamos un tick para que termine layout)
       $carousel.on('initialized.owl.carousel refreshed.owl.carousel resized.owl.carousel changed.owl.carousel translated.owl.carousel', function(){

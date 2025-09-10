@@ -75,14 +75,17 @@
         <div class="container">
             <div class="row d-flex no-gutters">
                 <div class="col-md-6 d-flex order-md-last">
-                    <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" style="background-image:url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/about-1.jpg') ?>);">
-                    </div>
+                <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0 mt-5" 
+                    style="background-image:url(<?= base_url(RECURSOS_PUBLICOS_IMAGES . '/about.png') ?>); height: 350px;">
                 </div>
+                </div>
+
+
                 <div class="col-md-6 pr-md-5 py-md-5">
                     <div class="heading-section pt-md-5 mb-4">
                         <span class="subheading">Servicios</span>
                         <h2 class="mb-2">Tecnología Propia: Precisión y Eficiencia</h2>
-                        <p>Contamos con una <strong>plataforma de inteligencia de datos</strong> exclusiva, desarrollada para obtener resultados precisos y eficientes. Esta herramienta tecnológica nos permite tener control total del proceso, garantizando <strong>calidad, rapidez y fiabilidad</strong> en cada etapa, desde la recolección hasta el análisis final.</p>
+                        <p style="text-align: justify;">Contamos con una <strong>plataforma de inteligencia de datos</strong> exclusiva, desarrollada para obtener resultados precisos y eficientes. Esta herramienta tecnológica nos permite tener control total del proceso, garantizando <strong>calidad, rapidez y fiabilidad</strong> en cada etapa, desde la recolección hasta el análisis final.</p>
                         <p><a href="#" class="btn btn-secondary">Contactar</a></p>
                     </div>
                 </div>
@@ -154,7 +157,7 @@
                                     <span class="fa fa-star"></span> 
                                     <span class="fa fa-star"></span> 
                                 </p> 
-                                <p>La participación ciudadana fortalece la toma de decisiones informadas.</p> 
+                                <p>La participación ciudadana fortalece la toma de decisiones colectivas e informadas.</p>
                             </div> 
                         </div>
                     </div> 
@@ -171,7 +174,7 @@
                                         <span class="fa fa-star"></span> <span class="fa fa-star"></span> 
                                         <span class="fa fa-star"></span> 
                                     </p> 
-                                    <p>Cuando todos opinamos, los resultados reflejan la realidad.</p> 
+<p>Cuando todos opinamos, los resultados reflejan la realidad compartida y generan confianza social.</p>
                                 </div> 
                             </div> 
                         </div> 
@@ -190,7 +193,7 @@
                                         <span class="fa fa-star"></span> 
                                         <span class="fa fa-star"></span> 
                                     </p> 
-                                    <p>Los datos recopilados muestran lo que realmente importa a la comunidad.</p> 
+                                    <p>Los datos recopilados muestran lo que realmente le importa a nuestra comunidad.</p>
                                 </div> 
                             </div> 
                         </div> 
@@ -209,7 +212,7 @@
                                         <span class="fa fa-star"></span> 
                                         <span class="fa fa-star"></span> 
                                     </p> 
-                                    <p>La transparencia en la información genera confianza.</p> 
+                                    <p>La transparencia en la información compartida fortalece la confianza de la gente.</p>
                                 </div> 
                             </div> 
                         </div> 
@@ -227,7 +230,7 @@
                                         <span class="fa fa-star"></span> 
                                         <span class="fa fa-star"></span> 
                                     </p> 
-                                    <p>Cada opinión cuenta y contribuye al cambio.</p> 
+                                    <p>Cada opinión cuenta y contribuye al cambio positivo de nuestra sociedad.</p>
                                 </div> 
                             </div> 
                         </div> 
@@ -311,6 +314,12 @@
           1000:{ items:3 }
         }
       });
+
+      .testimony-wrap .text {
+  flex: 1;             /* ocupa todo el espacio disponible */
+  text-align: left;    /* texto alineado a la izquierda */
+}
+
 
       // Ejecutar en eventos clave de Owl (esperamos un tick para que termine layout)
       $carousel.on('initialized.owl.carousel refreshed.owl.carousel resized.owl.carousel changed.owl.carousel translated.owl.carousel', function(){
