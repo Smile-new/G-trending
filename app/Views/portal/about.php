@@ -17,6 +17,13 @@
     <link rel="stylesheet" href="<?= base_url(RECURSOS_PUBLICOS_CSS . '/jquery.timepicker.css') ?>">
     <link rel="stylesheet" href="<?= base_url(RECURSOS_PUBLICOS_CSS . '/flaticon.css') ?>">
     <link rel="stylesheet" href="<?= base_url(RECURSOS_PUBLICOS_CSS . '/style.css') ?>">
+
+    <style>
+        .testimony-wrap .text {
+            flex: 1;
+            text-align: left;
+            }
+    </style>
 </head>
 <body>
 
@@ -314,12 +321,6 @@
           1000:{ items:3 }
         }
       });
-
-      .testimony-wrap .text {
-  flex: 1;             /* ocupa todo el espacio disponible */
-  text-align: left;    /* texto alineado a la izquierda */
-}
-
 
       // Ejecutar en eventos clave de Owl (esperamos un tick para que termine layout)
       $carousel.on('initialized.owl.carousel refreshed.owl.carousel resized.owl.carousel changed.owl.carousel translated.owl.carousel', function(){

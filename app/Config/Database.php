@@ -34,10 +34,10 @@ class Database extends Config
 
 public $default = [
     'DSN'      => '',
-    'hostname' => 'localhost', // Tu servidor MySQL está en localhost
-    'username' => 'admin_trend', // El usuario que creaste
-    'password' => 'MiPass123#', // La contraseña de ese usuario
-    'database' => 'trendinglocal_db', // El nombre de la base de datos que creaste
+    'hostname' => 'db5018597877.hosting-data.io', // Tu servidor MySQL está en localhost
+    'username' => 'dbu1224602', // El usuario que creaste
+    'password' => '@yQRpJ&WKTV^B9GtYLc8Ta', // La contraseña de ese usuario
+    'database' => 'dbs14750552', // El nombre de la base de datos que creaste
     'DBDriver' => 'MySQLi',
     'DBPrefix' => '',
     'pConnect' => false,
